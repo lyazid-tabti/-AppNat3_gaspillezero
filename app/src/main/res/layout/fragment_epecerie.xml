@@ -85,7 +85,7 @@
             android:layout_height="125dp"
             android:layout_weight="1"
             android:layerType="software"
-            app:srcCompat="@drawable/Provigo" />
+            app:srcCompat="@drawable/soupetomate" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="0,99$"
+                android:text="Disponible pour livraison"
                 android:textColor="@color/black" />
 
         </LinearLayout>
@@ -180,7 +180,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Maxin"
+                    android:text="Maxi"
                     android:textColor="@color/black" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -205,7 +205,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="1,09$"
+                android:text="Non Disponible"
                 android:textColor="@color/black" />
 
         </LinearLayout>
@@ -215,16 +215,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btnAjouterPanier2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:backgroundTint="#C0C0C0"
-                android:text="Ajouter au panier"
-                android:textColor="@color/black"
-                android:textColorHint="#C0C0C0"
-                android:textSize="10sp" />
+
         </LinearLayout>
 
     </LinearLayout>
