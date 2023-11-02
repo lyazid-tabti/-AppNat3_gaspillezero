@@ -9,10 +9,22 @@
         android:id="@+id/mainFragment"
         android:name="com.example.gaspillezero.ui.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_fragment_epecerie"
+            app:destination="@id/fragment_epecerie" />
+        <action
+            android:id="@+id/action_mainFragment_to_fragment_epecerie2"
+            app:destination="@id/fragment_epecerie" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_epecerie"
         android:name="com.example.gaspillezero.fragment_epecerie"
         android:label="fragment_epecerie"
         tools:layout="@layout/fragment_epecerie" />
+    <fragment
+        android:id="@+id/fragment_detail"
+        android:name="com.example.gaspillezero.fragment_detail"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
 </navigation>
