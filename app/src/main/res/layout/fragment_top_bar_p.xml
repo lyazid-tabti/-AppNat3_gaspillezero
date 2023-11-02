@@ -51,7 +51,8 @@
             android:layout_width="78dp"
             android:layout_height="51dp"
             android:foregroundGravity="top|center_vertical|right"
-            android:src="@drawable/MarketIcon" />
+            android:src="@drawable/MarketIcon"
+            tools:srcCompat="@drawable/MarketIcon" />
     </LinearLayout>
 
 </FrameLayout>

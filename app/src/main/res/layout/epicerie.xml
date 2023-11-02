@@ -17,11 +17,11 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
-            android:name="com.example.gaspillezero.TopBar"
+            android:name="com.example.gaspillezero.top_bar_p"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center_vertical"
-            tools:layout="@layout/fragment_top_bar" />
+            tools:layout="@layout/fragment_top_bar_p" />
     </LinearLayout>
 
     <LinearLayout
@@ -94,7 +94,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView2"
-            android:name="com.example.gaspillezero.BottomBar"
+            android:name="com.example.gaspillezero.bottom_bar"
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:layout_gravity="bottom"
