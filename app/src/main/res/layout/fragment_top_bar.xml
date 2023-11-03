@@ -19,7 +19,7 @@
             android:layout_height="52dp"
             android:scaleX="2"
             android:src="@android:drawable/screen_background_dark"
-            app:srcCompat="@drawable/BlackBar" />
+            app:srcCompat="@drawable/blackbar" />
 
     </LinearLayout>
 
@@ -51,7 +51,7 @@
             android:layout_width="78dp"
             android:layout_height="51dp"
             android:foregroundGravity="top|center_vertical|right"
-            android:src="@drawable/MarketIcon" />
+            android:src="@drawable/marketicon" />
     </LinearLayout>
 
 </FrameLayout>
