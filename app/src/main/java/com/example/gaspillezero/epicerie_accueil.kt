@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
@@ -43,7 +42,7 @@ class epicerie_accueil : Fragment() {
         }
         val ButtonProduit = view.findViewById<Button>(R.id.ProduitB)
         ButtonProduit.setOnClickListener{
-            findNavController().navigate(R.id.action_epicerie_accueil_to_gestionProduit)
+            findNavController().navigate(R.id.action_epicerie_accueil_to_gestion_produit)
         }
         val ButtonCommande = view.findViewById<Button>(R.id.CommandeB)
         ButtonCommande.setOnClickListener{

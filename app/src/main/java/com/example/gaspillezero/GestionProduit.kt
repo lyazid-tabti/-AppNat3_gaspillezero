@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 class GestionProduit : Fragment() {
 
@@ -30,6 +32,10 @@ class GestionProduit : Fragment() {
         listView = view.findViewById(R.id.lvProduits)
         customAdapter = CustomAdapter(requireContext(), dataList)
         listView.adapter = customAdapter
+        val ButtonAccueil = view.findViewById<ImageButton>(R.id.Accueil)
+        ButtonAccueil.setOnClickListener{
+            findNavController().navigate(R.id.action_gestionProduit_to_epicerie_accueil)
+        }
         return view
     }
 

@@ -17,7 +17,7 @@
             android:id="@+id/action_epicerie_accueil_to_gestion_commandes"
             app:destination="@id/gestion_commandes" />
         <action
-            android:id="@+id/action_epicerie_accueil_to_gestionProduit"
+            android:id="@+id/action_epicerie_accueil_to_gestion_produit"
             app:destination="@id/gestionProduit" />
     </fragment>
     <fragment
@@ -39,7 +39,17 @@
         android:id="@+id/gestion_gabarit"
         android:name="com.example.gaspillezero.gestion_gabarit"
         android:label="fragment_gestion_gabarit"
-        tools:layout="@layout/fragment_gestion_gabarit" />
+        tools:layout="@layout/fragment_gestion_gabarit" >
+        <action
+            android:id="@+id/action_gestion_gabarit_to_epicerie_accueil"
+            app:destination="@id/epicerie_accueil" />
+        <action
+            android:id="@+id/action_gestion_gabarit_to_detail_gabarit1"
+            app:destination="@id/detail_gabarit1" />
+        <action
+            android:id="@+id/action_gestion_gabarit_to_detail_gabarit2"
+            app:destination="@id/detail_gabarit2" />
+    </fragment>
     <fragment
         android:id="@+id/detail_commande1"
         android:name="com.example.gaspillezero.detail_commande1"
@@ -86,5 +96,9 @@
         android:id="@+id/gestionProduit"
         android:name="com.example.gaspillezero.GestionProduit"
         android:label="fragment_gestion_produit"
-        tools:layout="@layout/fragment_gestion_produit" />
+        tools:layout="@layout/fragment_gestion_produit" >
+        <action
+            android:id="@+id/action_gestionProduit_to_epicerie_accueil"
+            app:destination="@id/epicerie_accueil" />
+    </fragment>
 </navigation>
