@@ -75,6 +75,16 @@
                 android:text="Commandes"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/DenréeB"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#5911FF00"
+                android:fontFamily="serif"
+                android:text="Denrée"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>

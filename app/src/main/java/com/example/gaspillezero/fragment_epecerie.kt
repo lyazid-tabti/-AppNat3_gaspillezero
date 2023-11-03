@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,11 +38,18 @@ class fragment_epecerie : Fragment() {
             val transcation = fragmentManager?.beginTransaction()
             transcation?.replace(R.id.container,fragment)?.commit()
         }
-
-        btnarticle.setOnClickListener{
+/*        btnarticle.setOnClickListener{
             val fragment = fragment_article()
             val transcation1 = fragmentManager?.beginTransaction()
             transcation1?.replace(R.id.container,fragment)?.commit()
+        }*/
+        val ButtonArticle = view.findViewById<Button>(R.id.btnarticle)
+        ButtonArticle.setOnClickListener{
+            findNavController().navigate(R.id.action_fragment_epecerie_to_denreesFragment)
+        }
+        val ButtonRetourne = view.findViewById<Button>(R.id.btnRetour)
+        ButtonRetourne.setOnClickListener{
+            findNavController().navigate(R.id.action_fragment_epecerie_to_epicerie_accueil)
         }
         return view
     }

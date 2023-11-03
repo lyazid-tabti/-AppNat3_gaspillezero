@@ -2,6 +2,6 @@ package com.example.gaspillezero.ui.main
 
 import androidx.lifecycle.ViewModel
 
-class MainViewModel : ViewModel() {
+class DenreesViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

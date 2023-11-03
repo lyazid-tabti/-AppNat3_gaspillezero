@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_epicerie_accueil_to_gestionProduit"
             app:destination="@id/gestionProduit" />
+        <action
+            android:id="@+id/action_epicerie_accueil_to_fragment_epecerie"
+            app:destination="@id/fragment_epecerie" />
     </fragment>
     <fragment
         android:id="@+id/gestion_commandes"
@@ -102,38 +105,54 @@
             app:destination="@id/epicerie_accueil" />
     </fragment>
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.example.gaspillezero.ui.main.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_mainFragment_to_fragment_epecerie"
-            app:destination="@id/fragment_epecerie" />
-        <action
-            android:id="@+id/action_mainFragment_to_fragment_epecerie2"
-            app:destination="@id/fragment_epecerie" />
-    </fragment>
-    <fragment
         android:id="@+id/fragment_epecerie"
         android:name="com.example.gaspillezero.fragment_epecerie"
         android:label="fragment_epecerie"
         tools:layout="@layout/fragment_epecerie" >
         <action
-            android:id="@+id/action_fragment_epecerie_to_fragment_article"
-            app:destination="@id/fragment_article" />
+            android:id="@+id/action_fragment_epecerie_to_denreesFragment"
+            app:destination="@id/denreesFragment" />
+        <action
+            android:id="@+id/action_fragment_epecerie_to_epicerie_accueil"
+            app:destination="@id/epicerie_accueil" />
+        <action
+            android:id="@+id/action_fragment_epecerie_to_panierFragment"
+            app:destination="@id/panierFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragment_detail"
         android:name="com.example.gaspillezero.fragment_detail"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
-    <fragment
-        android:id="@+id/fragment_article"
-        android:name="com.example.gaspillezero.fragment_article"
-        android:label="fragment_article"
-        tools:layout="@layout/fragment_article" >
+        tools:layout="@layout/fragment_detail" >
         <action
-            android:id="@+id/action_fragment_article_to_fragment_detail"
+            android:id="@+id/action_fragment_detail_to_denreesFragment"
+            app:destination="@id/denreesFragment" />
+        <action
+            android:id="@+id/action_fragment_detail_to_panierFragment"
+            app:destination="@id/panierFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/denreesFragment"
+        android:name="com.example.gaspillezero.ui.main.DenreesFragment"
+        android:label="fragment_denrees"
+        tools:layout="@layout/fragment_denrees" >
+        <action
+            android:id="@+id/action_denreesFragment_to_panierFragment"
+            app:destination="@id/panierFragment" />
+        <action
+            android:id="@+id/action_denreesFragment_to_fragment_epecerie"
+            app:destination="@id/fragment_epecerie" />
+        <action
+            android:id="@+id/action_denreesFragment_to_fragment_detail"
             app:destination="@id/fragment_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/panierFragment"
+        android:name="com.example.gaspillezero.ui.main.PanierFragment"
+        android:label="fragment_panier"
+        tools:layout="@layout/fragment_panier" >
+        <action
+            android:id="@+id/action_panierFragment_to_denreesFragment"
+            app:destination="@id/denreesFragment" />
     </fragment>
 </navigation>
