@@ -2,7 +2,10 @@ package com.example.gaspillezero
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.gaspillezero.ui.main.MainFragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import com.example.gaspillezero.ui.main.DenreesFragment
+import com.example.gaspillezero.ui.main.PanierFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
+                .replace(R.id.nav_host_fragment, DenreesFragment.newInstance())
                 .commitNow()
         }
     }
