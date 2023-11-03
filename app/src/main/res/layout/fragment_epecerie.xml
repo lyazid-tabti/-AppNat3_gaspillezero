@@ -85,7 +85,7 @@
                 android:layout_height="125dp"
                 android:layout_weight="1"
                 android:layerType="software"
-                app:srcCompat="@drawable/soupetomate" />
+                app:srcCompat="@drawable/walmart" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -107,15 +107,18 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined">
+                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"/>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="160dp"
-                        android:layout_height="52dp"
-                        android:backgroundTint="#C0C0C0"
-                        android:hint="Commander"
-                        android:textColor="@color/black" />
-                </com.google.android.material.textfield.TextInputLayout>
+                <Button
+                    android:id="@+id/btnarticle"
+                    android:layout_width="87dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:backgroundTint="#C0C0C0"
+                    android:text="Commander "
+                    android:textColor="@color/black"
+                    android:textColorHint="#C0C0C0"
+                    android:textSize="10sp" />
             </LinearLayout>
 
             <TextView
@@ -149,7 +152,7 @@
                 android:layout_height="125dp"
                 android:layout_weight="1"
                 android:layerType="software"
-                app:srcCompat="@drawable/spaghettini" />
+                app:srcCompat="@drawable/maxi" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -214,7 +217,7 @@
             android:layout_height="125dp"
             android:layout_weight="1"
             android:layerType="software"
-            android:src="@drawable/walmart" />
+            android:src="@drawable/provigo" />
 
         <LinearLayout
             android:layout_width="wrap_content"

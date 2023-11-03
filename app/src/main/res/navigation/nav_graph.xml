@@ -21,10 +21,23 @@
         android:id="@+id/fragment_epecerie"
         android:name="com.example.gaspillezero.fragment_epecerie"
         android:label="fragment_epecerie"
-        tools:layout="@layout/fragment_epecerie" />
+        tools:layout="@layout/fragment_epecerie" >
+        <action
+            android:id="@+id/action_fragment_epecerie_to_fragment_article"
+            app:destination="@id/fragment_article" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_detail"
         android:name="com.example.gaspillezero.fragment_detail"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
+    <fragment
+        android:id="@+id/fragment_article"
+        android:name="com.example.gaspillezero.fragment_article"
+        android:label="fragment_article"
+        tools:layout="@layout/fragment_article" >
+        <action
+            android:id="@+id/action_fragment_article_to_fragment_detail"
+            app:destination="@id/fragment_detail" />
+    </fragment>
 </navigation>

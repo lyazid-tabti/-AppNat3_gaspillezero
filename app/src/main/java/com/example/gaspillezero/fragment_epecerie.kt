@@ -30,10 +30,18 @@ class fragment_epecerie : Fragment() {
         val view = inflater.inflate(R.layout.fragment_epecerie, container, false)
 
         val nextBtn : Button = view.findViewById(R.id.btnRetour)
+        val btnarticle : Button = view.findViewById(R.id.btnarticle)
+
         nextBtn.setOnClickListener{
             val fragment = fragment_detail()
             val transcation = fragmentManager?.beginTransaction()
             transcation?.replace(R.id.container,fragment)?.commit()
+        }
+
+        btnarticle.setOnClickListener{
+            val fragment = fragment_article()
+            val transcation1 = fragmentManager?.beginTransaction()
+            transcation1?.replace(R.id.container,fragment)?.commit()
         }
         return view
     }

@@ -77,6 +77,11 @@
             android:layout_height="match_parent">
 
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="224dp"
+                android:layout_height="212dp"
+                android:src="@drawable/soupetomate" />
         </TableRow>
 
         <TableRow
