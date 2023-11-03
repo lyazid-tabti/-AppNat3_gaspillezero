@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_epicerie_accueil_to_gestion_gabarit"
             app:destination="@id/gestion_gabarit" />
+        <action
+            android:id="@+id/action_epicerie_accueil_to_gestionProduit"
+            app:destination="@id/gestionProduit" />
     </fragment>
     <fragment
         android:id="@+id/gestion_commandes"
@@ -24,4 +27,9 @@
         android:name="com.example.gaspillezero.gestion_gabarit"
         android:label="fragment_gestion_gabarit"
         tools:layout="@layout/fragment_gestion_gabarit" />
+    <fragment
+        android:id="@+id/gestionProduit"
+        android:name="com.example.gaspillezero.GestionProduit"
+        android:label="fragment_gestion_produit"
+        tools:layout="@layout/fragment_gestion_produit" />
 </navigation>

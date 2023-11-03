@@ -41,6 +41,10 @@ class epicerie_accueil : Fragment() {
         ButtonGabarit.setOnClickListener{
             findNavController().navigate(R.id.action_epicerie_accueil_to_gestion_gabarit)
         }
+        val ButtonProduit = view.findViewById<Button>(R.id.ProduitB)
+        ButtonProduit.setOnClickListener{
+            findNavController().navigate(R.id.action_epicerie_accueil_to_gestionProduit)
+        }
 //        val ButtonCommande = view.findViewById<Button>(R.id.CommandeB)
 //        ButtonCommande.setOnClickListener{
 //            findNavController().navigate(R.id.navigateToCommandes)
