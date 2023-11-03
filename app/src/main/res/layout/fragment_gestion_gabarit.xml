@@ -10,6 +10,63 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="116dp"
+            android:layout_weight="1"
+            tools:context=".TopBar">
+
+            <!-- TODO: Update blank fragment layout -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    app:srcCompat="@drawable/bb"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:scaleX="2"
+                    android:src="@android:drawable/screen_background_dark" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="243dp"
+                android:layout_height="51dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#CA0000"
+                    android:fontFamily="serif"
+                    android:gravity="center|center_horizontal"
+                    android:text="Gø"
+                    android:textAllCaps="true"
+                    android:textColor="#FFFFFF"
+                    android:textSize="34sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="89dp"
+                android:gravity="right|top"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/Accueil"
+                    android:layout_width="65dp"
+                    android:layout_height="53dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/micon" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -17,23 +74,32 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#000000"
-                android:fontFamily="serif"
-                android:foregroundTint="#000000"
-                android:shadowColor="#000000"
-                android:shadowDx="2"
-                android:shadowDy="2"
-                android:shadowRadius="80"
-                android:text="Gestion_Gabarits"
-                android:textAllCaps="true"
-                android:textColor="#FFFFFF"
-                android:textSize="34sp"
-                android:textStyle="normal" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="NOM" />
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="DESCRIPTION" />
+
+                <TextView
+                    android:id="@+id/textView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="CATEGORIE" />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

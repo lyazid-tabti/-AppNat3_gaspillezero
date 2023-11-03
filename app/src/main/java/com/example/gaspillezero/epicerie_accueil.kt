@@ -50,6 +50,10 @@ class epicerie_accueil : Fragment() {
 //            findNavController().navigate(R.id.navigateToCommandes)
 //            println("Commande")
 //        }
+        val ButtonCommande = view.findViewById<Button>(R.id.CommandeB)
+        ButtonCommande.setOnClickListener{
+            findNavController().navigate(R.id.action_epicerie_accueil_to_gestion_commandes)
+        }
         return view
     }
 
