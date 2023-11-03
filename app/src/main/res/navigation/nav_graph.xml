@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_epicerie_accueil_to_gestion_gabarit"
             app:destination="@id/gestion_gabarit" />
-        <action
-            android:id="@+id/action_epicerie_accueil_to_gestion_commandes"
-            app:destination="@id/gestion_commandes" />
     </fragment>
     <fragment
         android:id="@+id/gestion_commandes"

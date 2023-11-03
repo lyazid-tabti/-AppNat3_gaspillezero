@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +36,17 @@ class epicerie_accueil : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_epicerie_accueil, container, false)
+        val view = inflater.inflate(R.layout.fragment_epicerie_accueil, container, false)
+        val ButtonGabarit = view.findViewById<Button>(R.id.GabaritB)
+        ButtonGabarit.setOnClickListener{
+            findNavController().navigate(R.id.action_epicerie_accueil_to_gestion_gabarit)
+        }
+//        val ButtonCommande = view.findViewById<Button>(R.id.CommandeB)
+//        ButtonCommande.setOnClickListener{
+//            findNavController().navigate(R.id.navigateToCommandes)
+//            println("Commande")
+//        }
+        return view
     }
 
     companion object {

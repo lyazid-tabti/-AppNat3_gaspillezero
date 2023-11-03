@@ -53,6 +53,7 @@
             android:foregroundGravity="top|center_vertical|right"
             android:src="@drawable/micon"
             tools:srcCompat="@drawable/micon" />
+
     </LinearLayout>
 
 </FrameLayout>

@@ -47,7 +47,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/ProduitB"
                 android:layout_width="280dp"
                 android:layout_height="50dp"
                 android:backgroundTint="#570022FF"
@@ -57,7 +57,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/GabaritB"
                 android:layout_width="280dp"
                 android:layout_height="50dp"
                 android:backgroundTint="#59FF0000"
@@ -67,7 +67,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/CommandeB"
                 android:layout_width="280dp"
                 android:layout_height="50dp"
                 android:backgroundTint="#59FFB700"
