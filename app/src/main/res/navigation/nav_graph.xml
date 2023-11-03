@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_epicerie_accueil_to_gestion_commandes"
             app:destination="@id/gestion_commandes" />
+        <action
+            android:id="@+id/action_epicerie_accueil_to_gestionProduit"
+            app:destination="@id/gestionProduit" />
     </fragment>
     <fragment
         android:id="@+id/gestion_commandes"
@@ -61,4 +64,9 @@
             android:id="@+id/action_detail_commande2_to_epicerie_accueil"
             app:destination="@id/epicerie_accueil" />
     </fragment>
+    <fragment
+        android:id="@+id/gestionProduit"
+        android:name="com.example.gaspillezero.GestionProduit"
+        android:label="fragment_gestion_produit"
+        tools:layout="@layout/fragment_gestion_produit" />
 </navigation>
