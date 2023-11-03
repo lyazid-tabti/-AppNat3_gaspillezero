@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/denreesFragment">
+
+    <fragment
+        android:id="@+id/denreesFragment"
+        android:name="com.example.gaspillezero.ui.main.DenreesFragment"
+        android:label="fragment_denrees"
+        tools:layout="@layout/fragment_denrees" >
+        <action
+            android:id="@+id/action_denreesFragment_to_panierFragment"
+            app:destination="@id/panierFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/panierFragment"
+        android:name="com.example.gaspillezero.ui.main.PanierFragment"
+        android:label="fragment_panier"
+        tools:layout="@layout/fragment_panier" />
+</navigation>
