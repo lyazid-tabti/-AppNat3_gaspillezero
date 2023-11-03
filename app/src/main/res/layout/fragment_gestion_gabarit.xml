@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,8 +13,7 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="116dp"
-            android:layout_weight="1"
+            android:layout_height="56dp"
             tools:context=".TopBar">
 
             <!-- TODO: Update blank fragment layout -->
@@ -25,11 +25,11 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    app:srcCompat="@drawable/bb"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:scaleX="2"
-                    android:src="@android:drawable/screen_background_dark" />
+                    android:src="@android:drawable/screen_background_dark"
+                    app:srcCompat="@drawable/bb" />
 
             </LinearLayout>
 
@@ -69,36 +69,128 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center_horizontal|top"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:gravity="center|top"
+                    android:paddingLeft="40dp"
                     android:text="NOM" />
 
                 <TextView
                     android:id="@+id/textView27"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:gravity="center|top"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="30dp"
                     android:text="DESCRIPTION" />
 
                 <TextView
                     android:id="@+id/textView28"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:gravity="center|top"
+                    android:padding="10dp"
                     android:text="CATEGORIE" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:src="@drawable/chicken" />
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:text="POULET" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:text="Poulet cru de Canada" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:text="VIANDE" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/Detail1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="?android:attr/actionModeFindDrawable" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:src="@drawable/fromage" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:text="FROMAGE" />
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="1dp"
+                android:text="Tout type de fromage" />
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="7dp"
+                android:text="LAITIER" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/Detail2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="?android:attr/actionModeFindDrawable" />
             </LinearLayout>
         </LinearLayout>
 

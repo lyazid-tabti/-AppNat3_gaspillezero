@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
+import android.widget.Button
 import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
@@ -15,10 +15,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [gestion_gabarit.newInstance] factory method to
+ * Use the [detail_gabarit1.newInstance] factory method to
  * create an instance of this fragment.
  */
-class gestion_gabarit : Fragment() {
+class detail_gabarit1 : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -36,19 +36,10 @@ class gestion_gabarit : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_gestion_gabarit, container, false)
-
-        val ButtonAccueil = view.findViewById<ImageButton>(R.id.Accueil)
-        ButtonAccueil.setOnClickListener{
-            findNavController().navigate(R.id.action_gestion_gabarit_to_epicerie_accueil)
-        }
-        val ButtonDetail1 = view.findViewById<ImageButton>(R.id.Detail1)
-        ButtonDetail1.setOnClickListener{
-            findNavController().navigate(R.id.action_gestion_gabarit_to_detail_gabarit1)
-        }
-        val ButtonDetail2 = view.findViewById<ImageButton>(R.id.Detail2)
-        ButtonDetail2.setOnClickListener{
-            findNavController().navigate(R.id.action_gestion_gabarit_to_detail_gabarit2)
+        val view = inflater.inflate(R.layout.fragment_detail_gabarit1, container, false)
+        val ButtonRetourne = view.findViewById<Button>(R.id.Retourne)
+        ButtonRetourne.setOnClickListener{
+            findNavController().navigate(R.id.action_detail_gabarit1_to_gestion_gabarit)
         }
         return view
     }
@@ -60,12 +51,12 @@ class gestion_gabarit : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment gestion_gabarit.
+         * @return A new instance of fragment detail_gabarit1.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            gestion_gabarit().apply {
+            detail_gabarit1().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
