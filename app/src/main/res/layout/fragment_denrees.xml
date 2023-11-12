@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".ui.main.DenreesFragment">
+    tools:context=".ui.main.PrésentationDenrées.DenreesFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -66,186 +65,11 @@
         android:layout_height="1dp"
         android:background="#000000" />
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewDenrées"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageProduit"
-                android:layout_width="60dp"
-                android:layout_height="125dp"
-                android:layout_weight="1"
-                android:layerType="software"
-                app:srcCompat="@drawable/spaghettini" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/nomProduit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Pâtes spaghettini \n Date d'exp.: 09/10/23 \n Quantité en stock: 14 \n Quantité désirer:"
-                    android:textColor="@color/black" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="160dp"
-                        android:layout_height="52dp"
-                        android:backgroundTint="#C0C0C0"
-                        android:hint="Entrer la quantité"
-                        android:textColor="@color/black" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/prixProduit"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="0,99$"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnAjouterPanier"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:backgroundTint="#C0C0C0"
-                android:text="Ajouter au panier"
-                android:textColor="@color/black"
-                android:textColorHint="#C0C0C0"
-                android:textSize="10sp" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:visibility="visible">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageProduit2"
-                android:layout_width="60dp"
-                android:layout_height="125dp"
-                android:layout_weight="1"
-                android:layerType="software"
-                app:srcCompat="@drawable/soupetomate" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/nomProduit2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Soupe aux tomates \n Date d'exp.: 09/10/23 \n Quantité en stock: 11 \n Quantité désirer:"
-                    android:textColor="@color/black" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="160dp"
-                        android:layout_height="52dp"
-                        android:backgroundTint="#C0C0C0"
-                        android:hint="Entrer la quantité"
-                        android:textColor="@color/black" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/prixProduit2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="1,09$"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnAjout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:backgroundTint="#C0C0C0"
-                android:text="Ajouter au panier"
-                android:textColor="@color/black"
-                android:textColorHint="#C0C0C0"
-                android:textSize="10sp" />
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnRetour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:backgroundTint="#C0C0C0"
-            android:text="Retourner "
-            android:textColor="@color/black"
-            android:textColorHint="#C0C0C0"
-            android:textSize="10sp" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"/>
 
     <View
         android:layout_width="match_parent"
