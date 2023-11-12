@@ -177,7 +177,7 @@
     </fragment>
     <fragment
         android:id="@+id/denreesFragment"
-        android:name="com.example.gaspillezero.ui.main.DenreesFragment"
+        android:name="com.example.gaspillezero.ui.main.PrésentationDenrées.DenreesFragment"
         android:label="fragment_denrees"
         tools:layout="@layout/fragment_denrees" >
         <action
