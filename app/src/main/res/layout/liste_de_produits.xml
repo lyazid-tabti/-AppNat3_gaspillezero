@@ -68,12 +68,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined">
+                    android:theme="@style/Theme.Material3.DynamicColors.Dark">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="160dp"
                         android:layout_height="52dp"
-                        android:backgroundTint="#C0C0C0"
                         android:hint="Entrer la quantité"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
