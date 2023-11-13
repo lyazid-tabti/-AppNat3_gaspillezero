@@ -195,6 +195,9 @@
             app:destination="@id/fragment_detail"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_denreesFragment_to_epicerie_accueil"
+            app:destination="@id/epicerie_accueil" />
     </fragment>
     <fragment
         android:id="@+id/panierFragment"
@@ -206,5 +209,11 @@
             app:destination="@id/denreesFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_panierFragment_to_epicerie_accueil"
+            app:destination="@id/epicerie_accueil" />
+        <action
+            android:id="@+id/action_panierFragment_to_fragment_epecerie"
+            app:destination="@id/fragment_epecerie" />
     </fragment>
 </navigation>

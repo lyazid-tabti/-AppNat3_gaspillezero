@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Spinner
+import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
@@ -53,6 +55,18 @@ class epicerie_accueil : Fragment() {
             findNavController().navigate(R.id.action_epicerie_accueil_to_fragment_epecerie)
         }
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            val destination_actuel = findNavController().currentDestination?.id
+
+            if (destination_actuel == R.id.epicerie_accueil) {
+                requireActivity().finish()
+            }
+        }
     }
 
     companion object {
