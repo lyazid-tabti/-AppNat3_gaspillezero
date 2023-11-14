@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/m2"
+    android:orientation="vertical"
+    tools:context=".epicerie_accueil">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#000000"
+                android:fontFamily="serif"
+                android:foregroundTint="#000000"
+                android:shadowColor="#000000"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="80"
+                android:text="GaspilleZérø"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="48sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|top"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/ProduitB"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#570022FF"
+                android:fontFamily="serif"
+                android:text="Produits"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/GabaritB"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#59FF0000"
+                android:fontFamily="serif"
+                android:text="Gabarits"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/CommandeB"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#59FFB700"
+                android:fontFamily="serif"
+                android:text="Commandes"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/DenréeB"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#5911FF00"
+                android:fontFamily="serif"
+                android:text="Denrée"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

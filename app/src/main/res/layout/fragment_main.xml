@@ -216,7 +216,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnpage2"
+                android:id="@+id/btnAjout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -226,6 +226,7 @@
                 android:textColorHint="#C0C0C0"
                 android:textSize="10sp" />
         </LinearLayout>
+
 
     </LinearLayout>
 

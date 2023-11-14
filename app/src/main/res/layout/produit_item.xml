@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvNomProduit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Produit" />
+
+    <TextView
+        android:id="@+id/tvDateExpiration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Expiration" />
+
+    <TextView
+        android:id="@+id/tvQuantite"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Quantité" />
+
+    <TextView
+        android:id="@+id/tvPrix"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Prix" />
+
+    <!-- Icône de modification -->
+    <ImageView
+        android:id="@+id/image_edit"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/modify_white" />
+
+    <!-- Icône de suppression -->
+    <ImageView
+        android:id="@+id/image_delete"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/delete_white" />
+</LinearLayout>
