@@ -54,24 +54,14 @@
     </fragment>
     <fragment
         android:id="@+id/gestion_gabarit"
-        android:name="com.example.gaspillezero.gestion_gabarit"
+        android:name="com.example.gaspillezero.ui.main.PrésentationDenrées.GabaritFragment"
         android:label="fragment_gestion_gabarit"
-        tools:layout="@layout/fragment_gestion_gabarit" >
+        tools:layout="@layout/fragment_gestion_gabarit">
         <action
             android:id="@+id/action_gestion_gabarit_to_epicerie_accueil"
             app:destination="@id/epicerie_accueil"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"/>
-        <action
-            android:id="@+id/action_gestion_gabarit_to_detail_gabarit1"
-            app:destination="@id/detail_gabarit1"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"/>
-        <action
-            android:id="@+id/action_gestion_gabarit_to_detail_gabarit2"
-            app:destination="@id/detail_gabarit2"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"/>
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/detail_commande1"
@@ -102,28 +92,6 @@
         <action
             android:id="@+id/action_detail_commande2_to_epicerie_accueil"
             app:destination="@id/epicerie_accueil"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"/>
-    </fragment>
-    <fragment
-        android:id="@+id/detail_gabarit1"
-        android:name="com.example.gaspillezero.detail_gabarit1"
-        android:label="fragment_detail_gabarit1"
-        tools:layout="@layout/fragment_detail_gabarit1" >
-        <action
-            android:id="@+id/action_detail_gabarit1_to_gestion_gabarit"
-            app:destination="@id/gestion_gabarit"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"/>
-    </fragment>
-    <fragment
-        android:id="@+id/detail_gabarit2"
-        android:name="com.example.gaspillezero.detail_gabarit2"
-        android:label="fragment_detail_gabarit2"
-        tools:layout="@layout/fragment_detail_gabarit2" >
-        <action
-            android:id="@+id/action_detail_gabarit2_to_gestion_gabarit"
-            app:destination="@id/gestion_gabarit"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"/>
     </fragment>

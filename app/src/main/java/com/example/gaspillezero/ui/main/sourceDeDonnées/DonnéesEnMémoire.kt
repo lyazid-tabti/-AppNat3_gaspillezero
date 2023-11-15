@@ -28,4 +28,30 @@ class DonnéesEnMémoire : SourceDeDonnées {
 
         return liste_de_produits
     }
+
+    override fun obtenirDonnéesGabarits(): List<Gabarits> {
+        val liste_de_gabarits = mutableListOf<Gabarits>()
+
+        val gabarit1 = Gabarits(
+            code = "123",
+            nom = "Poulet",
+            description = "Le poulet, un oiseau domestique, est largement consommé pour sa chair tendre et riche en protéines. Il est adaptable à divers styles de cuisine.",
+            image = "chicken",
+            catégorie = "viande"
+        )
+
+        val gabarit2 = Gabarits(
+            code = "456",
+            nom = "Fromage",
+            description = "Le fromage, riche en calcium et protéines, se distingue par sa texture et son goût variés.",
+            image = "fromage",
+            catégorie = "laitier"
+        )
+
+        liste_de_gabarits.add(gabarit1)
+        liste_de_gabarits.add(gabarit2)
+
+        return liste_de_gabarits
+    }
+
 }
