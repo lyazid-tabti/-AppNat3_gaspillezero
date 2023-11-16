@@ -65,22 +65,35 @@ class DenréesAdapter(private val dataSet: List<Produits>, private val context: 
 
         ajoutPanier.setOnClickListener {
 
-            val produitNom = viewHolder.nomProduit.text.toString()
-            val produitPrix = viewHolder.prixProduit.text.toString()
-            val quantitéCommandé = viewHolder.quantitéCommandé.text.toString()
-            val produit_existant = database.panierDAO().chercherProduitParID(produitNom)
+                val quantitéCommandé = viewHolder.quantitéCommandé.text.toString()
+                val produitNom = viewHolder.nomProduit.text.toString()
+                var produitPrix = viewHolder.prixProduit.text.toString()
+                produitPrix = produitPrix.replace("$", "")
+            if (quantitéCommandé.isNotEmpty() && quantitéCommandé.toInt() > 0 && quantitéCommandé.toInt() < produit.quantite_stock) {
 
-            CoroutineScope(Dispatchers.IO).launch {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val produit_existant =
+                            database.panierDAO().chercherProduitParNom(produitNom)
 
-                if (produit_existant == null) {
-                    val produit = PanierItem(produitNom = produitNom, produitPrix = produitPrix, quantitéCommandé = quantitéCommandé, imageUrl = image.toString())
-                    database.panierDAO().ajouterProduit(produit)
-                } else withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "Produit déjà ajouté!", Toast.LENGTH_SHORT).show()
+                        if (produit_existant == null) {
+                            val produit = PanierItem(
+                                produitNom = produitNom,
+                                produitPrix = produitPrix.toDouble(),
+                                quantitéCommandé = quantitéCommandé.toInt(),
+                                imageID = image.toString()
+                            )
+                            database.panierDAO().ajouterProduit(produit)
+                        } else withContext(Dispatchers.Main) {
+                            Toast.makeText(context, "Produit déjà ajouté!", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+                } else {
+                    Toast.makeText(context, "Erreur, quantité non valide!", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }
-    }
 
     override fun getItemCount() = dataSet.size
 }
