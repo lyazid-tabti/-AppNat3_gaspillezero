@@ -29,12 +29,13 @@
             android:layout_gravity="end"
             android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:entries="@array/menu" />
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:entries="@array/menu" />
+
         </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
@@ -53,54 +54,11 @@
         android:layout_height="1dp"
         android:background="#000000" />
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPanier"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/produitImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layerType="software"
-            app:srcCompat="@drawable/soupetomate" />
-
-        <TextView
-            android:id="@+id/produitNom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Soupe aux tomates"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/produitDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Desc. : boîte de soupe aux tomates."
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/produitQuantite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Quantité : 2"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/produitPrix"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Prix: 1,98$"
-            android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/remove_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Supprimer" />
-    </LinearLayout>
+        android:background="@android:color/white"/>
 
     <View
         android:layout_width="match_parent"

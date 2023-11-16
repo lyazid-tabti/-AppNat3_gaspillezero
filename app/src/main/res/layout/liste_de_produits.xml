@@ -55,7 +55,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/quantitéDemandée"
+                    android:id="@+id/quantitéDésirée"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -71,9 +71,12 @@
                     android:theme="@style/Theme.Material3.DynamicColors.Dark">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/quantitéCommandé"
                         android:layout_width="160dp"
                         android:layout_height="52dp"
                         android:hint="Entrer la quantité"
+                        android:inputType="number"
+                        android:maxLength="3"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>

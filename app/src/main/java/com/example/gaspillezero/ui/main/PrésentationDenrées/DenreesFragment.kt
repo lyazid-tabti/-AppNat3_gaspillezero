@@ -6,19 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Spinner
-import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
+import com.example.gaspillezero.ui.main.AppDatabase
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
 
 class DenreesFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     var présentateur = DenréesPrésentateur(this)
     private lateinit var adapter: DenréesAdapter
+    private lateinit var database: AppDatabase
 
     companion object {
         fun newInstance() = DenreesFragment()
@@ -57,7 +58,8 @@ class DenreesFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onNothingSelected(parent: AdapterView<*>?) {}
 
     fun afficherDonnées(données: List<Produits>) {
-        adapter = DenréesAdapter(données)
+        database = AppDatabase.getInstance(requireContext(), true)
+        adapter = DenréesAdapter(données, requireContext(), database)
         val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerViewDenrées)
         recyclerView?.layoutManager = LinearLayoutManager(context)
         recyclerView?.adapter = adapter
