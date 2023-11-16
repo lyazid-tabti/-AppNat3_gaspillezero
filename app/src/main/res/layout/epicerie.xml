@@ -51,7 +51,7 @@
             android:id="@+id/fragmentContainerView2"
             android:name="com.example.gaspillezero.bottom_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content"b
             android:layout_gravity="bottom"
             tools:layout="@layout/fragment_bottom_bar" />
     </LinearLayout>
