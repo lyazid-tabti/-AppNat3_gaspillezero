@@ -34,7 +34,7 @@ class PanierFragment : Fragment(), AdapterView.OnItemSelectedListener {
     ): View {
         val view = inflater.inflate(R.layout.fragment_panier, container, false)
         val database = AppDatabase.getInstance(requireContext(), true)
-        adapter = PanierAdapter(database.panierDAO().afficherItemsPanier())
+        adapter = PanierAdapter(database.panierDAO().afficherItemsPanier(), database)
 
         return view
     }

@@ -11,9 +11,9 @@ class PanierItem (
     @ColumnInfo(name = "produitNom")
     val produitNom: String,
     @ColumnInfo(name = "produitPrix")
-    val produitPrix: String,
+    val produitPrix: Double,
     @ColumnInfo(name = "quantitéCommandé")
-    val quantitéCommandé: String,
-    @ColumnInfo(name = "imageUrl")
-    val imageUrl: String
+    val quantitéCommandé: Int,
+    @ColumnInfo(name = "imageID")
+    val imageID: String
 )
