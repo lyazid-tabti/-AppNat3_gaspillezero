@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".GestionProduit">
+
+    <!-- En-tête statique -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right|top">
+
+            <TextView
+                android:layout_width="345dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#CA0000"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:text="Gø"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="34sp" />
+
+            <ImageButton
+                android:id="@+id/Accueil"
+                android:layout_width="65dp"
+                android:layout_height="53dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/micon" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvHeaderNomProduit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Gabarit"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvHeaderDateExpiration"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Expiration"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvHeaderQuantite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Quantité"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvHeaderPrix"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Prix"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lvProduits"
+            android:layout_width="wrap_content"
+            android:layout_height="637dp" />
+
+        <Button
+            android:id="@+id/btnAjouterProduit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="#BDBDBD"
+            android:text="Ajouter" />
+
+    </LinearLayout>
+
+    <!-- ListView -->
+
+    <!-- Button Ajouter -->
+
+</FrameLayout>

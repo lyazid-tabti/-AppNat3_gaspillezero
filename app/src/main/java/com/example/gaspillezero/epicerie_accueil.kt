@@ -5,20 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
+import android.widget.Button
+import android.widget.Spinner
+import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
 /**
  * A simple [Fragment] subclass.
- * Use the [TopBar.newInstance] factory method to
+ * Use the [epicerie_accueil.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TopBar : Fragment() {
+class epicerie_accueil : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -36,13 +37,36 @@ class TopBar : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_top_bar_p, container, false)
-
-//        val ButtonAccueil = view.findViewById<ImageButton>(R.id.Accueil)
-//        ButtonAccueil.setOnClickListener{
-//            findNavController().navigate(R.id.action_topBar_to_epicerie_accueil)
-//        }
+        val view = inflater.inflate(R.layout.fragment_epicerie_accueil, container, false)
+        val ButtonGabarit = view.findViewById<Button>(R.id.GabaritB)
+        ButtonGabarit.setOnClickListener{
+            findNavController().navigate(R.id.action_epicerie_accueil_to_gestion_gabarit)
+        }
+        val ButtonProduit = view.findViewById<Button>(R.id.ProduitB)
+        ButtonProduit.setOnClickListener{
+            findNavController().navigate(R.id.action_epicerie_accueil_to_gestionProduit)
+        }
+        val ButtonCommande = view.findViewById<Button>(R.id.CommandeB)
+        ButtonCommande.setOnClickListener{
+            findNavController().navigate(R.id.action_epicerie_accueil_to_gestion_commandes)
+        }
+        val ButtonDenrée = view.findViewById<Button>(R.id.DenréeB)
+        ButtonDenrée.setOnClickListener{
+            findNavController().navigate(R.id.action_epicerie_accueil_to_fragment_epecerie)
+        }
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            val destination_actuel = findNavController().currentDestination?.id
+
+            if (destination_actuel == R.id.epicerie_accueil) {
+                requireActivity().finish()
+            }
+        }
     }
 
     companion object {
@@ -52,12 +76,12 @@ class TopBar : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment TopBar.
+         * @return A new instance of fragment epicerie_accueil.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            TopBar().apply {
+            epicerie_accueil().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import androidx.navigation.fragment.findNavController
 
@@ -15,10 +16,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [TopBar.newInstance] factory method to
+ * Use the [gestion_commandes.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TopBar : Fragment() {
+class gestion_commandes : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -36,12 +37,19 @@ class TopBar : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_top_bar_p, container, false)
-
-//        val ButtonAccueil = view.findViewById<ImageButton>(R.id.Accueil)
-//        ButtonAccueil.setOnClickListener{
-//            findNavController().navigate(R.id.action_topBar_to_epicerie_accueil)
-//        }
+        val view = inflater.inflate(R.layout.fragment_gestion_commandes, container, false)
+        val ButtonCMD1 = view.findViewById<ImageButton>(R.id.INFO1)
+        ButtonCMD1.setOnClickListener{
+            findNavController().navigate(R.id.action_gestion_commandes_to_detail_commande1)
+        }
+        val ButtonCMD2 = view.findViewById<ImageButton>(R.id.INFO2)
+        ButtonCMD2.setOnClickListener{
+            findNavController().navigate(R.id.action_gestion_commandes_to_detail_commande2)
+        }
+        val ButtonAccueil = view.findViewById<ImageButton>(R.id.Accueil)
+        ButtonAccueil.setOnClickListener{
+            findNavController().navigate(R.id.action_gestion_commandes_to_epicerie_accueil)
+        }
         return view
     }
 
@@ -52,12 +60,12 @@ class TopBar : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment TopBar.
+         * @return A new instance of fragment gestion_commandes.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            TopBar().apply {
+            gestion_commandes().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/epicerie_accueil">
+
+    <fragment
+        android:id="@+id/epicerie_accueil"
+        android:name="com.example.gaspillezero.epicerie_accueil"
+        android:label="fragment_epicerie_accueil"
+        tools:layout="@layout/fragment_epicerie_accueil" >
+        <action
+            android:id="@+id/action_epicerie_accueil_to_gestion_gabarit"
+            app:destination="@id/gestion_gabarit"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_epicerie_accueil_to_gestion_commandes"
+            app:destination="@id/gestion_commandes"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_epicerie_accueil_to_gestionProduit"
+            app:destination="@id/gestionProduit"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_epicerie_accueil_to_fragment_epecerie"
+            app:destination="@id/fragment_epecerie"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/gestion_commandes"
+        android:name="com.example.gaspillezero.gestion_commandes"
+        android:label="fragment_gestion_commandes"
+        tools:layout="@layout/fragment_gestion_commandes" >
+        <action
+            android:id="@+id/action_gestion_commandes_to_detail_commande1"
+            app:destination="@id/detail_commande1"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_gestion_commandes_to_detail_commande2"
+            app:destination="@id/detail_commande2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_gestion_commandes_to_epicerie_accueil"
+            app:destination="@id/epicerie_accueil"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/gestion_gabarit"
+        android:name="com.example.gaspillezero.ui.main.PrésentationDenrées.GabaritFragment"
+        android:label="fragment_gestion_gabarit"
+        tools:layout="@layout/fragment_gestion_gabarit">
+        <action
+            android:id="@+id/action_gestion_gabarit_to_epicerie_accueil"
+            app:destination="@id/epicerie_accueil"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/detail_commande1"
+        android:name="com.example.gaspillezero.detail_commande1"
+        android:label="fragment_detail_commande1"
+        tools:layout="@layout/fragment_detail_commande1" >
+        <action
+            android:id="@+id/action_detail_commande1_to_gestion_commandes"
+            app:destination="@id/gestion_commandes"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_detail_commande1_to_epicerie_accueil"
+            app:destination="@id/epicerie_accueil"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/detail_commande2"
+        android:name="com.example.gaspillezero.detail_commande2"
+        android:label="fragment_detail_commande2"
+        tools:layout="@layout/fragment_detail_commande2" >
+        <action
+            android:id="@+id/action_detail_commande2_to_gestion_commandes"
+            app:destination="@id/gestion_commandes"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_detail_commande2_to_epicerie_accueil"
+            app:destination="@id/epicerie_accueil"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/gestionProduit"
+        android:name="com.example.gaspillezero.GestionProduit"
+        android:label="fragment_gestion_produit"
+        tools:layout="@layout/fragment_gestion_produit" >
+        <action
+            android:id="@+id/action_gestionProduit_to_epicerie_accueil"
+            app:destination="@id/epicerie_accueil"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_epecerie"
+        android:name="com.example.gaspillezero.fragment_epecerie"
+        android:label="fragment_epecerie"
+        tools:layout="@layout/fragment_epecerie" >
+        <action
+            android:id="@+id/action_fragment_epecerie_to_denreesFragment"
+            app:destination="@id/denreesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_fragment_epecerie_to_epicerie_accueil"
+            app:destination="@id/epicerie_accueil"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_fragment_epecerie_to_panierFragment"
+            app:destination="@id/panierFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_detail"
+        android:name="com.example.gaspillezero.fragment_detail"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_fragment_detail_to_denreesFragment"
+            app:destination="@id/denreesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_fragment_detail_to_panierFragment"
+            app:destination="@id/panierFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+    </fragment>
+    <fragment
+        android:id="@+id/denreesFragment"
+        android:name="com.example.gaspillezero.ui.main.PrésentationDenrées.DenreesFragment"
+        android:label="fragment_denrees"
+        tools:layout="@layout/fragment_denrees" >
+        <action
+            android:id="@+id/action_denreesFragment_to_panierFragment"
+            app:destination="@id/panierFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_denreesFragment_to_fragment_epecerie"
+            app:destination="@id/fragment_epecerie"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_denreesFragment_to_fragment_detail"
+            app:destination="@id/fragment_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_denreesFragment_to_epicerie_accueil"
+            app:destination="@id/epicerie_accueil" />
+    </fragment>
+    <fragment
+        android:id="@+id/panierFragment"
+        android:name="com.example.gaspillezero.ui.main.PanierFragment"
+        android:label="fragment_panier"
+        tools:layout="@layout/fragment_panier" >
+        <action
+            android:id="@+id/action_panierFragment_to_denreesFragment"
+            app:destination="@id/denreesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_panierFragment_to_epicerie_accueil"
+            app:destination="@id/epicerie_accueil" />
+        <action
+            android:id="@+id/action_panierFragment_to_fragment_epecerie"
+            app:destination="@id/fragment_epecerie" />
+    </fragment>
+</navigation>
