@@ -169,7 +169,7 @@
     </fragment>
     <fragment
         android:id="@+id/panierFragment"
-        android:name="com.example.gaspillezero.ui.main.PanierFragment"
+        android:name="com.example.gaspillezero.ui.main.DossierPanier.PanierFragment"
         android:label="fragment_panier"
         tools:layout="@layout/fragment_panier" >
         <action

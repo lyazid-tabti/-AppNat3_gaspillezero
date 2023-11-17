@@ -1,4 +1,4 @@
-package com.example.gaspillezero.ui.main
+package com.example.gaspillezero.ui.main.DossierPanier
 
 import android.view.LayoutInflater
 import android.view.View
