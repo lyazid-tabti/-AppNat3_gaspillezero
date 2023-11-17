@@ -1,4 +1,4 @@
-package com.example.gaspillezero.ui.main
+package com.example.gaspillezero.ui.main.DossierPanier
 
 import androidx.room.*
 import com.example.gaspillezero.ui.main.sourceDeDonnées.PanierItem

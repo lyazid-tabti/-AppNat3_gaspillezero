@@ -4,7 +4,7 @@ class DonnéesEnMémoire : SourceDeDonnées {
 
     val liste_de_produits = mutableListOf<Produits>()
     val liste_de_magasin = mutableListOf<Magasins>()
-
+    val liste_de_gabarits = mutableListOf<Gabarits>()
     override fun obtenirDonnéesProduits(): List<Produits> {
 
         val produit1 = Produits(
@@ -27,8 +27,19 @@ class DonnéesEnMémoire : SourceDeDonnées {
             photo_url = "soupetomate"
         )
 
+        val produit3 = Produits(
+            code = "67894",
+            nom = "Frites surgelés",
+            description = "Sac de frites surgelés coupe régulière",
+            prix = 5.49,
+            date_exp = "21/10/23",
+            quantite_stock = 19,
+            photo_url = "frites"
+        )
+
         liste_de_produits.add(produit1)
         liste_de_produits.add(produit2)
+        liste_de_produits.add(produit3)
 
         return liste_de_produits
     }
@@ -67,27 +78,53 @@ class DonnéesEnMémoire : SourceDeDonnées {
     }
 
     override fun obtenirDonnéesGabarits(): List<Gabarits> {
-        val liste_de_gabarits = mutableListOf<Gabarits>()
 
-        val gabarit1 = Gabarits(
-            code = "123",
-            nom = "Poulet",
-            description = "Le poulet, un oiseau domestique, est largement consommé pour sa chair tendre et riche en protéines. Il est adaptable à divers styles de cuisine.",
-            image = "chicken",
-            catégorie = "viande"
-        )
+        if (liste_de_gabarits.isEmpty()) {
 
-        val gabarit2 = Gabarits(
-            code = "456",
-            nom = "Fromage",
-            description = "Le fromage, riche en calcium et protéines, se distingue par sa texture et son goût variés.",
-            image = "fromage",
-            catégorie = "laitier"
-        )
+            val gabarit1 = Gabarits(
+                code = "123",
+                nom = "Poulet",
+                description = "Le poulet, un oiseau domestique, est largement consommé pour sa chair tendre et riche en protéines. Il est adaptable à divers styles de cuisine.",
+                image = "chicken",
+                catégorie = "Viande"
+            )
 
-        liste_de_gabarits.add(gabarit1)
-        liste_de_gabarits.add(gabarit2)
+            val gabarit2 = Gabarits(
+                code = "456",
+                nom = "Fromage",
+                description = "Le fromage, riche en calcium et protéines, se distingue par sa texture et son goût variés.",
+                image = "fromage",
+                catégorie = "Laitier"
+            )
+
+            val gabarit3 = Gabarits(
+                code = "789",
+                nom = "Pomme",
+                description = "La pomme est un fruit juteux et croquant, généralement rouge, vert ou jaune, produit par le pommier, apprécié pour son goût sucré à acidulé.",
+                image = "pomme",
+                catégorie = "Fruit"
+            )
+
+            val gabarit4 = Gabarits(
+                code = "012",
+                nom = "Orange",
+                description = "L'orange est un agrume juteux, généralement de couleur orange, connu pour son goût à la fois sucré et légèrement acide, riche en vitamine C.",
+                image = "orange",
+                catégorie = "Fruit"
+            )
+
+            liste_de_gabarits.add(gabarit1)
+            liste_de_gabarits.add(gabarit2)
+            liste_de_gabarits.add(gabarit3)
+            liste_de_gabarits.add(gabarit4)
+
+        }
 
         return liste_de_gabarits
     }
+
+    override fun supprimerGabarit(gabarit: Gabarits) {
+        liste_de_gabarits.remove(gabarit)
+    }
+
 }

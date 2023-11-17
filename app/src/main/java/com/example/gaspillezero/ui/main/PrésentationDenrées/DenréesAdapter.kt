@@ -9,7 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
-import com.example.gaspillezero.ui.main.AppDatabase
+import com.example.gaspillezero.ui.main.DossierPanier.AppDatabase
 import com.example.gaspillezero.ui.main.sourceDeDonnées.PanierItem
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
 import com.google.android.material.textfield.TextInputEditText
