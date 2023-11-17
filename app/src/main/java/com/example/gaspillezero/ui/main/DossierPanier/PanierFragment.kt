@@ -1,7 +1,6 @@
-package com.example.gaspillezero.ui.main
+package com.example.gaspillezero.ui.main.DossierPanier
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +8,10 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.activity.addCallback
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
-import com.example.gaspillezero.ui.main.PrésentationDenrées.DenreesFragment
-import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesAdapter
-import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesPrésentateur
-import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
 
 class PanierFragment : Fragment(), AdapterView.OnItemSelectedListener {
 

@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
-import com.example.gaspillezero.ui.main.AppDatabase
+import com.example.gaspillezero.ui.main.DossierPanier.AppDatabase
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
 
 class DenreesFragment : Fragment(), AdapterView.OnItemSelectedListener {
