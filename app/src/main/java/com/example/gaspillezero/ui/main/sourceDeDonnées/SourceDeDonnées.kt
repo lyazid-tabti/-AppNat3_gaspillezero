@@ -4,4 +4,6 @@ interface SourceDeDonnées {
     fun obtenirDonnéesProduits(): List<Produits>
 
     fun obtenirDonnéesGabarits(): List<Gabarits>
+
+    fun supprimerGabarit(gabarit: Gabarits)
 }

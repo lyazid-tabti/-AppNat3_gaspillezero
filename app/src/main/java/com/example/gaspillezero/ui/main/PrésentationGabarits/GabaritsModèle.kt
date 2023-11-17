@@ -10,4 +10,7 @@ class GabaritsModèle(source: SourceDeDonnées = DonnéesEnMémoire()) {
     fun obtenirDonnéesGabarits(): List<Gabarits> {
         return _source.obtenirDonnéesGabarits()
     }
+    fun supprimerGabarit(gabarit: Gabarits) {
+        _source.supprimerGabarit(gabarit)
+    }
 }
