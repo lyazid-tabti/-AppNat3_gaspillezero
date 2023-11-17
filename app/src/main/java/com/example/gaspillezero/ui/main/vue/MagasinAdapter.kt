@@ -13,6 +13,7 @@ import com.example.gaspillezero.ui.main.AppDatabase
 import com.example.gaspillezero.ui.main.PanierAdapter
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Magasins
 import com.example.gaspillezero.ui.main.sourceDeDonnées.PanierItem
+import com.squareup.picasso.Picasso
 
 class MagasinAdapter(private var dataSet: List<Magasins>) :
     RecyclerView.Adapter<MagasinAdapter.ViewHolder>() {
@@ -44,8 +45,12 @@ class MagasinAdapter(private var dataSet: List<Magasins>) :
         val magasinEpecerie = dataSet[position]
 
         holder.nomMagasin.text = magasinEpecerie.magasinNom
-        //val image = holder.imageMagasin.context.resources.getIdentifier(magasinEpecerie.imageID, "drawable", holder.imageMagasin.context.packageName)
-        holder.nomMagasin.text = magasinEpecerie.estDisponible
+        val image = holder.imageMagasin.context.resources.getIdentifier(magasinEpecerie.imageID, "drawable", holder.imageMagasin.context.packageName)
+        holder.StatutLivraison.text = magasinEpecerie.estDisponible
+
+        Picasso.get()
+            .load(image)
+            .into(holder.imageMagasin)
 
     }
 

@@ -39,7 +39,7 @@ class DonnéesEnMémoire : SourceDeDonnées {
             id = 1,
             magasinNom = "Walmart",
             estDisponible = "Disponible pour Livraison",
-            imageID = "Walmart"
+            imageID = "walmart"
 
 
         )
@@ -48,12 +48,22 @@ class DonnéesEnMémoire : SourceDeDonnées {
             id = 2,
             magasinNom = "Provigo",
             estDisponible = "Disponible pour Livraison",
-            imageID = "Provigo"
+            imageID = "provigo"
+
+
+        )
+
+        val magasin3 = Magasins(
+            id = 3,
+            magasinNom = "Maxi",
+            estDisponible = "Non pour Livraison",
+            imageID = "maxi"
 
 
         )
         liste_de_magasin.add(magasin1)
         liste_de_magasin.add(magasin2)
+        liste_de_magasin.add(magasin3)
         return liste_de_magasin
     }
 }
