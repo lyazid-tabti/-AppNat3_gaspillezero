@@ -13,7 +13,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gaspillezero.ui.main.AppDatabase
+import com.example.gaspillezero.ui.main.DossierPanier.AppDatabase
 import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesAdapter
 import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesPrésentateur
 import com.example.gaspillezero.ui.main.PrésentationMagasin.MagasinPrésentateur

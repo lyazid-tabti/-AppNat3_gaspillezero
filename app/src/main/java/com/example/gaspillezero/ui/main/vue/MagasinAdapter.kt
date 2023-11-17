@@ -9,8 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
-import com.example.gaspillezero.ui.main.AppDatabase
-import com.example.gaspillezero.ui.main.PanierAdapter
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Magasins
 import com.example.gaspillezero.ui.main.sourceDeDonnées.PanierItem
 import com.squareup.picasso.Picasso

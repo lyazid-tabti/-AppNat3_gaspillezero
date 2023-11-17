@@ -34,16 +34,6 @@
         android:text="Prix" />
 
     <!-- Icône de modification -->
-    <ImageView
-        android:id="@+id/image_edit"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/modify_white" />
 
     <!-- Icône de suppression -->
-    <ImageView
-        android:id="@+id/image_delete"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/delete_white" />
 </LinearLayout>
