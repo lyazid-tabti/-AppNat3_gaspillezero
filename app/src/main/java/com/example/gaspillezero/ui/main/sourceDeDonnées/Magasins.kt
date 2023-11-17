@@ -11,7 +11,7 @@ class Magasins(
         @ColumnInfo(name = "magasinNom")
         val magasinNom: String,
         @ColumnInfo(name = "produitNom")
-        val estDisponible: Boolean = false,
+        val estDisponible: String ,
 
         @ColumnInfo(name = "imageID")
         val imageID: String

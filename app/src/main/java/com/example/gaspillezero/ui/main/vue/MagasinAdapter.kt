@@ -1,5 +1,6 @@
 package com.example.gaspillezero.ui.main.vue
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,7 @@ import com.example.gaspillezero.ui.main.PanierAdapter
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Magasins
 import com.example.gaspillezero.ui.main.sourceDeDonnées.PanierItem
 
-class MagasinAdapter(private var dataSet: MutableList<Magasins>,  var database: AppDatabase) :
+class MagasinAdapter(private var dataSet: List<Magasins>, private val context: Context, var database: AppDatabase) :
     RecyclerView.Adapter<MagasinAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -34,9 +35,9 @@ class MagasinAdapter(private var dataSet: MutableList<Magasins>,  var database: 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_epecerie, parent, false)
+            .inflate(R.layout.liste_magasin, parent, false)
 
-        return MagasinAdapter.ViewHolder(view)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -44,7 +45,7 @@ class MagasinAdapter(private var dataSet: MutableList<Magasins>,  var database: 
 
         holder.nomMagasin.text = magasinEpecerie.magasinNom
         //val image = holder.imageMagasin.context.resources.getIdentifier(magasinEpecerie.imageID, "drawable", holder.imageMagasin.context.packageName)
-        //holder.nomMagasin.text = magasinEpecerie.estDisponibl
+        holder.nomMagasin.text = magasinEpecerie.estDisponible
 
     }
 

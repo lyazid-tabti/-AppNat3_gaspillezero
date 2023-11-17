@@ -1,19 +1,29 @@
 package com.example.gaspillezero
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.Button
-import android.widget.Spinner
+import android.widget.*
 import androidx.activity.addCallback
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.gaspillezero.ui.main.AppDatabase
+import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesAdapter
+import com.example.gaspillezero.ui.main.sourceDeDonnées.Magasins
+import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
+import com.example.gaspillezero.ui.main.vue.MagasinAdapter
 
 class fragment_epecerie : Fragment(), AdapterView.OnItemSelectedListener {
+
+    private var listemagasin = mutableListOf<Magasins>()
+    private lateinit var adapter: MagasinAdapter
+    private lateinit var database: AppDatabase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,4 +78,14 @@ class fragment_epecerie : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+    fun afficherDonnées(données: List<Magasins>) {
+        database = AppDatabase.getInstance(requireContext(), true)
+        adapter = MagasinAdapter(données, requireContext(), database)
+        val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerViewMagasin)
+        recyclerView?.layoutManager = LinearLayoutManager(context)
+        recyclerView?.adapter = adapter
+    }
+
+
 }
