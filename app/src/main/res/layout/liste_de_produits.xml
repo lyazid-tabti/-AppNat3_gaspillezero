@@ -19,7 +19,7 @@
 
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageProduit"
+                android:id="@+id/imageMagasin"
                 android:layout_width="60dp"
                 android:layout_height="125dp"
                 android:layout_weight="1" />
@@ -31,7 +31,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/nomProduit"
+                    android:id="@+id/nomMagasin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
