@@ -14,7 +14,7 @@ import com.example.gaspillezero.ui.main.PanierAdapter
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Magasins
 import com.example.gaspillezero.ui.main.sourceDeDonnées.PanierItem
 
-class MagasinAdapter(private var dataSet: List<Magasins>, private val context: Context, var database: AppDatabase) :
+class MagasinAdapter(private var dataSet: List<Magasins>) :
     RecyclerView.Adapter<MagasinAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -22,14 +22,14 @@ class MagasinAdapter(private var dataSet: List<Magasins>, private val context: C
         val nomMagasin: TextView
         val StatutLivraison: TextView
 
-        val supprimerBtnPanier: Button
+
 
         init {
             imageMagasin = view.findViewById(R.id.imageMagasin)
             nomMagasin = view.findViewById(R.id.nomMagasin)
             StatutLivraison = view.findViewById(R.id.StatutLivraison)
 
-            supprimerBtnPanier = view.findViewById(R.id.btnSupprimer)
+
         }
     }
 
