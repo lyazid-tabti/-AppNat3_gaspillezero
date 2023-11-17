@@ -22,7 +22,7 @@ class GabaritAdapter(
         val descriptionGabarit: TextView = view.findViewById(R.id.descriptionGabarit)
         val categorieGabarit: TextView = view.findViewById(R.id.categorieGabarit)
         val imageGabarit: ImageView = view.findViewById(R.id.imageGabarit)
-        val deleteButton: Button = view.findViewById(R.id.btnDelete) // Bouton de suppression
+        val deleteButton: Button = view.findViewById(R.id.btnDelete)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -45,7 +45,14 @@ class GabaritAdapter(
 
         viewHolder.deleteButton.setOnClickListener {
             onDeleteClick(gabarit)
+            removeItem(gabarit)
         }
+    }
+
+    fun setGabarits(gabarits: List<Gabarits>) {
+        dataSet.clear()
+        dataSet.addAll(gabarits)
+        notifyDataSetChanged()
     }
 
     fun removeItem(gabarit: Gabarits) {

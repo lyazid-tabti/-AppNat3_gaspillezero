@@ -10,32 +10,49 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
 import com.example.gaspillezero.ui.main.PrésentationGabarits.GabaritAdapter
+import com.example.gaspillezero.ui.main.PrésentationGabarits.GabaritPrésentateur
+import com.example.gaspillezero.ui.main.PrésentationGabarits.GabaritVue
 import com.example.gaspillezero.ui.main.PrésentationGabarits.GabaritsPrésenteur
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Gabarits
 
-class GabaritFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class GabaritFragment : Fragment(), AdapterView.OnItemSelectedListener, GabaritVue {
 
     private lateinit var adapter: GabaritAdapter
-    private var présentateur = GabaritsPrésenteur(this)
+    private lateinit var présentateur: GabaritPrésentateur
 
-    companion object {
-        fun newInstance() = GabaritFragment()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        présentateur = GabaritsPrésenteur(this)
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.fragment_gestion_gabarit, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView(view)
         présentateur.obtenirDonnées()
     }
 
+    private fun setupRecyclerView(view: View) {
+        adapter = GabaritAdapter(mutableListOf()) { gabarit ->
+            présentateur.supprimerGabarit(gabarit)
+        }
+
+        view.findViewById<RecyclerView>(R.id.recyclerViewGabarits).apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = this@GabaritFragment.adapter
+        }
+    }
+
+    override fun afficherDonnées(données: List<Gabarits>) {
+        adapter.setGabarits(données)
+    }
+
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val option_choisi = parent?.getItemAtPosition(position).toString()
         // Logique à ajouter si nécessaire
     }
 
@@ -44,19 +61,5 @@ class GabaritFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onResume() {
         super.onResume()
         présentateur.obtenirDonnées() // Rafraîchir les données
-    }
-
-    fun afficherDonnées(données: List<Gabarits>) {
-        adapter = GabaritAdapter(données.toMutableList()) { gabarit ->
-            // Appel à la méthode de suppression dans le présentateur
-            présentateur.supprimerGabarit(gabarit)
-
-            // Suppression de l'élément dans l'adapter
-            adapter.removeItem(gabarit)
-        }
-
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerViewGabarits)
-        recyclerView?.layoutManager = LinearLayoutManager(context)
-        recyclerView?.adapter = adapter
     }
 }
