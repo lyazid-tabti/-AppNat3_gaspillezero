@@ -27,8 +27,19 @@ class DonnéesEnMémoire : SourceDeDonnées {
             photo_url = "soupetomate"
         )
 
+        val produit3 = Produits(
+            code = "67894",
+            nom = "Frites surgelés",
+            description = "Sac de frites surgelés coupe régulière",
+            prix = 5.49,
+            date_exp = "21/10/23",
+            quantite_stock = 19,
+            photo_url = "frites"
+        )
+
         liste_de_produits.add(produit1)
         liste_de_produits.add(produit2)
+        liste_de_produits.add(produit3)
 
         return liste_de_produits
     }
