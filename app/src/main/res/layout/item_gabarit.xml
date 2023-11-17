@@ -75,13 +75,13 @@
         android:paddingTop="8dp">
 
         <!-- Bouton Modifier avec layout_weight -->
-        <Button
+        <!--<Button
             android:id="@+id/btnEdit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Modifier"
-            android:gravity="center" />
+            android:gravity="center" />-->
 
         <!-- Bouton Supprimer avec layout_weight -->
         <Button
