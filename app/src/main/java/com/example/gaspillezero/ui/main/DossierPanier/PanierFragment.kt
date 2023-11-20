@@ -41,7 +41,7 @@ class PanierFragment : Fragment(), AdapterView.OnItemSelectedListener {
             findNavController().navigate(R.id.action_panierFragment_to_denreesFragment)
         }
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewPanier)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewMagasin)
         recyclerView?.layoutManager = LinearLayoutManager(context)
         recyclerView?.adapter = adapter
     }

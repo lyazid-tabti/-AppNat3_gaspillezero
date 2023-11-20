@@ -1,19 +1,31 @@
 package com.example.gaspillezero
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.Button
-import android.widget.Spinner
+import android.widget.*
 import androidx.activity.addCallback
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.gaspillezero.ui.main.DossierPanier.AppDatabase
+import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesAdapter
+import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesPrésentateur
+import com.example.gaspillezero.ui.main.PrésentationMagasin.MagasinPrésentateur
+import com.example.gaspillezero.ui.main.sourceDeDonnées.Magasins
+import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
+import com.example.gaspillezero.ui.main.vue.MagasinAdapter
 
 class fragment_epecerie : Fragment(), AdapterView.OnItemSelectedListener {
+    var présentateur = MagasinPrésentateur(this)
+    private var listemagasin = mutableListOf<Magasins>()
+    private lateinit var adapter: MagasinAdapter
+    private lateinit var database: AppDatabase
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,9 +63,20 @@ class fragment_epecerie : Fragment(), AdapterView.OnItemSelectedListener {
         val spinner = view.findViewById<Spinner>(R.id.spinner)
         spinner.onItemSelectedListener = this
 
+        présentateur.obtenirDonnées()
+
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             findNavController().navigate(R.id.action_fragment_epecerie_to_epicerie_accueil)
         }
+
+
+
+            // ...
+
+
+
+
+
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -68,4 +91,14 @@ class fragment_epecerie : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+    fun afficherDonnées(données: List<Magasins>) {
+        database = AppDatabase.getInstance(requireContext(), true)
+        adapter = MagasinAdapter(données)
+        val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerViewMagasin)
+        recyclerView?.layoutManager = LinearLayoutManager(context)
+        recyclerView?.adapter = adapter
+    }
+
+
 }

@@ -32,9 +32,9 @@ class DenréesAdapter(private val dataSet: List<Produits>, private val context: 
         val ajoutPanier : Button
 
         init {
-            nomProduit = view.findViewById(R.id.nomProduit)
+            nomProduit = view.findViewById(R.id.nomMagasin)
             prixProduit = view.findViewById(R.id.prixProduit)
-            imageProduit = view.findViewById(R.id.imageProduit)
+            imageProduit = view.findViewById(R.id.imageMagasin)
             dateExpProduit = view.findViewById(R.id.dateExpProduit)
             quantiteStockProduit = view.findViewById(R.id.quantiteStockProduit)
             quantitéCommandé = view.findViewById(R.id.quantitéCommandé)

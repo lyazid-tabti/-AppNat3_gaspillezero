@@ -3,8 +3,8 @@ package com.example.gaspillezero.ui.main.sourceDeDonnées
 class DonnéesEnMémoire : SourceDeDonnées {
 
     val liste_de_produits = mutableListOf<Produits>()
+    val liste_de_magasin = mutableListOf<Magasins>()
     val liste_de_gabarits = mutableListOf<Gabarits>()
-
     override fun obtenirDonnéesProduits(): List<Produits> {
 
         val produit1 = Produits(
@@ -42,6 +42,39 @@ class DonnéesEnMémoire : SourceDeDonnées {
         liste_de_produits.add(produit3)
 
         return liste_de_produits
+    }
+
+    override fun obtenirDonnéesMagasin(): List<Magasins> {
+        val magasin1 = Magasins(
+            id = 1,
+            magasinNom = "Walmart",
+            estDisponible = "Disponible pour Livraison",
+            imageID = "walmart"
+
+
+        )
+
+        val magasin2 = Magasins(
+            id = 2,
+            magasinNom = "Provigo",
+            estDisponible = "Disponible pour Livraison",
+            imageID = "provigo"
+
+
+        )
+
+        val magasin3 = Magasins(
+            id = 3,
+            magasinNom = "Maxi",
+            estDisponible = "Non pour Livraison",
+            imageID = "maxi"
+
+
+        )
+        liste_de_magasin.add(magasin1)
+        liste_de_magasin.add(magasin2)
+        liste_de_magasin.add(magasin3)
+        return liste_de_magasin
     }
 
     override fun obtenirDonnéesGabarits(): List<Gabarits> {

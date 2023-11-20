@@ -38,14 +38,6 @@ class gestion_commandes : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_gestion_commandes, container, false)
-        val ButtonCMD1 = view.findViewById<ImageButton>(R.id.INFO1)
-        ButtonCMD1.setOnClickListener{
-            findNavController().navigate(R.id.action_gestion_commandes_to_detail_commande1)
-        }
-        val ButtonCMD2 = view.findViewById<ImageButton>(R.id.INFO2)
-        ButtonCMD2.setOnClickListener{
-            findNavController().navigate(R.id.action_gestion_commandes_to_detail_commande2)
-        }
         val ButtonAccueil = view.findViewById<ImageButton>(R.id.Accueil)
         ButtonAccueil.setOnClickListener{
             findNavController().navigate(R.id.action_gestion_commandes_to_epicerie_accueil)
