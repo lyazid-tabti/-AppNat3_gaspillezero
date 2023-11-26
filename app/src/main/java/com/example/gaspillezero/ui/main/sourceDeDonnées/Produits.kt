@@ -1,5 +1,8 @@
 package com.example.gaspillezero.ui.main.sourceDeDonnées
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Produits(
     val code: String,
     val nom: String,

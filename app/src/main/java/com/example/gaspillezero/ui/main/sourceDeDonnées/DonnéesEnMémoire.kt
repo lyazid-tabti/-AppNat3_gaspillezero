@@ -5,7 +5,7 @@ class DonnéesEnMémoire : SourceDeDonnées {
     val liste_de_produits = mutableListOf<Produits>()
     val liste_de_magasin = mutableListOf<Magasins>()
     val liste_de_gabarits = mutableListOf<Gabarits>()
-    override fun obtenirDonnéesProduits(): List<Produits> {
+    override suspend fun obtenirDonnéesProduits(): List<Produits> {
 
         val produit1 = Produits(
             code = "34320",
