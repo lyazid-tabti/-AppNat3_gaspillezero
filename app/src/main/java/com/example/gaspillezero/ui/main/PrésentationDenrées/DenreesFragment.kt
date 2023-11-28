@@ -8,12 +8,14 @@ import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
 import com.example.gaspillezero.ui.main.DossierPanier.AppDatabase
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
+import kotlinx.coroutines.launch
 
 class DenreesFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -37,7 +39,10 @@ class DenreesFragment : Fragment(), AdapterView.OnItemSelectedListener {
         super.onViewCreated(view, savedInstanceState)
         val spinner = view.findViewById<Spinner>(R.id.spinner)
         spinner.onItemSelectedListener = this
-        présentateur.obtenirDonnées()
+
+        lifecycleScope.launch  {
+            présentateur.obtenirDonnées()
+        }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             findNavController().navigate(R.id.action_denreesFragment_to_fragment_epecerie)

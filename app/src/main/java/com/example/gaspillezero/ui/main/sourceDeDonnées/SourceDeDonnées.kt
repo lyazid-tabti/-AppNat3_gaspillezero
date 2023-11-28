@@ -1,7 +1,7 @@
 package com.example.gaspillezero.ui.main.sourceDeDonnées
 
 interface SourceDeDonnées {
-    fun obtenirDonnéesProduits(): List<Produits>
+    suspend fun obtenirDonnéesProduits(): List<Produits>
 
     fun obtenirDonnéesGabarits(): List<Gabarits>
 
@@ -10,5 +10,4 @@ interface SourceDeDonnées {
     fun obtenirDonnéesCommandes(): List<Commandes>
 
     fun supprimerGabarit(gabarit: Gabarits)
-
 }

@@ -4,7 +4,7 @@ class DenréesPrésentateur(private val vue: DenreesFragment) {
 
     var modèle = DenréesModèle()
 
-    fun obtenirDonnées() {
+    suspend fun obtenirDonnées() {
         val données = modèle.obtenirDonnéesProduits()
         vue.afficherDonnées(données)
     }
