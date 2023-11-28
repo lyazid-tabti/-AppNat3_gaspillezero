@@ -1,4 +1,6 @@
 package com.example.gaspillezero.ui.main.sourceDeDonnées
 
-class Commandes {
+class Commandes (val code: Int,
+                 val produitNom : String,
+                 val quantité: Int){
 }

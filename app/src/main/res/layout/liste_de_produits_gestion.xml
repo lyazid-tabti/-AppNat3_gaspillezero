@@ -19,19 +19,20 @@
 
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageMagasin"
-                android:layout_width="60dp"
+                android:id="@+id/imageProduitG"
+                android:layout_width="0dp"
                 android:layout_height="125dp"
                 android:layout_weight="1" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/nomMagasin"
+                    android:id="@+id/nomProduitG"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -39,7 +40,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/dateExpProduit"
+                    android:id="@+id/prixProduitG"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -47,7 +48,7 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/quantiteStockProduit"
+                    android:id="@+id/dateExpProduitG"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -55,57 +56,29 @@
                     android:textColor="@color/black" />
 
                 <TextView
-                    android:id="@+id/quantitéDésirée"
+                    android:id="@+id/quantiteStockProduitG"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Quantité désirée:"
                     android:textColor="@color/black" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:theme="@style/Theme.Material3.DynamicColors.Dark">
+                    android:orientation="horizontal">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/quantitéCommandé"
-                        android:layout_width="160dp"
-                        android:layout_height="52dp"
-                        android:hint="Entrer la quantité"
-                        android:inputType="number"
-                        android:maxLength="3"
+                    <TextView
+                        android:id="@+id/descriptionProduitG"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
                         android:textColor="@color/black" />
-                </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/prixProduit"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnAjouterPanier"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:backgroundTint="#C0C0C0"
-                android:text="Ajouter au panier"
-                android:textColor="@color/black"
-                android:textColorHint="#C0C0C0"
-                android:textSize="10sp" />
         </LinearLayout>
 
     </LinearLayout>

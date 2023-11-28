@@ -5,6 +5,7 @@ class DonnéesEnMémoire : SourceDeDonnées {
     val liste_de_produits = mutableListOf<Produits>()
     val liste_de_magasin = mutableListOf<Magasins>()
     val liste_de_gabarits = mutableListOf<Gabarits>()
+    val liste_de_commandes = mutableListOf<Commandes>()
     override fun obtenirDonnéesProduits(): List<Produits> {
 
         val produit1 = Produits(
@@ -78,7 +79,6 @@ class DonnéesEnMémoire : SourceDeDonnées {
     }
 
     override fun obtenirDonnéesGabarits(): List<Gabarits> {
-
         if (liste_de_gabarits.isEmpty()) {
 
             val gabarit1 = Gabarits(
@@ -121,6 +121,41 @@ class DonnéesEnMémoire : SourceDeDonnées {
         }
 
         return liste_de_gabarits
+    }
+
+    override fun obtenirDonnéesCommandes(): List<Commandes>{
+        val commande1 = Commandes(
+            code = 1,
+            produitNom = obtenirDonnéesProduits()[0].nom,
+            quantité = 4
+        )
+        val commande2 = Commandes(
+            code = 2,
+            produitNom = obtenirDonnéesProduits()[1].nom,
+            quantité = 3
+        )
+        val commande3 = Commandes(
+            code = 3,
+            produitNom = obtenirDonnéesProduits()[2].nom,
+            quantité = 5
+        )
+        val commande4 = Commandes(
+            code = 4,
+            produitNom = obtenirDonnéesProduits()[1].nom,
+            quantité = 7
+        )
+        val commande5 = Commandes(
+            code = 5,
+            produitNom = obtenirDonnéesProduits()[0].nom,
+            quantité = 5
+        )
+        liste_de_commandes.add(commande1)
+        liste_de_commandes.add(commande2)
+        liste_de_commandes.add(commande3)
+        liste_de_commandes.add(commande4)
+        liste_de_commandes.add(commande5)
+
+        return liste_de_commandes
     }
 
     override fun supprimerGabarit(gabarit: Gabarits) {

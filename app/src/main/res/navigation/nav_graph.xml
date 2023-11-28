@@ -97,7 +97,7 @@
     </fragment>
     <fragment
         android:id="@+id/gestionProduit"
-        android:name="com.example.gaspillezero.GestionProduit"
+        android:name="com.example.gaspillezero.ui.main.PrésentationProduits.ProduitFragment"
         android:label="fragment_gestion_produit"
         tools:layout="@layout/fragment_gestion_produit" >
         <action
@@ -105,6 +105,12 @@
             app:destination="@id/epicerie_accueil"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action
+            android:id="@+id/action_gestionProduit_to_gestion_gabarit"
+            app:destination="@id/gestion_gabarit" />
+        <action
+            android:id="@+id/action_gestionProduit_to_gestion_commandes"
+            app:destination="@id/gestion_commandes" />
     </fragment>
     <fragment
         android:id="@+id/fragment_epecerie"
