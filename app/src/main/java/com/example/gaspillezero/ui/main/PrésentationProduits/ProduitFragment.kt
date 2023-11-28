@@ -5,17 +5,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.BaseAdapter
 import android.widget.ImageButton
 import android.widget.ListView
+import android.widget.Spinner
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.gaspillezero.ui.main.DossierPanier.AppDatabase
+import com.example.gaspillezero.ui.main.PrésentationDenrées.DenreesFragment
 
-class GestionProduit : Fragment() {
+class GestionProduit : Fragment(), AdapterView.OnItemSelectedListener {
 
     private lateinit var listView: ListView
     private lateinit var customAdapter: CustomAdapter
+    private lateinit var database: AppDatabase
 
     // Données fictives
     private val dataList = listOf(
@@ -29,14 +35,25 @@ class GestionProduit : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_gestion_produit, container, false)
-        listView = view.findViewById(R.id.lvProduits)
-        customAdapter = CustomAdapter(requireContext(), dataList)
-        listView.adapter = customAdapter
-        val ButtonAccueil = view.findViewById<ImageButton>(R.id.Accueil)
-        ButtonAccueil.setOnClickListener{
-            findNavController().navigate(R.id.action_gestionProduit_to_epicerie_accueil)
-        }
+        //listView = view.findViewById(R.id.lvProduits)
+        //customAdapter = CustomAdapter(requireContext(), dataList)
+        //listView.adapter = customAdapter
+        //val ButtonAccueil = view.findViewById<ImageButton>(R.id.Accueil)
+        //ButtonAccueil.setOnClickListener{
+        //    findNavController().navigate(R.id.action_gestionProduit_to_epicerie_accueil)
+        //}
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val spinner = view.findViewById<Spinner>(R.id.spinner)
+        spinner.onItemSelectedListener = this
+        présentateur.obtenirDonnées()
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            findNavController().navigate(R.id.action_denreesFragment_to_fragment_epecerie)
+        }
     }
 
     // Adapter pour le ListView
@@ -70,4 +87,12 @@ class GestionProduit : Fragment() {
         @JvmStatic
         fun newInstance() = GestionProduit()
     }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+
 }
