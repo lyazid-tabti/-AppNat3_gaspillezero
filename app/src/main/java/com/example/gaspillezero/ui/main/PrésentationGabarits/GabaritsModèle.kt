@@ -10,4 +10,10 @@ class GabaritsModèle(private var _source: SourceDeDonnées = DonnéesEnMémoire
     override fun supprimerGabarit(gabarit: Gabarits) {
         _source.supprimerGabarit(gabarit)
     }
+    override fun modifierGabarit(gabarit: Gabarits) {
+        _source.modifierGabarit(gabarit)
+    }
+    override fun ajouterGabarit(gabarit: Gabarits) {
+        _source.ajouterGabarit(gabarit)
+    }
 }

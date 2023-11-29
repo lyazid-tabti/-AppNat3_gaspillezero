@@ -8,4 +8,8 @@ interface SourceDeDonnées {
     fun obtenirDonnéesMagasin(): List<Magasins>
 
     fun supprimerGabarit(gabarit: Gabarits)
+
+    fun modifierGabarit(gabarit: Gabarits)
+
+    fun ajouterGabarit(gabarit: Gabarits)
 }

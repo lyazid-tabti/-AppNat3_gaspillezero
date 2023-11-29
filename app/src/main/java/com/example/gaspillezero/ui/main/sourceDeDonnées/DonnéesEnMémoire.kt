@@ -127,4 +127,14 @@ class DonnéesEnMémoire : SourceDeDonnées {
         liste_de_gabarits.remove(gabarit)
     }
 
+    override fun modifierGabarit(gabaritModifié: Gabarits) {
+        val index = liste_de_gabarits.indexOfFirst { it.code == gabaritModifié.code }
+        if (index != -1) {
+            liste_de_gabarits[index] = gabaritModifié
+        }
+    }
+
+    override fun ajouterGabarit(gabarit: Gabarits) {
+        liste_de_gabarits.add(gabarit)
+    }
 }

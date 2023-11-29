@@ -13,4 +13,11 @@ class GabaritsPrésenteur(private val vue: GabaritVue) : GabaritPrésentateur {
     override fun supprimerGabarit(gabarit: Gabarits) {
         modèle.supprimerGabarit(gabarit)
     }
+
+    override fun modifierGabarit(gabarit: Gabarits) {
+        modèle.modifierGabarit(gabarit)
+    }
+    override fun ajouterGabarit(gabarit: Gabarits) {
+        modèle.ajouterGabarit(gabarit)
+    }
 }
