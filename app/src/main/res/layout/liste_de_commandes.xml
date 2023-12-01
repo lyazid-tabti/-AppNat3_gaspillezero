@@ -21,21 +21,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="banana"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/nomProduitC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="banana"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/quantiteProduitC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="banana"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 

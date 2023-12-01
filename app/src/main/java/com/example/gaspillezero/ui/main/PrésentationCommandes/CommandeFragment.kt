@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
 import com.example.gaspillezero.ui.main.DossierPanier.AppDatabase
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Commandes
+import com.example.gaspillezero.ui.main.PrésentationCommandes.CommandeAdapter
 import kotlinx.coroutines.launch
 
 class CommandeFragment : Fragment(), AdapterView.OnItemSelectedListener{

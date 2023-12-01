@@ -14,13 +14,13 @@ class CommandeAdapter(private val dataSet: List<Commandes>, private val context:
     RecyclerView.Adapter<CommandeAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        val codeCommande: TextView
-        val nomProduit: TextView
+        val code: TextView
+        val produit: TextView
         val quantite: TextView
 
         init {
-            codeCommande = view.findViewById(R.id.codeCommande)
-            nomProduit = view.findViewById(R.id.nomProduitC)
+            code = view.findViewById(R.id.codeCommande)
+            produit = view.findViewById(R.id.nomProduitC)
             quantite = view.findViewById(R.id.quantiteProduitC)
         }
     }
@@ -38,8 +38,8 @@ class CommandeAdapter(private val dataSet: List<Commandes>, private val context:
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val commande = dataSet[position]
 
-        viewHolder.codeCommande.text = commande.code.toString()
-        viewHolder.nomProduit.text = commande.produit
+        viewHolder.code.text = commande.code.toString()
+        viewHolder.produit.text = commande.produit
         viewHolder.quantite.text = commande.quantite.toString()
     }
 }
