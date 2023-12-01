@@ -126,28 +126,28 @@ class DonnéesEnMémoire : SourceDeDonnées {
     override suspend fun obtenirDonnéesCommandes(): List<Commandes>{
         val commande1 = Commandes(
             code = 1,
-            produitNom = "Pâtes spaghettini",
-            quantité = 4
+            produit = "Pâtes spaghettini",
+            quantite = 4
         )
         val commande2 = Commandes(
             code = 2,
-            produitNom = "Soupes aux tomates",
-            quantité = 3
+            produit = "Soupes aux tomates",
+            quantite = 3
         )
         val commande3 = Commandes(
             code = 3,
-            produitNom = "Pâtes spaghettini",
-            quantité = 8
+            produit = "Pâtes spaghettini",
+            quantite = 8
         )
         val commande4 = Commandes(
             code = 4,
-            produitNom = "Frites surgelés",
-            quantité = 5
+            produit = "Frites surgelés",
+            quantite = 5
         )
         val commande5 = Commandes(
             code = 5,
-            produitNom = "Soupes aux tomates",
-            quantité = 10
+            produit = "Soupes aux tomates",
+            quantite = 10
         )
         liste_de_commandes.add(commande1)
         liste_de_commandes.add(commande2)

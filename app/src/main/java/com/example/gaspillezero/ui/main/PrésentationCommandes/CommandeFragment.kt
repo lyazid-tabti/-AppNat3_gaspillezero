@@ -45,7 +45,7 @@ class CommandeFragment : Fragment(), AdapterView.OnItemSelectedListener{
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            findNavController().navigate(R.id.action_gestion_commandes_to_epicerie_accueil)
+            findNavController().navigate(R.id.action_commandeFragment_to_epicerie_accueil)
         }
     }
 
@@ -53,9 +53,9 @@ class CommandeFragment : Fragment(), AdapterView.OnItemSelectedListener{
         val option_choisi = parent?.getItemAtPosition(position).toString()
 
         when(option_choisi){
-            "Accueil"   -> findNavController().navigate(R.id.action_gestion_commandes_to_epicerie_accueil)
-            "Produits" -> findNavController().navigate(R.id.action_gestion_commandes_to_gestionProduit)
-            "Gabarits" -> findNavController().navigate(R.id.action_gestion_commandes_to_gestion_gabarit)
+            "Accueil"   -> findNavController().navigate(R.id.action_commandeFragment_to_epicerie_accueil)
+            "Produits" -> findNavController().navigate(R.id.action_commandeFragment_to_gestionProduit)
+            "Gabarits" -> findNavController().navigate(R.id.action_commandeFragment_to_gestion_gabarit)
         }    }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}

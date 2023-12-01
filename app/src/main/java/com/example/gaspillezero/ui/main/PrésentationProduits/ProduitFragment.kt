@@ -24,8 +24,6 @@ import kotlinx.coroutines.launch
 
 class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    //private lateinit var listView: ListView
-    //private lateinit var customAdapter: CustomAdapter
     var présentateur = ProduitPrésentateur(this)
     private lateinit var adapter: ProduitAdapter
     private lateinit var database: AppDatabase
@@ -33,13 +31,6 @@ class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener {
     companion object {
         fun newInstance() = ProduitFragment()
     }
-
-    /* Données fictives
-    private val dataList = listOf(
-        Produit("Fraises", "2024-01-01", 5, 3.99),
-        Produit("Saumon", "2024-05-21", 10, 1.99),
-        Produit("Spaghetti", "2023-12-31", 8, 2.49)
-    )*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,7 +60,7 @@ class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         when(option_choisi){
             "Accueil"   -> findNavController().navigate(R.id.action_gestionProduit_to_epicerie_accueil)
-            "Commandes" -> findNavController().navigate(R.id.action_gestionProduit_to_gestion_commandes)
+            "Commandes" -> findNavController().navigate(R.id.action_gestionProduit_to_commandeFragment)
             "Gabarits" -> findNavController().navigate(R.id.action_gestionProduit_to_gestion_gabarit)
         }
     }

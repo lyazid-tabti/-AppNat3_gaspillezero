@@ -39,7 +39,7 @@ class CommandeAdapter(private val dataSet: List<Commandes>, private val context:
         val commande = dataSet[position]
 
         viewHolder.codeCommande.text = commande.code.toString()
-        viewHolder.nomProduit.text = commande.produitNom
-        viewHolder.quantite.text = commande.quantité.toString()
+        viewHolder.nomProduit.text = commande.produit
+        viewHolder.quantite.text = commande.quantite.toString()
     }
 }

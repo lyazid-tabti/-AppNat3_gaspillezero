@@ -3,13 +3,14 @@ package com.example.gaspillezero.ui.main.sourceDeDonnées
 import com.example.gaspillezero.ui.main.Exception.SourceDeDonnéesException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.Response
 import okhttp3.ResponseBody
+import kotlinx.*
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import java.io.IOException
-import kotlin.jvm.Throws
 
 class SourceDonnéesCommandesHTTP(var url_api: String): SourceDonnéesCommandes {
 
@@ -40,4 +41,5 @@ class SourceDonnéesCommandesHTTP(var url_api: String): SourceDonnéesCommandes 
     private fun décoderJsonDonnées(jsonDonnées: String): List<Commandes> {
         return Json.decodeFromString(jsonDonnées)
     }
+
 }
