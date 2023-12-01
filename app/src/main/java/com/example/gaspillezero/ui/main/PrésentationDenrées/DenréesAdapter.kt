@@ -9,17 +9,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
-import com.example.gaspillezero.ui.main.DossierPanier.AppDatabase
+import com.example.gaspillezero.ui.main.DossierPanier.MyDatabase
 import com.example.gaspillezero.ui.main.sourceDeDonnées.PanierItem
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
 import com.google.android.material.textfield.TextInputEditText
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import android.os.Handler
+import android.os.Looper
+import kotlinx.coroutines.*
 
-class DenréesAdapter(private val dataSet: List<Produits>, private val context: Context, var database: AppDatabase) :
+class DenréesAdapter(private val dataSet: List<Produits>, private val context: Context, var database: MyDatabase) :
     RecyclerView.Adapter<DenréesAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -30,22 +29,23 @@ class DenréesAdapter(private val dataSet: List<Produits>, private val context: 
         val quantitéCommandé: TextInputEditText
         val quantiteStockProduit: TextView
         val ajoutPanier : Button
+        val modifierQuantité : Button
 
         init {
-            nomProduit = view.findViewById(R.id.nomMagasin)
+            nomProduit = view.findViewById(R.id.nomProduit)
             prixProduit = view.findViewById(R.id.prixProduit)
-            imageProduit = view.findViewById(R.id.imageMagasin)
+            imageProduit = view.findViewById(R.id.imageProduit)
             dateExpProduit = view.findViewById(R.id.dateExpProduit)
             quantiteStockProduit = view.findViewById(R.id.quantiteStockProduit)
             quantitéCommandé = view.findViewById(R.id.quantitéCommandé)
             ajoutPanier = view.findViewById(R.id.btnAjouterPanier)
+            modifierQuantité = view.findViewById(R.id.btnModifierPanier)
         }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.liste_de_produits, viewGroup, false)
-
         return ViewHolder(view)
     }
 
@@ -58,6 +58,8 @@ class DenréesAdapter(private val dataSet: List<Produits>, private val context: 
         viewHolder.quantiteStockProduit.text = "Quantité en stock: " + produit.quantite_stock.toString()
         val image = viewHolder.imageProduit.context.resources.getIdentifier(produit.photo_url, "drawable", viewHolder.imageProduit.context.packageName)
         val ajoutPanier = viewHolder.ajoutPanier
+        val modifierQuantité = viewHolder.modifierQuantité
+        val handler = Handler(Looper.getMainLooper())
 
         Picasso.get()
             .load(image)
@@ -71,26 +73,41 @@ class DenréesAdapter(private val dataSet: List<Produits>, private val context: 
                 produitPrix = produitPrix.replace("$", "")
             if (quantitéCommandé.isNotEmpty() && quantitéCommandé.toInt() > 0 && quantitéCommandé.toInt() < produit.quantite_stock) {
 
-                    CoroutineScope(Dispatchers.IO).launch {
-                        val produit_existant =
-                            database.panierDAO().chercherProduitParNom(produitNom)
+                CoroutineScope(Dispatchers.IO).launch {
+                    val produit_existant =
+                        database.panierDAO().chercherProduitParNom(produitNom)
 
-                        if (produit_existant == null) {
-                            val produit = PanierItem(
-                                produitNom = produitNom,
-                                produitPrix = produitPrix.toDouble(),
-                                quantitéCommandé = quantitéCommandé.toInt(),
-                                imageID = image.toString()
-                            )
-                            database.panierDAO().ajouterProduit(produit)
-                        } else withContext(Dispatchers.Main) {
-                            Toast.makeText(context, "Produit déjà ajouté!", Toast.LENGTH_SHORT)
-                                .show()
-                        }
+                    if (produit_existant == null) {
+                        val produit = PanierItem(
+                            produitNom = produitNom,
+                            produitPrix = produitPrix.toDouble(),
+                            quantitéCommandé = quantitéCommandé.toInt(),
+                            imageID = image.toString()
+                        )
+                        database.panierDAO().ajouterProduit(produit)
                     }
-                } else {
-                    Toast.makeText(context, "Erreur, quantité non valide!", Toast.LENGTH_SHORT)
-                        .show()
+                    handler.post {
+                        ajoutPanier.isEnabled = false
+                        modifierQuantité.visibility = View.VISIBLE
+                    }
+                }
+            } else {
+                Toast.makeText(context, "Erreur, quantité non valide!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        modifierQuantité.setOnClickListener {
+
+                val quantitéCommandé = viewHolder.quantitéCommandé.text.toString()
+                val produitNom = viewHolder.nomProduit.text.toString()
+                CoroutineScope(Dispatchers.IO).launch {
+                    val produit_existant =
+                        database.panierDAO().chercherProduitParNom(produitNom)
+
+                    if (produit_existant != null) {
+
+                        database.panierDAO().modifierPanierItem(quantitéCommandé, produitNom)
+                    }
                 }
             }
         }
