@@ -1,6 +1,5 @@
 package com.example.gaspillezero
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,18 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.addCallback
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.ui.main.DossierPanier.AppDatabase
-import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesAdapter
-import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesPrésentateur
 import com.example.gaspillezero.ui.main.PrésentationMagasin.MagasinPrésentateur
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Magasins
-import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
 import com.example.gaspillezero.ui.main.vue.MagasinAdapter
+import kotlinx.coroutines.launch
 
 class fragment_epecerie : Fragment(), AdapterView.OnItemSelectedListener {
     var présentateur = MagasinPrésentateur(this)
@@ -35,7 +31,7 @@ class fragment_epecerie : Fragment(), AdapterView.OnItemSelectedListener {
         val view = inflater.inflate(R.layout.fragment_epecerie, container, false)
 
         val nextBtn : Button = view.findViewById(R.id.btnRetour)
-        val btnarticle : Button = view.findViewById(R.id.btnarticle)
+        val btnarticle : Button = view.findViewById(R.id.btnArticle)
 
         nextBtn.setOnClickListener{
             val fragment = fragment_detail()
@@ -47,7 +43,7 @@ class fragment_epecerie : Fragment(), AdapterView.OnItemSelectedListener {
             val transcation1 = fragmentManager?.beginTransaction()
             transcation1?.replace(R.id.container,fragment)?.commit()
         }*/
-        val ButtonArticle = view.findViewById<Button>(R.id.btnarticle)
+        val ButtonArticle = view.findViewById<Button>(R.id.btnArticle)
         ButtonArticle.setOnClickListener{
             findNavController().navigate(R.id.action_fragment_epecerie_to_denreesFragment)
         }
@@ -63,7 +59,9 @@ class fragment_epecerie : Fragment(), AdapterView.OnItemSelectedListener {
         val spinner = view.findViewById<Spinner>(R.id.spinner)
         spinner.onItemSelectedListener = this
 
-        présentateur.obtenirDonnées()
+        lifecycleScope.launch  {
+            présentateur.obtenirDonnées()
+        }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             findNavController().navigate(R.id.action_fragment_epecerie_to_epicerie_accueil)

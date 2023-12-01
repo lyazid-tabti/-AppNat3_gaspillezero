@@ -10,4 +10,6 @@ data class Produits(
     val prix: Double,
     val date_exp: String,
     val quantite_stock: Int,
-    val photo_url: String)
+    val photo_url: String,
+    //val MagasinId: Int,
+    )

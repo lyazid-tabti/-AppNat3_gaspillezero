@@ -12,4 +12,7 @@ interface SourceDeDonnées {
     fun modifierGabarit(gabarit: Gabarits)
 
     fun ajouterGabarit(gabarit: Gabarits)
+
+
+    //fun obtenirProduitsParMagasin(produits: List<Produits>, magasinId: Int): List<Produits>
 }

@@ -14,7 +14,8 @@ class DonnéesEnMémoire : SourceDeDonnées {
             prix = 0.99,
             date_exp = "09/10/23",
             quantite_stock = 14,
-            photo_url = "spaghettini"
+            photo_url = "spaghettini",
+            //MagasinId = 2
         )
 
         val produit2 = Produits(
@@ -24,7 +25,8 @@ class DonnéesEnMémoire : SourceDeDonnées {
             prix = 1.09,
             date_exp = "09/10/23",
             quantite_stock = 11,
-            photo_url = "soupetomate"
+            photo_url = "soupetomate",
+            //MagasinId = 3
         )
 
         val produit3 = Produits(
@@ -34,7 +36,8 @@ class DonnéesEnMémoire : SourceDeDonnées {
             prix = 5.49,
             date_exp = "21/10/23",
             quantite_stock = 19,
-            photo_url = "frites"
+            photo_url = "frites",
+            //MagasinId = 1
         )
 
         liste_de_produits.add(produit1)
@@ -45,11 +48,49 @@ class DonnéesEnMémoire : SourceDeDonnées {
     }
 
     override fun obtenirDonnéesMagasin(): List<Magasins> {
+
+        val produit1 = Produits(
+            code = "34320",
+            nom = "Cocombre",
+            description = "Sachet de pâtes spaghetti classique",
+            prix = 0.99,
+            date_exp = "09/10/23",
+            quantite_stock = 14,
+            photo_url = "spaghettini",
+            //MagasinId = 1
+        )
+
+        val produit2 = Produits(
+            code = "34320",
+            nom = "Beurre",
+            description = "Sachet de pâtes spaghetti classique",
+            prix = 0.99,
+            date_exp = "09/10/23",
+            quantite_stock = 14,
+            photo_url = "spaghettini",
+            //MagasinId = 2
+        )
+
+        val produit3 = Produits(
+            code = "34320",
+            nom = "Oeuf",
+            description = "Sachet de pâtes spaghetti classique",
+            prix = 0.99,
+            date_exp = "09/10/23",
+            quantite_stock = 14,
+            photo_url = "spaghettini",
+            //MagasinId = 3
+        )
+
+
+
         val magasin1 = Magasins(
             id = 1,
             magasinNom = "Walmart",
             estDisponible = "Disponible pour Livraison",
-            imageID = "walmart"
+            imageID = "walmart",
+            //produits = mutableListOf(produit1)
+
 
 
         )
@@ -58,7 +99,8 @@ class DonnéesEnMémoire : SourceDeDonnées {
             id = 2,
             magasinNom = "Provigo",
             estDisponible = "Disponible pour Livraison",
-            imageID = "provigo"
+            imageID = "provigo",
+            //produits = mutableListOf(produit2)
 
 
         )
@@ -67,7 +109,8 @@ class DonnéesEnMémoire : SourceDeDonnées {
             id = 3,
             magasinNom = "Maxi",
             estDisponible = "Non pour Livraison",
-            imageID = "maxi"
+            imageID = "maxi",
+            //produits = mutableListOf(produit3)
 
 
         )
@@ -123,6 +166,13 @@ class DonnéesEnMémoire : SourceDeDonnées {
         return liste_de_gabarits
     }
 
+
+    /*override fun obtenirProduitsParMagasin(produits: List<Produits>, magasinId: Int): List<Produits> {
+        return produits.filter { it.MagasinId == magasinId }
+    }*/
+
+
+
     override fun supprimerGabarit(gabarit: Gabarits) {
         liste_de_gabarits.remove(gabarit)
     }
@@ -137,4 +187,6 @@ class DonnéesEnMémoire : SourceDeDonnées {
     override fun ajouterGabarit(gabarit: Gabarits) {
         liste_de_gabarits.add(gabarit)
     }
+
+
 }

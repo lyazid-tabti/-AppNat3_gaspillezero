@@ -23,7 +23,8 @@ class DenréesModèleTest {
                 prix = 0.99,
                 date_exp = "09/10/23",
                 quantite_stock = 14,
-                photo_url = "spaghettini"
+                photo_url = "spaghettini",
+                //MagasinId = 1
             ),
             Produits(
                 code = "67890",
@@ -32,7 +33,8 @@ class DenréesModèleTest {
                 prix = 1.09,
                 date_exp = "09/10/23",
                 quantite_stock = 11,
-                photo_url = "soupetomate"
+                photo_url = "soupetomate",
+                //MagasinId = 1
             )
         )
         `when`(mockSource.obtenirDonnéesProduits()).thenReturn(résultat_attendu)

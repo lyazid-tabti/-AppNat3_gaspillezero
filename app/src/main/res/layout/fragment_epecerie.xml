@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white" />
     <Button
-        android:id="@+id/btnarticle"
+        android:id="@+id/btnArticle"
         android:layout_width="87dp"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
