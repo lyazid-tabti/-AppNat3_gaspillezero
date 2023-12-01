@@ -12,11 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
-import com.example.gaspillezero.ui.main.PrésentationGabarits.GabaritAdapter
-import com.example.gaspillezero.ui.main.PrésentationGabarits.GabaritPrésentateur
-import com.example.gaspillezero.ui.main.PrésentationGabarits.GabaritVue
-import com.example.gaspillezero.ui.main.PrésentationGabarits.GabaritsPrésenteur
+import com.example.gaspillezero.ui.main.PrésentationGabarits.*
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Gabarits
+import com.example.gaspillezero.ui.main.sourceDeDonnées.Épicerie
 
 class GabaritFragment : Fragment(), AdapterView.OnItemSelectedListener, GabaritVue {
 
@@ -25,7 +23,7 @@ class GabaritFragment : Fragment(), AdapterView.OnItemSelectedListener, GabaritV
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        présentateur = GabaritsPrésenteur(this)
+        présentateur = GabaritsPrésenteur(this,GabaritsModèle())
     }
 
     override fun onCreateView(
@@ -75,7 +73,7 @@ class GabaritFragment : Fragment(), AdapterView.OnItemSelectedListener, GabaritV
             val nouvelleCategorie = dialogView.findViewById<EditText>(R.id.editTextCategorieGabarit).text.toString()
             val nouvelleDescription = dialogView.findViewById<EditText>(R.id.editTextDescriptionGabarit).text.toString()
 
-            val gabaritModifié = Gabarits(gabarit.code, nouveauNom, nouvelleDescription, gabarit.image, nouvelleCategorie)
+            val gabaritModifié = Gabarits(gabarit.code, nouveauNom, nouvelleDescription, gabarit.image, nouvelleCategorie, gabarit.épicerie)
 
             adapter.modifierGabarit(gabarit, gabaritModifié)
             présentateur.modifierGabarit(gabaritModifié)
@@ -95,10 +93,11 @@ class GabaritFragment : Fragment(), AdapterView.OnItemSelectedListener, GabaritV
             val nom = dialogView.findViewById<EditText>(R.id.editTextNomGabarit).text.toString()
             val categorie = dialogView.findViewById<EditText>(R.id.editTextCategorieGabarit).text.toString()
             val description = dialogView.findViewById<EditText>(R.id.editTextDescriptionGabarit).text.toString()
-            val code = "123"
+            val code = ""
             val image = "pomme"
+            val épicerie = Épicerie("",null,null,"","","","")
 
-            val nouveauGabarit = Gabarits(code, nom, description, image, categorie)
+            val nouveauGabarit = Gabarits(code, nom, description, image, categorie, épicerie)
             adapter.ajouterGabarit(nouveauGabarit)
             présentateur.ajouterGabarit(nouveauGabarit)
         }
