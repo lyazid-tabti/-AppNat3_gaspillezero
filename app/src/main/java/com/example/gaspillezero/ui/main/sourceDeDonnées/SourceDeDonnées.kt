@@ -10,4 +10,8 @@ interface SourceDeDonnées {
     suspend fun obtenirDonnéesCommandes(): List<Commandes>
 
     fun supprimerGabarit(gabarit: Gabarits)
+
+    fun modifierGabarit(gabarit: Gabarits)
+
+    fun ajouterGabarit(gabarit: Gabarits)
 }

@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.gaspillezero.ui.main.sourceDeDonnées.PanierItem
 
 @Database(entities = [PanierItem::class], version = 4, exportSchema = false)
-abstract class AppDatabase : RoomDatabase() {
+abstract class MyDatabase : RoomDatabase() {
 
     abstract fun panierDAO(): PanierDAO
 
@@ -29,9 +29,9 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         @Volatile
-        private var INSTANCE: AppDatabase? = null
+        private var INSTANCE: MyDatabase? = null
 
-        fun getInstance(context: Context, resetDatabase: Boolean): AppDatabase {
+        fun getInstance(context: Context, resetDatabase: Boolean): MyDatabase {
             if (resetDatabase && INSTANCE == null) {
                 context.getDatabasePath(DATABASE_NAME).delete()
             }
@@ -39,7 +39,7 @@ abstract class AppDatabase : RoomDatabase() {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    AppDatabase::class.java,
+                    MyDatabase::class.java,
                     DATABASE_NAME
                 )
                     .addMigrations(MIGRATION_1_2, MIGRATION_3_4, MIGRATION_1_4)

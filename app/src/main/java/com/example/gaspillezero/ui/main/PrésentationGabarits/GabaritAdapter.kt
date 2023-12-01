@@ -13,7 +13,8 @@ import com.squareup.picasso.Picasso
 
 class GabaritAdapter(
     private val dataSet: MutableList<Gabarits>,
-    private val onDeleteClick: (Gabarits) -> Unit
+    private val onDeleteClick: (Gabarits) -> Unit,
+    private val onEditClick: (Gabarits) -> Unit
 ) : RecyclerView.Adapter<GabaritAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -23,6 +24,7 @@ class GabaritAdapter(
         val categorieGabarit: TextView = view.findViewById(R.id.categorieGabarit)
         val imageGabarit: ImageView = view.findViewById(R.id.imageGabarit)
         val deleteButton: Button = view.findViewById(R.id.btnDelete)
+        val editButton: Button = view.findViewById(R.id.btnEdit)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -41,11 +43,18 @@ class GabaritAdapter(
         viewHolder.categorieGabarit.text = gabarit.catégorie
 
         val imageUri = viewHolder.imageGabarit.context.resources.getIdentifier(gabarit.image, "drawable", viewHolder.imageGabarit.context.packageName)
-        Picasso.get().load(imageUri).into(viewHolder.imageGabarit)
+        if (imageUri != 0) {
+            Picasso.get().load(imageUri).into(viewHolder.imageGabarit)
+        } else {
+            viewHolder.imageGabarit.setImageResource(R.drawable.pomme)
+        }
 
         viewHolder.deleteButton.setOnClickListener {
             onDeleteClick(gabarit)
             removeItem(gabarit)
+        }
+        viewHolder.editButton.setOnClickListener {
+            onEditClick(gabarit)
         }
     }
 
@@ -61,6 +70,19 @@ class GabaritAdapter(
             dataSet.removeAt(position)
             notifyItemRemoved(position)
         }
+    }
+
+    fun modifierGabarit(gabarit: Gabarits, nouveauGabarit: Gabarits) {
+        val position = dataSet.indexOf(gabarit)
+        if (position >= 0) {
+            dataSet[position] = nouveauGabarit
+            notifyItemChanged(position)
+        }
+    }
+
+    fun ajouterGabarit(gabarit: Gabarits) {
+        dataSet.add(gabarit)
+        notifyItemInserted(dataSet.size - 1)
     }
 
     override fun getItemCount() = dataSet.size

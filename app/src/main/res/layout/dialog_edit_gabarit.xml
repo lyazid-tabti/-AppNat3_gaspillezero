@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <!-- Label et EditText pour Nom -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nom"
+        android:textColor="@color/black"
+        android:padding="4dp" />
+    <EditText
+        android:id="@+id/editTextNomGabarit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:background="@android:drawable/edit_text"/>
+
+    <!-- Label et EditText pour Catégorie -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Catégorie"
+        android:textColor="@color/black"
+        android:padding="4dp" />
+    <EditText
+        android:id="@+id/editTextCategorieGabarit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:background="@android:drawable/edit_text"/>
+
+    <!-- Label et EditText pour Description -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textColor="@color/black"
+        android:padding="4dp" />
+    <EditText
+        android:id="@+id/editTextDescriptionGabarit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:background="@android:drawable/edit_text"/>
+</LinearLayout>
