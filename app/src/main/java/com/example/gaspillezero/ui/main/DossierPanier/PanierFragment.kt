@@ -26,7 +26,7 @@ class PanierFragment : Fragment(), AdapterView.OnItemSelectedListener {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.fragment_panier, container, false)
-        val database = AppDatabase.getInstance(requireContext(), true)
+        val database = MyDatabase.getInstance(requireContext(), true)
         adapter = PanierAdapter(database.panierDAO().afficherItemsPanier(), database)
 
         return view
@@ -41,7 +41,7 @@ class PanierFragment : Fragment(), AdapterView.OnItemSelectedListener {
             findNavController().navigate(R.id.action_panierFragment_to_denreesFragment)
         }
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewMagasin)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewPanier)
         recyclerView?.layoutManager = LinearLayoutManager(context)
         recyclerView?.adapter = adapter
     }

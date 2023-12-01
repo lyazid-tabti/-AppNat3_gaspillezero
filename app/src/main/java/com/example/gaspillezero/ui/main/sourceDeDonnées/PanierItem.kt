@@ -13,7 +13,7 @@ class PanierItem (
     @ColumnInfo(name = "produitPrix")
     val produitPrix: Double,
     @ColumnInfo(name = "quantitéCommandé")
-    val quantitéCommandé: Int,
+    var quantitéCommandé: Int,
     @ColumnInfo(name = "imageID")
     val imageID: String
 )
