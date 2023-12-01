@@ -36,7 +36,7 @@ class ProduitAdapter(private val dataSet: List<Produits>, private val context: C
         }
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ProduitAdapter.ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.liste_de_produits_gestion, viewGroup, false)
 

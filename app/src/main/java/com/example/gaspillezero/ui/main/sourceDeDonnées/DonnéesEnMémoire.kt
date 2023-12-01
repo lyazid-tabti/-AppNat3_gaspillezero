@@ -123,31 +123,31 @@ class DonnéesEnMémoire : SourceDeDonnées {
         return liste_de_gabarits
     }
 
-    override fun obtenirDonnéesCommandes(): List<Commandes>{
+    override suspend fun obtenirDonnéesCommandes(): List<Commandes>{
         val commande1 = Commandes(
             code = 1,
-            produitNom = obtenirDonnéesProduits()[0].nom,
+            produitNom = "Pâtes spaghettini",
             quantité = 4
         )
         val commande2 = Commandes(
             code = 2,
-            produitNom = obtenirDonnéesProduits()[1].nom,
+            produitNom = "Soupes aux tomates",
             quantité = 3
         )
         val commande3 = Commandes(
             code = 3,
-            produitNom = obtenirDonnéesProduits()[2].nom,
-            quantité = 5
+            produitNom = "Pâtes spaghettini",
+            quantité = 8
         )
         val commande4 = Commandes(
             code = 4,
-            produitNom = obtenirDonnéesProduits()[1].nom,
-            quantité = 7
+            produitNom = "Frites surgelés",
+            quantité = 5
         )
         val commande5 = Commandes(
             code = 5,
-            produitNom = obtenirDonnéesProduits()[0].nom,
-            quantité = 5
+            produitNom = "Soupes aux tomates",
+            quantité = 10
         )
         liste_de_commandes.add(commande1)
         liste_de_commandes.add(commande2)

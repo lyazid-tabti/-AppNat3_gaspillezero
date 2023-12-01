@@ -7,7 +7,7 @@ interface SourceDeDonnées {
 
     fun obtenirDonnéesMagasin(): List<Magasins>
 
-    fun obtenirDonnéesCommandes(): List<Commandes>
+    suspend fun obtenirDonnéesCommandes(): List<Commandes>
 
     fun supprimerGabarit(gabarit: Gabarits)
 }

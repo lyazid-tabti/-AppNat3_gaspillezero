@@ -1,14 +1,15 @@
 package com.example.gaspillezero.ui.main.PrésentationCommandes
 
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Commandes
-import com.example.gaspillezero.ui.main.sourceDeDonnées.DonnéesEnMémoire
-import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDeDonnées
+import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDonnéesCommandes
+import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDonnéesCommandesHTTP
 
-class CommandeModèle(source: SourceDeDonnées = DonnéesEnMémoire()) {
+class CommandeModèle(source: SourceDonnéesCommandes =
+                         SourceDonnéesCommandesHTTP("https://3b53d418-1355-4085-926d-24d685d2da78.mock.pstmn.io/commandes")) {
 
-    private var _source : SourceDeDonnées = source
+    private var _source : SourceDonnéesCommandes = source
 
-    fun obtenirDonnéesCommandes(): List<Commandes>{
+    suspend fun obtenirDonnéesCommandes(): List<Commandes>{
         return _source.obtenirDonnéesCommandes()
     }
 }

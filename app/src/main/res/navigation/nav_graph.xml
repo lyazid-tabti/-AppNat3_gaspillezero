@@ -16,11 +16,6 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
-            android:id="@+id/action_epicerie_accueil_to_gestion_commandes"
-            app:destination="@id/gestion_commandes"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"/>
-        <action
             android:id="@+id/action_epicerie_accueil_to_gestionProduit"
             app:destination="@id/gestionProduit"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -30,27 +25,37 @@
             app:destination="@id/fragment_epecerie"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"/>
+        <action android:id="@+id/action_epicerie_accueil_to_gestion_commandes" />
+        <action
+            android:id="@+id/action_epicerie_accueil_to_gestion_commandes2"
+            app:destination="@id/gestion_commandes" />
     </fragment>
     <fragment
         android:id="@+id/gestion_commandes"
-        android:name="com.example.gaspillezero.gestion_commandes"
+        android:name="com.example.gaspillezero.ui.main.PrésentationCommandes.CommandeFragment"
         android:label="fragment_gestion_commandes"
-        tools:layout="@layout/fragment_gestion_commandes" >
+        tools:layout="@layout/fragment_gestion_commandes">
         <action
             android:id="@+id/action_gestion_commandes_to_detail_commande1"
             app:destination="@id/detail_commande1"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"/>
+            app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/action_gestion_commandes_to_detail_commande2"
             app:destination="@id/detail_commande2"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"/>
+            app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/action_gestion_commandes_to_epicerie_accueil"
             app:destination="@id/epicerie_accueil"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"/>
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_gestion_commandes_to_gestion_gabarit"
+            app:destination="@id/gestion_gabarit" />
+        <action
+            android:id="@+id/action_gestion_commandes_to_gestionProduit"
+            app:destination="@id/gestionProduit" />
     </fragment>
     <fragment
         android:id="@+id/gestion_gabarit"
