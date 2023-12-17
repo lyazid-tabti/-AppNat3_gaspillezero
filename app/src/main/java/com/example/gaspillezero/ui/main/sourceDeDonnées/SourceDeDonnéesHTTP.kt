@@ -52,7 +52,14 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
     override suspend fun obtenirListeGabarits(): List<Gabarits> {
         try {
             val client = OkHttpClient()
-            val requête = Request.Builder().url("http://10.0.2.2:8080/gabaritproduits").build() // Adaptez l'URL selon votre API
+
+            // Je n'ai pas encore de méthode pour obtenir le token donc voici un token avec les autorisations pour s'authentifier
+            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjc4ODQxNCwiZXhwIjoxNzAyODc0ODE0LCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.e8vlAUv6M7I0P-8scHRL-Ii7OQn4erArgreQPW7edVzTCf6hkQeXstM_vq8re4bQXHPvpMb1fXbS5PJP892-ICSN7nRbtmtW1jbSie62LMNVOm7eUucYjC3KFvdaNfU--Wg4BNRVil5SLoQiUm4_pO5iCHENkpBYAi5VO4qSPHly-5aSKe1Gn4ZWinbzYSmJwc1a34plLXWLaBTmow4WlBXcEQ0A70hb-CK57At2zYCk_BMvyvarvPzBw8lnvPRz72f2tkJY39DKcCfmO7bAkpSacl33He0yepzqIsk8qbCOBIycXUUYHjKUGUOw7CSBvwV_Eb_5D76-5ryNhJq9zQ"
+
+            val requête = Request.Builder()
+                .url("http://10.0.2.2:8080/gabaritproduits")
+                .addHeader("Authorization", "Bearer $token") // Ajout de l'en-tête d'authentification
+                .build()
 
             val réponse = client.newCall(requête).execute()
 

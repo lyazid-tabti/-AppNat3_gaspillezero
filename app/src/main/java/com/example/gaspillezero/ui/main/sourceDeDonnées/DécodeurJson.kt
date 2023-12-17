@@ -98,6 +98,7 @@ class DécodeurJson {
                     "adresse" -> { adresse = décoderJsonVersAdresse( reader ) }
                     "téléphone" -> { téléphone = if (reader.peek() != JsonToken.NULL) reader.nextString() else { reader.nextNull(); null } }
                     "rôle" -> { rôle = if (reader.peek() != JsonToken.NULL) reader.nextString() else { reader.nextNull(); null } }
+                    "tokenAuth0" -> reader.skipValue() // Ignorer pour l'instant. Je ne penses pas que nous avons besoin pour l'instant
                 }
             }
             reader.endObject()
