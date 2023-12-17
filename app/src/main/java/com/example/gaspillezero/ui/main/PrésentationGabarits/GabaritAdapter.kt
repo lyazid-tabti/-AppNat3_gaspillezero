@@ -1,5 +1,7 @@
 package com.example.gaspillezero.ui.main.PrésentationGabarits
 
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,12 +44,26 @@ class GabaritAdapter(
         viewHolder.descriptionGabarit.text = gabarit.description
         viewHolder.categorieGabarit.text = gabarit.catégorie
 
-        val imageUri = viewHolder.imageGabarit.context.resources.getIdentifier(gabarit.image, "drawable", viewHolder.imageGabarit.context.packageName)
-        if (imageUri != 0) {
-            Picasso.get().load(imageUri).into(viewHolder.imageGabarit)
+        //val imageUri = viewHolder.imageGabarit.context.resources.getIdentifier(gabarit.image, "drawable", viewHolder.imageGabarit.context.packageName)
+        //if (imageUri != 0) {
+        //    Picasso.get().load(imageUri).into(viewHolder.imageGabarit)
+        //} else {
+        //    viewHolder.imageGabarit.setImageResource(R.drawable.pomme)
+        //}
+
+        if (gabarit.image != null && gabarit.image.isNotEmpty()) {
+            try {
+                val imageBytes = Base64.decode(gabarit.image, Base64.DEFAULT)
+                val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                viewHolder.imageGabarit.setImageBitmap(bitmap)
+            } catch (e: IllegalArgumentException) {
+                // Gérer l'exception si la chaîne Base64 n'est pas valide
+                viewHolder.imageGabarit.setImageResource(R.drawable.pomme)
+            }
         } else {
             viewHolder.imageGabarit.setImageResource(R.drawable.pomme)
         }
+
 
         viewHolder.deleteButton.setOnClickListener {
             onDeleteClick(gabarit)
