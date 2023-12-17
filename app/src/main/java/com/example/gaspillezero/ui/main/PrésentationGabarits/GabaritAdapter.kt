@@ -21,7 +21,7 @@ class GabaritAdapter(
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nomGabarit: TextView = view.findViewById(R.id.nomGabarit)
-        val codeGabarit: TextView = view.findViewById(R.id.codeGabarit)
+        //val codeGabarit: TextView = view.findViewById(R.id.codeGabarit)
         val descriptionGabarit: TextView = view.findViewById(R.id.descriptionGabarit)
         val categorieGabarit: TextView = view.findViewById(R.id.categorieGabarit)
         val imageGabarit: ImageView = view.findViewById(R.id.imageGabarit)
@@ -40,7 +40,7 @@ class GabaritAdapter(
         val gabarit = dataSet[position]
 
         viewHolder.nomGabarit.text = gabarit.nom
-        viewHolder.codeGabarit.text = gabarit.code
+        //viewHolder.codeGabarit.text = gabarit.code
         viewHolder.descriptionGabarit.text = gabarit.description
         viewHolder.categorieGabarit.text = gabarit.catégorie
 

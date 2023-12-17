@@ -93,9 +93,9 @@ class GabaritFragment : Fragment(), AdapterView.OnItemSelectedListener, GabaritV
             val nom = dialogView.findViewById<EditText>(R.id.editTextNomGabarit).text.toString()
             val categorie = dialogView.findViewById<EditText>(R.id.editTextCategorieGabarit).text.toString()
             val description = dialogView.findViewById<EditText>(R.id.editTextDescriptionGabarit).text.toString()
-            val code = ""
-            val image = "pomme"
-            val épicerie = Épicerie("",null,null,"","","","")
+            val code = "1" // n'affecte pas car autoincrement
+            val image = "1" // Implémentez fonctionnalité ajout image
+            val épicerie = Épicerie("1",null,null,"1","1","1","1") // Implémentez Épicerie du gérant connecté
 
             val nouveauGabarit = Gabarits(code, nom, description, image, categorie, épicerie)
             adapter.ajouterGabarit(nouveauGabarit)

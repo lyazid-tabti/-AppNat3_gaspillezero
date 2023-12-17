@@ -5,7 +5,9 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import okio.IOException
+import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.io.OutputStreamWriter
 
@@ -77,11 +79,138 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
         }
     }
 
-    override suspend fun supprimerGabarit(gabarit: Gabarits){}
+    @Throws(SourceDeDonnéesException::class)
+    override suspend fun supprimerGabarit(gabarit: Gabarits) {
+        try {
+            val client = OkHttpClient()
+            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjc4ODQxNCwiZXhwIjoxNzAyODc0ODE0LCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.e8vlAUv6M7I0P-8scHRL-Ii7OQn4erArgreQPW7edVzTCf6hkQeXstM_vq8re4bQXHPvpMb1fXbS5PJP892-ICSN7nRbtmtW1jbSie62LMNVOm7eUucYjC3KFvdaNfU--Wg4BNRVil5SLoQiUm4_pO5iCHENkpBYAi5VO4qSPHly-5aSKe1Gn4ZWinbzYSmJwc1a34plLXWLaBTmow4WlBXcEQ0A70hb-CK57At2zYCk_BMvyvarvPzBw8lnvPRz72f2tkJY39DKcCfmO7bAkpSacl33He0yepzqIsk8qbCOBIycXUUYHjKUGUOw7CSBvwV_Eb_5D76-5ryNhJq9zQ"
 
-    override suspend fun modifierGabarit(gabarit: Gabarits){}
+            val url = "http://10.0.2.2:8080/gabaritproduit/${gabarit.code}"
 
-    override suspend fun ajouterGabarit(gabarit: Gabarits){}
+            val requête = Request.Builder()
+                .url(url)
+                .delete() // Requête DELETE
+                .addHeader("Authorization", "Bearer $token")
+                .build()
+
+            val réponse = client.newCall(requête).execute()
+
+            if (réponse.code != 200) {
+                throw SourceDeDonnéesException("Erreur : ${réponse.code}")
+            }
+            if (réponse.body == null) {
+                throw SourceDeDonnéesException("Pas de données reçues")
+            }
+        } catch(e: IOException) {
+            throw SourceDeDonnéesException("Erreur réseau: ${e.message}")
+        }
+    }
+
+    override suspend fun modifierGabarit(gabarit: Gabarits) {
+        try {
+            val client = OkHttpClient()
+            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjc4ODQxNCwiZXhwIjoxNzAyODc0ODE0LCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.e8vlAUv6M7I0P-8scHRL-Ii7OQn4erArgreQPW7edVzTCf6hkQeXstM_vq8re4bQXHPvpMb1fXbS5PJP892-ICSN7nRbtmtW1jbSie62LMNVOm7eUucYjC3KFvdaNfU--Wg4BNRVil5SLoQiUm4_pO5iCHENkpBYAi5VO4qSPHly-5aSKe1Gn4ZWinbzYSmJwc1a34plLXWLaBTmow4WlBXcEQ0A70hb-CK57At2zYCk_BMvyvarvPzBw8lnvPRz72f2tkJY39DKcCfmO7bAkpSacl33He0yepzqIsk8qbCOBIycXUUYHjKUGUOw7CSBvwV_Eb_5D76-5ryNhJq9zQ" // Remplacez par votre token d'authentification
+
+            val json = JSONObject().apply {
+                put("idGabaritProduit", gabarit.code.toInt())
+                put("nom", gabarit.nom)
+                put("description", gabarit.description)
+                put("image", gabarit.image)
+                put("categorie", gabarit.catégorie)
+                put("épicerie", JSONObject().apply {
+                    put("idÉpicerie", gabarit.épicerie.code.toInt())
+                    put("adresse", JSONObject().apply {
+                        put("idAdresse", gabarit.épicerie.adresse?.code?.toInt())
+                        put("numéro_municipal", gabarit.épicerie.adresse?.numéro_municipal)
+                        put("rue", gabarit.épicerie.adresse?.rue)
+                        put("ville", gabarit.épicerie.adresse?.ville)
+                        put("province", gabarit.épicerie.adresse?.province)
+                        put("code_postal", gabarit.épicerie.adresse?.code_postal)
+                        put("pays", gabarit.épicerie.adresse?.pays)
+                    })
+                    put("utilisateur", JSONObject().apply {
+                        put("code", gabarit.épicerie.utilisateur?.code?.toInt())
+                        put("nom", gabarit.épicerie.utilisateur?.nom)
+                        put("prénom", gabarit.épicerie.utilisateur?.prénom)
+                        put("courriel", gabarit.épicerie.utilisateur?.courriel)
+                        put("adresse", JSONObject().apply {
+                            put("idAdresse", gabarit.épicerie.utilisateur?.adresse?.code?.toInt())
+                            put("numéro_municipal", gabarit.épicerie.utilisateur?.adresse?.numéro_municipal)
+                            put("rue", gabarit.épicerie.utilisateur?.adresse?.rue)
+                            put("ville", gabarit.épicerie.utilisateur?.adresse?.ville)
+                            put("province", gabarit.épicerie.utilisateur?.adresse?.province)
+                            put("code_postal", gabarit.épicerie.utilisateur?.adresse?.code_postal)
+                            put("pays", gabarit.épicerie.utilisateur?.adresse?.pays)
+                        })
+                        put("téléphone", gabarit.épicerie.utilisateur?.téléphone)
+                        put("rôle", gabarit.épicerie.utilisateur?.rôle)
+                        put("tokenAuth0", "")
+                    })
+                    put("nom", gabarit.épicerie.nom)
+                    put("courriel", gabarit.épicerie.courriel)
+                    put("téléphone", gabarit.épicerie.téléphone)
+                    put("logo", gabarit.épicerie.logo)
+                })
+            }
+
+            val requestBody = json.toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+
+            val requête = Request.Builder()
+                .url("http://10.0.2.2:8080/gabaritproduit/${gabarit.code}")
+                .addHeader("Authorization", "Bearer $token")
+                .put(requestBody)
+                .build()
+
+            val réponse = client.newCall(requête).execute()
+
+            if (réponse.code != 200) {
+                throw SourceDeDonnéesException("Erreur lors de la modification : ${réponse.code}")
+            }
+        } catch(e: Exception) {
+            throw SourceDeDonnéesException("Erreur lors de la modification : ${e.message}")
+        }
+    }
+
+    override suspend fun ajouterGabarit(gabarit: Gabarits) {
+        try {
+            val client = OkHttpClient()
+            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjc4ODQxNCwiZXhwIjoxNzAyODc0ODE0LCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.e8vlAUv6M7I0P-8scHRL-Ii7OQn4erArgreQPW7edVzTCf6hkQeXstM_vq8re4bQXHPvpMb1fXbS5PJP892-ICSN7nRbtmtW1jbSie62LMNVOm7eUucYjC3KFvdaNfU--Wg4BNRVil5SLoQiUm4_pO5iCHENkpBYAi5VO4qSPHly-5aSKe1Gn4ZWinbzYSmJwc1a34plLXWLaBTmow4WlBXcEQ0A70hb-CK57At2zYCk_BMvyvarvPzBw8lnvPRz72f2tkJY39DKcCfmO7bAkpSacl33He0yepzqIsk8qbCOBIycXUUYHjKUGUOw7CSBvwV_Eb_5D76-5ryNhJq9zQ" // Remplacez par votre token d'authentification
+
+            val json = JSONObject().apply {
+                put("idGabaritProduit", gabarit.code.toInt())
+                put("nom", gabarit.nom)
+                put("description", gabarit.description)
+                put("image", gabarit.image)
+                put("categorie", gabarit.catégorie)
+                put("épicerie", JSONObject().apply {
+                    put("idÉpicerie", gabarit.épicerie.code.toInt())
+                    put("adresse", null)
+                    put("utilisateur", null)
+                    put("nom", gabarit.épicerie.nom)
+                    put("courriel", gabarit.épicerie.courriel)
+                    put("téléphone", gabarit.épicerie.téléphone)
+                    put("logo", gabarit.épicerie.logo)
+                })
+            }
+
+            val requestBody = json.toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+
+            val requête = Request.Builder()
+                .url("http://10.0.2.2:8080/gabaritproduit") // URL pour l'ajout de gabarit
+                .addHeader("Authorization", "Bearer $token")
+                .post(requestBody)
+                .build()
+
+            val réponse = client.newCall(requête).execute()
+
+            if (réponse.code != 201) {
+                throw SourceDeDonnéesException("Erreur lors de l'ajout : ${réponse.code}")
+            }
+        } catch(e: Exception) {
+            throw SourceDeDonnéesException("Erreur lors de l'ajout : ${e.message}")
+        }
+    }
+
 
     val liste_de_produits = mutableListOf<Produits>()
     val liste_de_magasin = mutableListOf<Magasins>()
