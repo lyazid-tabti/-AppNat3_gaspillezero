@@ -41,7 +41,7 @@ class detail_commande1 : Fragment() {
 
         val ButtonRetourne = view.findViewById<Button>(R.id.BRetourne)
         ButtonRetourne.setOnClickListener{
-            findNavController().navigate(R.id.action_detail_commande1_to_gestion_commandes)
+            findNavController().navigate(R.id.action_commandeFragment_to_epicerie_accueil)
         }
         return view
     }

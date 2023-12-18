@@ -29,13 +29,13 @@
             android:gravity="center_vertical"
             android:padding="8dp">
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/codeGabarit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Code"
                 android:textColor="@color/black"
-                android:gravity="center" />
+                android:gravity="center" />-->
 
             <TextView
                 android:id="@+id/nomGabarit"

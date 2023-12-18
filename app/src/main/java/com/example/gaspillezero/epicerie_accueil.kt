@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Spinner
 import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 
@@ -48,7 +47,7 @@ class epicerie_accueil : Fragment() {
         }
         val ButtonCommande = view.findViewById<Button>(R.id.CommandeB)
         ButtonCommande.setOnClickListener{
-            findNavController().navigate(R.id.action_epicerie_accueil_to_gestion_commandes)
+            findNavController().navigate(R.id.action_epicerie_accueil_to_commandeFragment)
         }
         val ButtonDenrée = view.findViewById<Button>(R.id.DenréeB)
         ButtonDenrée.setOnClickListener{

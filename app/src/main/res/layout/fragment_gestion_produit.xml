@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".GestionProduit">
+    tools:context=".ui.main.PrésentationProduits.ProduitFragment">
 
     <!-- En-tête statique -->
 
@@ -19,8 +19,9 @@
             android:gravity="right|top">
 
             <TextView
-                android:layout_width="345dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:backgroundTint="#CA0000"
                 android:fontFamily="serif"
                 android:gravity="center"
@@ -29,12 +30,12 @@
                 android:textColor="#FFFFFF"
                 android:textSize="34sp" />
 
-            <ImageButton
-                android:id="@+id/Accueil"
-                android:layout_width="65dp"
-                android:layout_height="53dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/micon" />
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:entries="@array/menu" />
 
         </LinearLayout>
 
@@ -83,10 +84,38 @@
 
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/lvProduits"
-            android:layout_width="wrap_content"
-            android:layout_height="637dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewProduits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar3"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:animateLayoutChanges="false"
+            android:background="@color/black"
+            android:theme="?attr/actionBarTheme">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/droit_auteur"
+                android:textColor="@color/white" />
+        </androidx.appcompat.widget.Toolbar>
 
     </LinearLayout>
 

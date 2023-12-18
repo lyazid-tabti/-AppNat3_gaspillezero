@@ -1,6 +1,5 @@
-package com.example.gaspillezero.ui.main.vue
+package com.example.gaspillezero.ui.main.PrésentationMagasin
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
 import com.example.gaspillezero.ui.main.PrésentationDenrées.DenreesFragment
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Magasins
-import com.example.gaspillezero.ui.main.sourceDeDonnées.PanierItem
 import com.squareup.picasso.Picasso
 
 class MagasinAdapter(private var dataSet: List<Magasins>) :
