@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ProgressBar
 import android.widget.Spinner
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
 import com.example.gaspillezero.ui.main.DossierPanier.MyDatabase
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class DenreesFragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -38,10 +40,14 @@ class DenreesFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val spinner = view.findViewById<Spinner>(R.id.spinner)
+        val progression = view.findViewById<ProgressBar>(R.id.barProgression)
         spinner.onItemSelectedListener = this
 
-        lifecycleScope.launch  {
+        lifecycleScope.launch {
+            progression.visibility = View.VISIBLE
+            delay(1200)
             présentateur.obtenirDonnées()
+            progression.visibility = View.GONE
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
