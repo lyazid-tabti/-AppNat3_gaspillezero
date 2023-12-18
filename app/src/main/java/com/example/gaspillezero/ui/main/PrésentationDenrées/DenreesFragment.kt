@@ -1,11 +1,15 @@
 package com.example.gaspillezero.ui.main.PrésentationDenrées
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ProgressBar
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -15,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
 import com.example.gaspillezero.ui.main.DossierPanier.MyDatabase
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class DenreesFragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -38,10 +43,24 @@ class DenreesFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val spinner = view.findViewById<Spinner>(R.id.spinner)
+        val progression = view.findViewById<ProgressBar>(R.id.barProgression)
+        val message = view.findViewById<TextView>(R.id.messageErreur)
         spinner.onItemSelectedListener = this
 
-        lifecycleScope.launch  {
-            présentateur.obtenirDonnées()
+        lifecycleScope.launch {
+            val connection = estConnecté()
+            try {
+                message.visibility = View.GONE
+                progression.visibility = View.VISIBLE
+                delay(1200)
+                présentateur.obtenirDonnées()
+                progression.visibility = View.GONE
+            } catch(e:Exception){
+                if (connection == false){
+                    progression.visibility = View.GONE
+                    message.visibility = View.VISIBLE
+                }
+            }
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
@@ -68,6 +87,13 @@ class DenreesFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerViewDenrées)
         recyclerView?.layoutManager = LinearLayoutManager(context)
         recyclerView?.adapter = adapter
+    }
+
+    private fun estConnecté(): Boolean {
+        val connectivityManager =
+            requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 }
 
