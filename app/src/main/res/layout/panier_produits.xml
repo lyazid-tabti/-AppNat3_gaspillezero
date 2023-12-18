@@ -36,11 +36,23 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/btnSupprimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Supprimer" />
+            android:backgroundTint="#C0C0C0"
+            android:text="Supprimer"
+            android:textColor="@color/black"
+            android:textColorHint="#C0C0C0"
+            android:textSize="10sp" />
+
     </LinearLayout>
 
 </LinearLayout>

@@ -16,7 +16,11 @@ interface SourceDeDonnées {
 
     fun obtenirDonnéesMagasin(): List<Magasins>
 
-    fun obtenirDonnéesProduits(): List<Produits>
+    suspend fun obtenirDonnéesProduits(): List<Produits>
+
+    suspend fun obtenirDonnéesCommandes(): List<Commandes>
+
+
 
 
 }

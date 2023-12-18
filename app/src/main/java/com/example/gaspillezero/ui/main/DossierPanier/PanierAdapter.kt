@@ -11,7 +11,7 @@ import com.example.gaspillezero.R
 import com.example.gaspillezero.ui.main.sourceDeDonnées.PanierItem
 import com.squareup.picasso.Picasso
 
-class PanierAdapter(private var dataSet: MutableList<PanierItem>,  var database: AppDatabase) :
+class PanierAdapter(private var dataSet: MutableList<PanierItem>,  var database: MyDatabase) :
     RecyclerView.Adapter<PanierAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -14,6 +14,9 @@ interface PanierDAO {
     @Query("SELECT * FROM PanierItem")
     fun afficherItemsPanier(): MutableList<PanierItem>
 
+    @Query("UPDATE PanierItem SET quantitéCommandé = :quantitéCommandé WHERE produitNom = :nomProduit")
+    fun modifierPanierItem(quantitéCommandé: String, nomProduit: String)
+
     @Delete
     fun supprimerPanierItem(panier: PanierItem)
 }

@@ -1,11 +1,16 @@
 package com.example.gaspillezero.ui.main.sourceDeDonnées
 
 import android.util.JsonWriter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.ResponseBody
 import okio.IOException
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
@@ -215,7 +220,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
     val liste_de_produits = mutableListOf<Produits>()
     val liste_de_magasin = mutableListOf<Magasins>()
 
-    override fun obtenirDonnéesProduits(): List<Produits> {
+    override suspend fun obtenirDonnéesProduits(): List<Produits> {
 
         val produit1 = Produits(
             code = "34320",
@@ -285,6 +290,34 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
         liste_de_magasin.add(magasin2)
         liste_de_magasin.add(magasin3)
         return liste_de_magasin
+    }
+
+    @Throws(com.example.gaspillezero.ui.main.Exception.SourceDeDonnéesException::class)
+    override suspend fun obtenirDonnéesCommandes(): List<Commandes> = withContext(Dispatchers.IO) {
+        try {
+            val client = OkHttpClient()
+            val requête = Request.Builder().url("https://3b53d418-1355-4085-926d-24d685d2da78.mock.pstmn.io/commandes").build()
+
+            val réponse = client.newCall(requête).execute();
+
+            if (!réponse.isSuccessful) {
+                throw com.example.gaspillezero.ui.main.Exception.SourceDeDonnéesException("Erreur : ${réponse.code}")
+            }
+
+            val body: ResponseBody? = réponse.body
+            if (body == null) {
+                throw com.example.gaspillezero.ui.main.Exception.SourceDeDonnéesException("Pas de données reçues")
+            }
+
+            val jsonDonnées = réponse.body!!.string()
+            décoderJsonDonnées(jsonDonnées)
+        } catch (e: java.io.IOException) {
+            throw com.example.gaspillezero.ui.main.Exception.SourceDeDonnéesException(e.message ?: "Erreur inconnue")
+        }
+    }
+
+    private fun décoderJsonDonnées(jsonDonnées: String): List<Commandes> {
+        return Json.decodeFromString(jsonDonnées)
     }
 
 }

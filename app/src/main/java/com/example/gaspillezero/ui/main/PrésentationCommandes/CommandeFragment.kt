@@ -1,4 +1,4 @@
-package com.example.gaspillezero.ui.main.PrésentationDenrées
+package com.example.gaspillezero.ui.main.PrésentationCommandes
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,60 +14,59 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
 import com.example.gaspillezero.ui.main.DossierPanier.MyDatabase
-import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
+import com.example.gaspillezero.ui.main.sourceDeDonnées.Commandes
+import com.example.gaspillezero.ui.main.PrésentationCommandes.CommandeAdapter
 import kotlinx.coroutines.launch
 
-class DenreesFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class CommandeFragment : Fragment(), AdapterView.OnItemSelectedListener{
 
-    var présentateur = DenréesPrésentateur(this)
-    private lateinit var adapter: DenréesAdapter
+    var présentateur = CommandePrésentateur(this)
+    private lateinit var adapter: CommandeAdapter
     private lateinit var database: MyDatabase
 
-    companion object {
-        fun newInstance() = DenreesFragment()
+    companion object{
+        fun newInstance() = CommandeFragment()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val view = inflater.inflate(R.layout.fragment_denrees, container, false)
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_gestion_commandes, container, false)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val spinner = view.findViewById<Spinner>(R.id.spinner)
+        val spinner = view.findViewById<Spinner>(R.id.spinner3)
         spinner.onItemSelectedListener = this
 
-        lifecycleScope.launch  {
+        lifecycleScope.launch {
             présentateur.obtenirDonnées()
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            findNavController().navigate(R.id.action_denreesFragment_to_fragment_epecerie)
+            findNavController().navigate(R.id.action_commandeFragment_to_epicerie_accueil)
         }
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val option_choisi = parent?.getItemAtPosition(position).toString()
 
-        when (option_choisi) {
-            "Accueil"   -> findNavController().navigate(R.id.action_denreesFragment_to_epicerie_accueil)
-            "Denrées" -> findNavController().navigate(R.id.denreesFragment)
-            "Épiceries" -> findNavController().navigate(R.id.action_denreesFragment_to_fragment_epecerie)
-            "Panier"    -> findNavController().navigate(R.id.action_denreesFragment_to_panierFragment)
-        }
-    }
+        when(option_choisi){
+            "Accueil"   -> findNavController().navigate(R.id.action_commandeFragment_to_epicerie_accueil)
+            "Produits" -> findNavController().navigate(R.id.action_commandeFragment_to_gestionProduit)
+            "Gabarits" -> findNavController().navigate(R.id.action_commandeFragment_to_gestion_gabarit)
+        }    }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-    fun afficherDonnées(données: List<Produits>) {
-        database = MyDatabase.getInstance(requireContext(), true)
-        adapter = DenréesAdapter(données, requireContext(), database)
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerViewDenrées)
+    fun afficherDonnées(données: List<Commandes>){
+        database = MyDatabase.getInstance(requireContext(),true)
+        adapter = CommandeAdapter(données,requireContext(),database)
+        val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerViewCommandes)
         recyclerView?.layoutManager = LinearLayoutManager(context)
         recyclerView?.adapter = adapter
     }
-}
 
+}
