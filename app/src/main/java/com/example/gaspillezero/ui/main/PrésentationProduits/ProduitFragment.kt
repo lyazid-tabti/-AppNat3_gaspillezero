@@ -1,16 +1,29 @@
 package com.example.gaspillezero.ui.main.PrésentationProduits
 
+import android.Manifest
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.BaseAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.addCallback
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -19,60 +32,188 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
 import com.example.gaspillezero.ui.main.DossierPanier.MyDatabase
 import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesAdapter
+import com.example.gaspillezero.ui.main.PrésentationDenrées.GabaritFragment
+import com.example.gaspillezero.ui.main.PrésentationGabarits.GabaritAdapter
+import com.example.gaspillezero.ui.main.PrésentationGabarits.GabaritsModèle
+import com.example.gaspillezero.ui.main.PrésentationGabarits.GabaritsPrésenteur
+import com.example.gaspillezero.ui.main.sourceDeDonnées.Gabarits
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
+import com.example.gaspillezero.ui.main.sourceDeDonnées.Épicerie
 import kotlinx.coroutines.launch
+import java.io.ByteArrayOutputStream
 
-class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener,ProduitVue {
 
-    var présentateur = ProduitPrésentateur(this)
     private lateinit var adapter: ProduitAdapter
-    private lateinit var database: MyDatabase
+    private lateinit var présentateur: ProduitsPrésentateur
+    private var imageBase64: String = "1"
 
-    companion object {
-        fun newInstance() = ProduitFragment()
+
+    override fun onCreate(savedInstanceState: Bundle?){
+        super.onCreate(savedInstanceState)
+        présentateur = ProduitPrésentateur(this, ProduitModèle())
     }
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_gestion_produit, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_gestion_produit, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val spinner = view.findViewById<Spinner>(R.id.spinner2)
-        spinner.onItemSelectedListener = this
-
-        lifecycleScope.launch {
-            présentateur.obtenirDonnées()
+        setupRecyclerView(view)
+        présentateur.obtenirDonnées()
+        view.findViewById<Button>(R.id.btnAddProduit).setOnClickListener{
+            afficherBoiteDialogueAjout()
         }
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            findNavController().navigate(R.id.action_gestionProduit_to_epicerie_accueil)
+    }
+
+    private fun setupRecyclerView(view: View) {
+        adapter = ProduitAdapter(mutableListOf(),
+            onDeleteClick = { produit ->
+                présentateur.supprimerProduit(produit)
+            },
+            onEditClick = { produit ->
+                afficherBoiteDialogueModification(produit)
+            }
+        )
+
+        view.findViewById<RecyclerView>(R.id.recyclerViewProduits).apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = this@ProduitFragment.adapter
         }
     }
 
+    private fun afficherBoiteDialogueModification(produits: Produits) {
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_edit_produit, null)
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setView(dialogView)
+
+        val imageViewCamera = dialogView.findViewById<ImageView>(R.id.imageViewCamera)
+        imageViewCamera.setOnClickListener {
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), PERMISSION_REQUEST_CODE
+                )
+            } else {
+                val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST)
+
+            }
+        }
+
+        // Pré-remplir les champs avec les données actuelles du gabarit
+        dialogView.findViewById<EditText>(R.id.editTextNomProduit).setText(produits.nom)
+        dialogView.findViewById<EditText>(R.id.editTextPrixProduit).setText(produits.prix.toString())
+        dialogView.findViewById<EditText>(R.id.editTextDateExpProduit).setText(produits.date_exp)
+        dialogView.findViewById<EditText>(R.id.editTextQuantiteStockProduit).setText(produits.quantite_stock)
+        dialogView.findViewById<EditText>(R.id.editTextDescriptionProduit).setText(produits.description)
+
+        builder.setPositiveButton("Modifier") { dialog, which ->
+            // récupére les nouvelles valeurs et met à jour le gabarit
+            val nouveauNom = dialogView.findViewById<EditText>(R.id.editTextNomProduit).text.toString()
+            val nouvellePrix = dialogView.findViewById<EditText>(R.id.editTextPrixProduit).text.toString()
+            val nouvelleDateExp = dialogView.findViewById<EditText>(R.id.editTextDateExpProduit).text.toString()
+            val nouvelleQuantiteStock = dialogView.findViewById<EditText>(R.id.editTextQuantiteStockProduit).text.toString()
+            val nouvelleDescription = dialogView.findViewById<EditText>(R.id.editTextDescriptionProduit).text.toString()
+            val nouvelleImage = if (imageBase64 != "1") imageBase64 else produits.photo_url
+
+            //val nouvelleImage = if (imageBase64 != "1") imageBase64 else gabarit.image
+
+            val produitModifié = Produits(produits.code, nouveauNom,nouvelleDescription,nouvellePrix.toDouble(), nouvelleDateExp, nouvelleQuantiteStock.toInt(),nouvelleImage,produits.épicerie,produits.gabarit)
+
+            adapter.modifierProduits(produits, produitModifié)
+            présentateur.modifierProduit(produitModifié)
+        }
+        builder.setNegativeButton("Annuler", null)
+
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun afficherBoiteDialogueAjout() {
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_edit_produit, null)
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setView(dialogView)
+
+        val imageViewCamera = dialogView.findViewById<ImageView>(R.id.imageViewCamera)
+        imageViewCamera.setOnClickListener {
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), PERMISSION_REQUEST_CODE
+                )
+            } else {
+                val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST)
+
+            }
+        }
+
+        builder.setPositiveButton("Ajouter") { dialog, _ ->
+            val nom = dialogView.findViewById<EditText>(R.id.editTextNomProduit).text.toString()
+            val prix = dialogView.findViewById<EditText>(R.id.editTextPrixProduit).text.toString()
+            val description = dialogView.findViewById<EditText>(R.id.editTextDescriptionProduit).text.toString()
+            val dateExp = dialogView.findViewById<EditText>(R.id.editTextDateExpProduit).text.toString()
+            val quantiteStock = dialogView.findViewById<EditText>(R.id.editTextQuantiteStockProduit).text.toString()
+            val épicerie = Épicerie("1",null,null,"1","1","1","1") // Implémentez Épicerie du gérant connecté
+            val gabarit = Gabarits("1","Poulet","Viande",null,"Viande",épicerie)
+            val code = "1" // n'affecte pas car autoincrement
+            val image = imageBase64 // Implémentez fonctionnalité ajout image
+
+            val nouveauProduits = Produits(code, nom,description,prix.toDouble(),dateExp,quantiteStock.toInt(),image,épicerie, gabarit)
+            adapter.ajouterProduit(nouveauProduits)
+            présentateur.ajouterProduit(nouveauProduits)
+        }
+
+        builder.setNegativeButton("Annuler", null)
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when (requestCode) {
+            PERMISSION_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                    startActivityForResult(galleryIntent,PICK_IMAGE_REQUEST)
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == ProduitFragment.PICK_IMAGE_REQUEST) {
+            val selectedImageUri = data?.data
+            selectedImageUri?.let {
+                val inputStream = requireContext().contentResolver.openInputStream(it)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                val outputStream = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                val byteArray = outputStream.toByteArray()
+                imageBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT)
+            }
+        }
+    }
+
+    companion object{
+        private const val PERMISSION_REQUEST_CODE = 1
+        private const val PICK_IMAGE_REQUEST = 2
+    }
+
+    override fun afficherDonnées(données: List<Produits>) {
+        adapter.setProduits(données)
+    }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val option_choisi = parent?.getItemAtPosition(position).toString()
-
-        when(option_choisi){
-            "Accueil"   -> findNavController().navigate(R.id.action_gestionProduit_to_epicerie_accueil)
-            "Commandes" -> findNavController().navigate(R.id.action_gestionProduit_to_commandeFragment)
-            "Gabarits" -> findNavController().navigate(R.id.action_gestionProduit_to_gestion_gabarit)
-        }
+        // peut ajouter logique ici
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-    fun afficherDonnées(données: List<Produits>) {
-        database = MyDatabase.getInstance(requireContext(), true)
-        adapter = ProduitAdapter(données, requireContext(), database)
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerViewProduits)
-        recyclerView?.layoutManager = LinearLayoutManager(context)
-        recyclerView?.adapter = adapter
+    override fun onResume() {
+        super.onResume()
+        présentateur.obtenirDonnées()
     }
-
 }

@@ -50,6 +50,53 @@ class DécodeurJson {
             return gabaritsListe
         }
 
+        fun décoderJsonVersProduits(reader: JsonReader): Produits {
+            var code: Int = 0
+            var nom: String? = null
+            var description: String? = null
+            var prix: Double? = null
+            var date_exp: String? = null
+            var quantité_stock: Int? = null
+            var photo_url: String? = null
+            lateinit var épicerie: Épicerie
+            lateinit var gabarit: Gabarits
+
+            reader.beginObject()
+            while (reader.hasNext()) {
+                val clé = reader.nextName()
+                when (clé) {
+                    "idProduit" -> { code = reader.nextInt() }
+                    "nom" -> { nom = if (reader.peek() != JsonToken.NULL) reader.nextString() else { reader.nextNull(); null } }
+                    "date_expiration" -> { date_exp = if (reader.peek() != JsonToken.NULL) reader.nextString() else { reader.nextNull(); null } }
+                    "quantité" -> { quantité_stock = if (reader.peek() != JsonToken.NULL) reader.nextInt() else { reader.nextNull(); null } }
+                    "prix" -> { prix = if (reader.peek() != JsonToken.NULL) reader.nextDouble() else { reader.nextNull(); null } }
+                    "épicerie" -> {
+                        épicerie = décoderJsonVersÉpicerie(reader)
+                    }
+                    "gabarit"->{
+                        gabarit = décoderJsonVersGabarits(reader)
+                    }
+                }
+            }
+            reader.endObject()
+
+            // You need to handle nullability appropriately where Gabarits is initialized
+            return Produits(code.toString(), nom!!, description!!, prix!!,date_exp!!,quantité_stock!!,photo_url ,épicerie,gabarit)
+        }
+
+        fun décoderJsonVersListeProduits(json: String): List<Produits> {
+            val produitsListe = mutableListOf<Produits>()
+            val reader = JsonReader(StringReader(json))
+
+            reader.beginArray()
+            while (reader.hasNext()) {
+                produitsListe.add(décoderJsonVersProduits(reader))
+            }
+            reader.endArray()
+
+            return produitsListe
+        }
+
         private fun décoderJsonVersÉpicerie( reader: JsonReader ): Épicerie{
             //lateinit
             var code : Int = 0

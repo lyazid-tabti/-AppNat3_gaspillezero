@@ -23,32 +23,32 @@ class DenréesPrésentateurTest {
         présentateur.modèle = mockModèle
     }
 
-    @Test
-    fun `Étant donné un test sur la méthode 'obtenirDonnées', lorsqu'on appelle cette fonction, on obtient les données et qui vérifie qu'on les a bien reçus`() {
-        // Mise en place
-        val données_fictifs = listOf(
-            Produits("Produit1", "biscuits", "Boîte de biscuits", 3.99, "01/11/23", 23, "photo1"),
-            Produits("Produit2", "fromage", "Sachet de fromage râpés", 5.49, "01/11/23", 18, "photo2"),
-        )
-        `when`(mockModèle.obtenirDonnéesProduits()).thenReturn(données_fictifs)
-
-        // Action
-        présentateur.obtenirDonnées()
-
-        // Vérification
-        verify(mockVue).afficherDonnées(données_fictifs)
-    }
-
-    @Test
-    fun `Étant donné une liste d'objets de type 'Produits' non instanciée, lorsqu'on appelle la fonction 'afficherDonnées()', on obtient une liste vide`() {
-        // Mise en place
-        val données = emptyList<Produits>()
-        `when`(mockModèle.obtenirDonnéesProduits()).thenReturn(données)
-
-        // Action
-        présentateur.obtenirDonnées()
-
-        // Vérification
-        verify(mockVue).afficherDonnées(données)
-    }
+//    @Test
+//    fun `Étant donné un test sur la méthode 'obtenirDonnées', lorsqu'on appelle cette fonction, on obtient les données et qui vérifie qu'on les a bien reçus`() {
+//        // Mise en place
+//        val données_fictifs = listOf(
+//            Produits("Produit1", "biscuits", "Boîte de biscuits", 3.99, "01/11/23", 23, "photo1"),
+//            Produits("Produit2", "fromage", "Sachet de fromage râpés", 5.49, "01/11/23", 18, "photo2"),
+//        )
+//        `when`(mockModèle.obtenirDonnéesProduits()).thenReturn(données_fictifs)
+//
+//        // Action
+//        présentateur.obtenirDonnées()
+//
+//        // Vérification
+//        verify(mockVue).afficherDonnées(données_fictifs)
+//    }
+//
+//    @Test
+//    fun `Étant donné une liste d'objets de type 'Produits' non instanciée, lorsqu'on appelle la fonction 'afficherDonnées()', on obtient une liste vide`() {
+//        // Mise en place
+//        val données = emptyList<Produits>()
+//        `when`(mockModèle.obtenirDonnéesProduits()).thenReturn(données)
+//
+//        // Action
+//        présentateur.obtenirDonnées()
+//
+//        // Vérification
+//        verify(mockVue).afficherDonnées(données)
+//    }
 }

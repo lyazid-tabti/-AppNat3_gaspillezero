@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Gabarits
-import com.squareup.picasso.Picasso
 
 class GabaritAdapter(
     private val dataSet: MutableList<Gabarits>,
@@ -25,8 +24,8 @@ class GabaritAdapter(
         val descriptionGabarit: TextView = view.findViewById(R.id.descriptionGabarit)
         val categorieGabarit: TextView = view.findViewById(R.id.categorieGabarit)
         val imageGabarit: ImageView = view.findViewById(R.id.imageGabarit)
-        val deleteButton: Button = view.findViewById(R.id.btnDelete)
-        val editButton: Button = view.findViewById(R.id.btnEdit)
+        val deleteButton: Button = view.findViewById(R.id.btnDelete2)
+        val editButton: Button = view.findViewById(R.id.btnEdit2)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {

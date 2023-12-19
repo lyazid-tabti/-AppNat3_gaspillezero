@@ -76,7 +76,7 @@
 
         <!-- Bouton Modifier avec layout_weight -->
         <Button
-            android:id="@+id/btnEdit"
+            android:id="@+id/btnEdit2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -85,7 +85,7 @@
 
         <!-- Bouton Supprimer avec layout_weight -->
         <Button
-            android:id="@+id/btnDelete"
+            android:id="@+id/btnDelete2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

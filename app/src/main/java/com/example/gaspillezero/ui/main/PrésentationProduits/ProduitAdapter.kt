@@ -1,6 +1,8 @@
 package com.example.gaspillezero.ui.main.PrésentationProduits
 
 import android.content.Context
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,29 +13,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
 import com.example.gaspillezero.ui.main.DossierPanier.MyDatabase
 import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesAdapter
+import com.example.gaspillezero.ui.main.PrésentationGabarits.GabaritAdapter
+import com.example.gaspillezero.ui.main.sourceDeDonnées.Gabarits
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
 import com.google.android.material.textfield.TextInputEditText
 import com.squareup.picasso.Picasso
 
-class ProduitAdapter(private val dataSet: List<Produits>, private val context: Context, var database: MyDatabase) :
-    RecyclerView.Adapter<ProduitAdapter.ViewHolder>() {
+class ProduitAdapter(
+    private val dataSet: MutableList<Produits>,
+    private val onDeleteClick: (Produits) -> Unit,
+    private val onEditClick: (Produits) -> Unit
+) : RecyclerView.Adapter<ProduitAdapter.ViewHolder>() {
 
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view){
-        val nomProduit: TextView
-        val prixProduit: TextView
-        val imageProduit: ImageView
-        val dateExpProduit: TextView
-        val quantiteStockProduit: TextView
-        val descriptionProduit: TextView
-
-        init {
-            nomProduit = view.findViewById(R.id.nomProduitG)
-            prixProduit = view.findViewById(R.id.prixProduitG)
-            imageProduit = view.findViewById(R.id.imageProduitG)
-            dateExpProduit = view.findViewById(R.id.dateExpProduitG)
-            quantiteStockProduit = view.findViewById(R.id.quantiteStockProduitG)
-            descriptionProduit = view.findViewById(R.id.descriptionProduitG)
-        }
+        val nomProduit: TextView = view.findViewById(R.id.nomProduitG)
+        val prixProduit: TextView= view.findViewById(R.id.prixProduitG)
+        val imageProduit: ImageView = view.findViewById(R.id.imageProduitG)
+        val dateExpProduit: TextView = view.findViewById(R.id.dateExpProduitG)
+        val quantiteStockProduit: TextView = view.findViewById(R.id.quantiteStockProduitG)
+        val descriptionProduit: TextView = view.findViewById(R.id.descriptionProduitG)
+        val deleteButton: Button = view.findViewById(R.id.btnDelete2)
+        val editButton: Button = view.findViewById(R.id.btnEdit2)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -44,9 +44,6 @@ class ProduitAdapter(private val dataSet: List<Produits>, private val context: C
     }
 
 
-    override fun getItemCount() = dataSet.size
-
-
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val produit = dataSet[position]
 
@@ -55,12 +52,56 @@ class ProduitAdapter(private val dataSet: List<Produits>, private val context: C
         viewHolder.dateExpProduit.text = "Date d'exp.: " + produit.date_exp
         viewHolder.quantiteStockProduit.text = "Quantité en stock: " + produit.quantite_stock.toString()
         viewHolder.descriptionProduit.text = "Description: " + produit.description
-        val image = viewHolder.imageProduit.context.resources.getIdentifier(produit.photo_url, "drawable", viewHolder.imageProduit.context.packageName)
 
-        Picasso.get()
-            .load(image)
-            .into(viewHolder.imageProduit)
+        if (produit.photo_url != null && produit.photo_url.isNotEmpty()) {
+            try {
+                val imageBytes = Base64.decode(produit.photo_url, Base64.DEFAULT)
+                val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                viewHolder.imageProduit.setImageBitmap(bitmap)
+            } catch (e: IllegalArgumentException) {
+                // Gérer l'exception si la chaîne Base64 n'est pas valide
+                viewHolder.imageProduit.setImageResource(R.drawable.pomme)
+            }
+        } else {
+            viewHolder.imageProduit.setImageResource(R.drawable.pomme)
+        }
+
+
+        viewHolder.deleteButton.setOnClickListener {
+            onDeleteClick(produit)
+            removeItem(produit)
+        }
+        viewHolder.editButton.setOnClickListener {
+            onEditClick(produit)
+        }
     }
 
+    override fun getItemCount() = dataSet.size
 
+    fun setProduits(produits: List<Produits>) {
+        dataSet.clear()
+        dataSet.addAll(produits)
+        notifyDataSetChanged()
+    }
+
+    fun removeItem(produits: Produits){
+        val position = dataSet.indexOf(produits)
+        if (position >= 0) {
+            dataSet.removeAt(position)
+            notifyItemRemoved(position)
+        }
+    }
+
+    fun modifierProduits(produits: Produits, nouveauProduits: Produits) {
+        val position = dataSet.indexOf(produits)
+        if (position >= 0) {
+            dataSet[position] = nouveauProduits
+            notifyItemChanged(position)
+        }
+    }
+
+    fun ajouterProduit(produits: Produits) {
+        dataSet.add(produits)
+        notifyItemInserted(dataSet.size - 1)
+    }
 }

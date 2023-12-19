@@ -1,8 +1,8 @@
 package com.example.gaspillezero.ui.main.sourceDeDonnées
 
-import kotlinx.serialization.Serializable
+import java.util.Date
 
-@Serializable
+
 data class Produits(
     val code: String,
     val nom: String,
@@ -10,4 +10,6 @@ data class Produits(
     val prix: Double,
     val date_exp: String,
     val quantite_stock: Int,
-    val photo_url: String)
+    val photo_url: String?,
+    val épicerie: Épicerie,
+    val gabarit: Gabarits)

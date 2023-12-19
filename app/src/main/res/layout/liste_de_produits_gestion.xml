@@ -87,6 +87,32 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <!-- Bouton Modifier avec layout_weight -->
+            <Button
+                android:id="@+id/btnEdit2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Modifier" />
+
+            <!-- Bouton Supprimer avec layout_weight -->
+            <Button
+                android:id="@+id/btnDelete2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Supprimer" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

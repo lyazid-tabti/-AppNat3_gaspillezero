@@ -18,6 +18,11 @@ interface SourceDeDonnées {
 
     suspend fun obtenirDonnéesProduits(): List<Produits>
 
+    suspend fun supprimerProduit(produits: Produits)
+
+    suspend fun modifierProduit(produits: Produits)
+
+    suspend fun ajouterProduit(produits: Produits)
     suspend fun obtenirDonnéesCommandes(): List<Commandes>
 
 
