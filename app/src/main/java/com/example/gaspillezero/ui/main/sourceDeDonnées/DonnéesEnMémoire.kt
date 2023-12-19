@@ -1,5 +1,14 @@
 package com.example.gaspillezero.ui.main.sourceDeDonnées
 
+import android.util.JsonWriter
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import java.io.ByteArrayOutputStream
+import java.io.IOException
+import java.io.OutputStreamWriter
+
 class DonnéesEnMémoire : SourceDeDonnées {
 
     val liste_de_produits = mutableListOf<Produits>()
@@ -7,6 +16,7 @@ class DonnéesEnMémoire : SourceDeDonnées {
     val liste_de_gabarits = mutableListOf<Gabarits>()
     val liste_de_commandes = mutableListOf<Commandes>()
     override suspend fun obtenirDonnéesProduits(): List<Produits> {
+
 
         val produit1 = Produits(
             code = "34320",
@@ -78,49 +88,26 @@ class DonnéesEnMémoire : SourceDeDonnées {
         return liste_de_magasin
     }
 
-    override fun obtenirDonnéesGabarits(): List<Gabarits> {
-        if (liste_de_gabarits.isEmpty()) {
+    override suspend fun ajouterGabarit(gabarit: Gabarits){}
 
-            val gabarit1 = Gabarits(
-                code = "123",
-                nom = "Poulet",
-                description = "Le poulet, un oiseau domestique, est largement consommé pour sa chair tendre et riche en protéines. Il est adaptable à divers styles de cuisine.",
-                image = "chicken",
-                catégorie = "Viande"
-            )
+    override suspend fun obtenirListeGabarits(): List<Gabarits> {
+        try {
+            val client = OkHttpClient()
+            val requête = Request.Builder().url("http://localhost:8080/gabaritproduits").build() // Adaptez l'URL selon votre API
 
-            val gabarit2 = Gabarits(
-                code = "456",
-                nom = "Fromage",
-                description = "Le fromage, riche en calcium et protéines, se distingue par sa texture et son goût variés.",
-                image = "fromage",
-                catégorie = "Laitier"
-            )
+            val réponse = client.newCall(requête).execute()
 
-            val gabarit3 = Gabarits(
-                code = "789",
-                nom = "Pomme",
-                description = "La pomme est un fruit juteux et croquant, généralement rouge, vert ou jaune, produit par le pommier, apprécié pour son goût sucré à acidulé.",
-                image = "pomme",
-                catégorie = "Fruit"
-            )
-
-            val gabarit4 = Gabarits(
-                code = "012",
-                nom = "Orange",
-                description = "L'orange est un agrume juteux, généralement de couleur orange, connu pour son goût à la fois sucré et légèrement acide, riche en vitamine C.",
-                image = "orange",
-                catégorie = "Fruit"
-            )
-
-            liste_de_gabarits.add(gabarit1)
-            liste_de_gabarits.add(gabarit2)
-            liste_de_gabarits.add(gabarit3)
-            liste_de_gabarits.add(gabarit4)
-
+            if (réponse.code != 200) {
+                throw SourceDeDonnéesException("Erreur : ${réponse.code}")
+            }
+            if (réponse.body == null) {
+                throw SourceDeDonnéesException("Pas de données reçues")
+            }
+            // Utilisation du décodeur JSON pour convertir la réponse en liste de Gabarits
+            return DécodeurJson.décoderJsonVersListeGabarits(réponse.body!!.string())
+        } catch(e: IOException) {
+            throw SourceDeDonnéesException(e.message ?: "Erreur inconnue")
         }
-
-        return liste_de_gabarits
     }
 
     override suspend fun obtenirDonnéesCommandes(): List<Commandes>{
@@ -158,18 +145,47 @@ class DonnéesEnMémoire : SourceDeDonnées {
         return liste_de_commandes
     }
 
-    override fun supprimerGabarit(gabarit: Gabarits) {
+    override suspend fun supprimerGabarit(gabarit: Gabarits) {
         liste_de_gabarits.remove(gabarit)
     }
 
-    override fun modifierGabarit(gabaritModifié: Gabarits) {
+    override suspend fun modifierGabarit(gabaritModifié: Gabarits) {
         val index = liste_de_gabarits.indexOfFirst { it.code == gabaritModifié.code }
         if (index != -1) {
             liste_de_gabarits[index] = gabaritModifié
         }
     }
+    override suspend fun obtenirUrl( lien: String) : String {
+        try{
+            val client = OkHttpClient()
 
-    override fun ajouterGabarit(gabarit: Gabarits) {
-        liste_de_gabarits.add(gabarit)
+            val output = ByteArrayOutputStream()
+            val writer = JsonWriter( OutputStreamWriter( output ) )
+
+            writer.beginObject()
+            writer.name("lien").value( lien )
+            writer.endObject()
+            writer.close()
+
+            val body = RequestBody.create(
+                "application/json".toMediaTypeOrNull(), output.toString()
+            )
+
+            val requête = Request.Builder()
+                .url( "http://localhost:8080" )
+                .post( body )
+                .build()
+
+            val réponse = client.newCall( requête ).execute()
+            if(réponse.code == 200 ) {
+                return réponse.body!!.string()
+            }
+            else {
+                throw SourceDeDonnéesException("Code :" + réponse.code)
+            }
+        }
+        catch(e: IOException){
+            throw SourceDeDonnéesException(e.message ?: "Erreur inconnue")
+        }
     }
 }

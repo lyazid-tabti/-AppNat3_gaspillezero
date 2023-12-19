@@ -15,7 +15,6 @@ import com.example.gaspillezero.ui.main.DossierPanier.MyDatabase
 import com.example.gaspillezero.ui.main.PrésentationMagasin.MagasinAdapter
 import com.example.gaspillezero.ui.main.PrésentationMagasin.MagasinPrésentateur
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Magasins
-//import com.example.gaspillezero.ui.main.vue.MagasinAdapter
 
 class fragment_epecerie : Fragment(), AdapterView.OnItemSelectedListener {
     var présentateur = MagasinPrésentateur(this)
