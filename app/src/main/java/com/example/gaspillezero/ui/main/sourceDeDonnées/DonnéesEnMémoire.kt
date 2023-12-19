@@ -15,45 +15,59 @@ class DonnéesEnMémoire : SourceDeDonnées {
     val liste_de_magasin = mutableListOf<Magasins>()
     val liste_de_gabarits = mutableListOf<Gabarits>()
     val liste_de_commandes = mutableListOf<Commandes>()
-    override suspend fun obtenirDonnéesProduits(): List<Produits> {
+    //override suspend fun obtenirDonnéesProduits(): List<Produits> {
 
 
-        val produit1 = Produits(
-            code = "34320",
-            nom = "Pâtes spaghettini",
-            description = "Sachet de pâtes spaghetti classique",
-            prix = 0.99,
-            date_exp = "09/10/23",
-            quantite_stock = 14,
-            photo_url = "spaghettini"
-        )
+    //   val produit1 = Produits(
+    //      code = "34320",
+    //      nom = "Pâtes spaghettini",
+    //      description = "Sachet de pâtes spaghetti classique",
+    //      prix = 0.99,
+    ////      date_exp = "09/10/23",
+    //    quantite_stock = 14,
+    //      photo_url = "spaghettini",
+    //      gabarit = null,
+    //      épicerie = null
+    //  )
 
-        val produit2 = Produits(
-            code = "67890",
-            nom = "Soupe aux tomates",
-            description = "Boîte de soupe aux tomates",
-            prix = 1.09,
-            date_exp = "09/10/23",
-            quantite_stock = 11,
-            photo_url = "soupetomate"
-        )
+    //  val produit2 = Produits(
+    //      code = "67890",
+    //      nom = "Soupe aux tomates",
+    //      description = "Boîte de soupe aux tomates",
+    //      prix = 1.09,
+    //      date_exp = "09/10/23",
+    //      quantite_stock = 11,
+    //      photo_url = "soupetomate"
+    //  )
 
-        val produit3 = Produits(
-            code = "67894",
-            nom = "Frites surgelés",
-            description = "Sac de frites surgelés coupe régulière",
-            prix = 5.49,
-            date_exp = "21/10/23",
-            quantite_stock = 19,
-            photo_url = "frites"
-        )
+    //  val produit3 = Produits(
+    //      code = "67894",
+    //      nom = "Frites surgelés",
+    //      description = "Sac de frites surgelés coupe régulière",
+    //      prix = 5.49,
+    //      date_exp = "21/10/23",
+    //      quantite_stock = 19,
+    //      photo_url = "frites"
+    //  )
 
-        liste_de_produits.add(produit1)
-        liste_de_produits.add(produit2)
-        liste_de_produits.add(produit3)
+        //  liste_de_produits.add(produit1)
+        //liste_de_produits.add(produit2)
+        //liste_de_produits.add(produit3)
 
-        return liste_de_produits
+    //  return liste_de_produits
+    //}
+
+    override suspend fun supprimerProduit(produits: Produits) {
+        liste_de_produits.remove(produits)
     }
+
+    override suspend fun modifierProduit(produitsModifié: Produits) {
+        val index = liste_de_produits.indexOfFirst { it.code == produitsModifié.code }
+        if (index != -1) {
+            liste_de_produits[index] = produitsModifié
+        }    }
+
+    override suspend fun ajouterProduit(produits: Produits) {}
 
     override fun obtenirDonnéesMagasin(): List<Magasins> {
         val magasin1 = Magasins(
@@ -87,6 +101,25 @@ class DonnéesEnMémoire : SourceDeDonnées {
         liste_de_magasin.add(magasin3)
         return liste_de_magasin
     }
+
+    override suspend fun obtenirDonnéesProduits(): List<Produits> {
+        try {
+            val client = OkHttpClient()
+            val requête = Request.Builder().url("http://localhost:8080/produits").build() // Adaptez l'URL selon votre API
+
+            val réponse = client.newCall(requête).execute()
+
+            if (réponse.code != 200) {
+                throw SourceDeDonnéesException("Erreur : ${réponse.code}")
+            }
+            if (réponse.body == null) {
+                throw SourceDeDonnéesException("Pas de données reçues")
+            }
+            // Utilisation du décodeur JSON pour convertir la réponse en liste de Gabarits
+            return DécodeurJson.décoderJsonVersListeProduits(réponse.body!!.string())
+        } catch(e: IOException) {
+            throw SourceDeDonnéesException(e.message ?: "Erreur inconnue")
+        }    }
 
     override suspend fun ajouterGabarit(gabarit: Gabarits){}
 

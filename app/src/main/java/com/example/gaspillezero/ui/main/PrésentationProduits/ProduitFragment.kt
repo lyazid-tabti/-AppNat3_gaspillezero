@@ -161,7 +161,7 @@ class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener,ProduitVu
             val code = "1" // n'affecte pas car autoincrement
             val image = imageBase64 // Implémentez fonctionnalité ajout image
 
-            val nouveauProduits = Produits(code, nom,description,prix.toDouble(),dateExp,quantiteStock.toInt(),image,épicerie, gabarit)
+            val nouveauProduits = Produits(code, nom,description,prix.toDouble(),dateExp,quantiteStock.toInt(),gabarit.image,épicerie, gabarit)
             adapter.ajouterProduit(nouveauProduits)
             présentateur.ajouterProduit(nouveauProduits)
         }

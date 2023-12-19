@@ -6,7 +6,7 @@ import java.util.Date
 data class Produits(
     val code: String,
     val nom: String,
-    val description: String,
+    val description: String?,
     val prix: Double,
     val date_exp: String,
     val quantite_stock: Int,

@@ -53,7 +53,7 @@ class DécodeurJson {
         fun décoderJsonVersProduits(reader: JsonReader): Produits {
             var code: Int = 0
             var nom: String? = null
-            var description: String? = null
+            var description: String? =null
             var prix: Double? = null
             var date_exp: String? = null
             var quantité_stock: Int? = null
@@ -73,7 +73,7 @@ class DécodeurJson {
                     "épicerie" -> {
                         épicerie = décoderJsonVersÉpicerie(reader)
                     }
-                    "gabarit"->{
+                    "gabaritProduit"->{
                         gabarit = décoderJsonVersGabarits(reader)
                     }
                 }
@@ -81,7 +81,7 @@ class DécodeurJson {
             reader.endObject()
 
             // You need to handle nullability appropriately where Gabarits is initialized
-            return Produits(code.toString(), nom!!, description!!, prix!!,date_exp!!,quantité_stock!!,photo_url ,épicerie,gabarit)
+            return Produits(code.toString(), nom!!, description, prix!!,date_exp!!,quantité_stock!!,photo_url ,épicerie,gabarit)
         }
 
         fun décoderJsonVersListeProduits(json: String): List<Produits> {

@@ -61,7 +61,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
             val client = OkHttpClient()
 
             // Je n'ai pas encore de méthode pour obtenir le token donc voici un token avec les autorisations pour s'authentifier
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjc4ODQxNCwiZXhwIjoxNzAyODc0ODE0LCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.e8vlAUv6M7I0P-8scHRL-Ii7OQn4erArgreQPW7edVzTCf6hkQeXstM_vq8re4bQXHPvpMb1fXbS5PJP892-ICSN7nRbtmtW1jbSie62LMNVOm7eUucYjC3KFvdaNfU--Wg4BNRVil5SLoQiUm4_pO5iCHENkpBYAi5VO4qSPHly-5aSKe1Gn4ZWinbzYSmJwc1a34plLXWLaBTmow4WlBXcEQ0A70hb-CK57At2zYCk_BMvyvarvPzBw8lnvPRz72f2tkJY39DKcCfmO7bAkpSacl33He0yepzqIsk8qbCOBIycXUUYHjKUGUOw7CSBvwV_Eb_5D76-5ryNhJq9zQ"
+            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
 
             val requête = Request.Builder()
                 .url("http://10.0.2.2:8080/gabaritproduits")
@@ -88,7 +88,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
     override suspend fun supprimerGabarit(gabarit: Gabarits) {
         try {
             val client = OkHttpClient()
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjc4ODQxNCwiZXhwIjoxNzAyODc0ODE0LCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.e8vlAUv6M7I0P-8scHRL-Ii7OQn4erArgreQPW7edVzTCf6hkQeXstM_vq8re4bQXHPvpMb1fXbS5PJP892-ICSN7nRbtmtW1jbSie62LMNVOm7eUucYjC3KFvdaNfU--Wg4BNRVil5SLoQiUm4_pO5iCHENkpBYAi5VO4qSPHly-5aSKe1Gn4ZWinbzYSmJwc1a34plLXWLaBTmow4WlBXcEQ0A70hb-CK57At2zYCk_BMvyvarvPzBw8lnvPRz72f2tkJY39DKcCfmO7bAkpSacl33He0yepzqIsk8qbCOBIycXUUYHjKUGUOw7CSBvwV_Eb_5D76-5ryNhJq9zQ"
+            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
 
             val url = "http://10.0.2.2:8080/gabaritproduit/${gabarit.code}"
 
@@ -114,7 +114,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
     override suspend fun modifierGabarit(gabarit: Gabarits) {
         try {
             val client = OkHttpClient()
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjc4ODQxNCwiZXhwIjoxNzAyODc0ODE0LCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.e8vlAUv6M7I0P-8scHRL-Ii7OQn4erArgreQPW7edVzTCf6hkQeXstM_vq8re4bQXHPvpMb1fXbS5PJP892-ICSN7nRbtmtW1jbSie62LMNVOm7eUucYjC3KFvdaNfU--Wg4BNRVil5SLoQiUm4_pO5iCHENkpBYAi5VO4qSPHly-5aSKe1Gn4ZWinbzYSmJwc1a34plLXWLaBTmow4WlBXcEQ0A70hb-CK57At2zYCk_BMvyvarvPzBw8lnvPRz72f2tkJY39DKcCfmO7bAkpSacl33He0yepzqIsk8qbCOBIycXUUYHjKUGUOw7CSBvwV_Eb_5D76-5ryNhJq9zQ" // Remplacez par votre token d'authentification
+            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
 
             val json = JSONObject().apply {
                 put("idGabaritProduit", gabarit.code.toInt())
@@ -179,7 +179,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
     override suspend fun ajouterGabarit(gabarit: Gabarits) {
         try {
             val client = OkHttpClient()
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjc4ODQxNCwiZXhwIjoxNzAyODc0ODE0LCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.e8vlAUv6M7I0P-8scHRL-Ii7OQn4erArgreQPW7edVzTCf6hkQeXstM_vq8re4bQXHPvpMb1fXbS5PJP892-ICSN7nRbtmtW1jbSie62LMNVOm7eUucYjC3KFvdaNfU--Wg4BNRVil5SLoQiUm4_pO5iCHENkpBYAi5VO4qSPHly-5aSKe1Gn4ZWinbzYSmJwc1a34plLXWLaBTmow4WlBXcEQ0A70hb-CK57At2zYCk_BMvyvarvPzBw8lnvPRz72f2tkJY39DKcCfmO7bAkpSacl33He0yepzqIsk8qbCOBIycXUUYHjKUGUOw7CSBvwV_Eb_5D76-5ryNhJq9zQ" // Remplacez par votre token d'authentification
+            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
 
             val json = JSONObject().apply {
                 put("idGabaritProduit", gabarit.code.toInt())
@@ -226,7 +226,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
             val client = OkHttpClient()
 
             // Je n'ai pas encore de méthode pour obtenir le token donc voici un token avec les autorisations pour s'authentifier
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjc4ODQxNCwiZXhwIjoxNzAyODc0ODE0LCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.e8vlAUv6M7I0P-8scHRL-Ii7OQn4erArgreQPW7edVzTCf6hkQeXstM_vq8re4bQXHPvpMb1fXbS5PJP892-ICSN7nRbtmtW1jbSie62LMNVOm7eUucYjC3KFvdaNfU--Wg4BNRVil5SLoQiUm4_pO5iCHENkpBYAi5VO4qSPHly-5aSKe1Gn4ZWinbzYSmJwc1a34plLXWLaBTmow4WlBXcEQ0A70hb-CK57At2zYCk_BMvyvarvPzBw8lnvPRz72f2tkJY39DKcCfmO7bAkpSacl33He0yepzqIsk8qbCOBIycXUUYHjKUGUOw7CSBvwV_Eb_5D76-5ryNhJq9zQ"
+            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
 
             val requête = Request.Builder()
                 .url("http://10.0.2.2:8080/produits")
@@ -253,7 +253,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
     override suspend fun supprimerProduit(produits: Produits) {
         try {
             val client = OkHttpClient()
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjc4ODQxNCwiZXhwIjoxNzAyODc0ODE0LCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.e8vlAUv6M7I0P-8scHRL-Ii7OQn4erArgreQPW7edVzTCf6hkQeXstM_vq8re4bQXHPvpMb1fXbS5PJP892-ICSN7nRbtmtW1jbSie62LMNVOm7eUucYjC3KFvdaNfU--Wg4BNRVil5SLoQiUm4_pO5iCHENkpBYAi5VO4qSPHly-5aSKe1Gn4ZWinbzYSmJwc1a34plLXWLaBTmow4WlBXcEQ0A70hb-CK57At2zYCk_BMvyvarvPzBw8lnvPRz72f2tkJY39DKcCfmO7bAkpSacl33He0yepzqIsk8qbCOBIycXUUYHjKUGUOw7CSBvwV_Eb_5D76-5ryNhJq9zQ"
+            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
 
             val url = "http://10.0.2.2:8080/produit/${produits.code}"
 
@@ -279,7 +279,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
     override suspend fun modifierProduit(produits: Produits) {
         try {
             val client = OkHttpClient()
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjc4ODQxNCwiZXhwIjoxNzAyODc0ODE0LCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.e8vlAUv6M7I0P-8scHRL-Ii7OQn4erArgreQPW7edVzTCf6hkQeXstM_vq8re4bQXHPvpMb1fXbS5PJP892-ICSN7nRbtmtW1jbSie62LMNVOm7eUucYjC3KFvdaNfU--Wg4BNRVil5SLoQiUm4_pO5iCHENkpBYAi5VO4qSPHly-5aSKe1Gn4ZWinbzYSmJwc1a34plLXWLaBTmow4WlBXcEQ0A70hb-CK57At2zYCk_BMvyvarvPzBw8lnvPRz72f2tkJY39DKcCfmO7bAkpSacl33He0yepzqIsk8qbCOBIycXUUYHjKUGUOw7CSBvwV_Eb_5D76-5ryNhJq9zQ" // Remplacez par votre token d'authentification
+            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
 
             val json = JSONObject().apply {
                 put("idProduit", produits.code.toInt())
@@ -389,7 +389,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
     override suspend fun ajouterProduit(produits: Produits) {
         try {
             val client = OkHttpClient()
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjc4ODQxNCwiZXhwIjoxNzAyODc0ODE0LCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.e8vlAUv6M7I0P-8scHRL-Ii7OQn4erArgreQPW7edVzTCf6hkQeXstM_vq8re4bQXHPvpMb1fXbS5PJP892-ICSN7nRbtmtW1jbSie62LMNVOm7eUucYjC3KFvdaNfU--Wg4BNRVil5SLoQiUm4_pO5iCHENkpBYAi5VO4qSPHly-5aSKe1Gn4ZWinbzYSmJwc1a34plLXWLaBTmow4WlBXcEQ0A70hb-CK57At2zYCk_BMvyvarvPzBw8lnvPRz72f2tkJY39DKcCfmO7bAkpSacl33He0yepzqIsk8qbCOBIycXUUYHjKUGUOw7CSBvwV_Eb_5D76-5ryNhJq9zQ" // Remplacez par votre token d'authentification
+            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
 
             val json = JSONObject().apply {
                 put("idProduit", produits.code.toInt())
@@ -429,7 +429,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
             val requestBody = json.toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
             val requête = Request.Builder()
-                .url("http://10.0.2.2:8080/produit") // URL pour l'ajout de produit
+                .url("http://10.0.2.2:8080/produits") // URL pour l'ajout de produit
                 .addHeader("Authorization", "Bearer $token")
                 .post(requestBody)
                 .build()
