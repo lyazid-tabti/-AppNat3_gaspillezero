@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
-import com.example.gaspillezero.ui.main.DossierPanier.AppDatabase
+import com.example.gaspillezero.ui.main.DossierPanier.MyDatabase
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Commandes
 
-class CommandeAdapter(private val dataSet: List<Commandes>, private val context: Context, var database: AppDatabase) :
+class CommandeAdapter(private val dataSet: List<Commandes>, private val context: Context, var database: MyDatabase) :
     RecyclerView.Adapter<CommandeAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){

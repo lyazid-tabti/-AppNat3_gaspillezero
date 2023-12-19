@@ -9,13 +9,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
-import com.example.gaspillezero.ui.main.DossierPanier.AppDatabase
+import com.example.gaspillezero.ui.main.DossierPanier.MyDatabase
 import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesAdapter
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
 import com.google.android.material.textfield.TextInputEditText
 import com.squareup.picasso.Picasso
 
-class ProduitAdapter(private val dataSet: List<Produits>, private val context: Context, var database: AppDatabase) :
+class ProduitAdapter(private val dataSet: List<Produits>, private val context: Context, var database: MyDatabase) :
     RecyclerView.Adapter<ProduitAdapter.ViewHolder>() {
 
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view){

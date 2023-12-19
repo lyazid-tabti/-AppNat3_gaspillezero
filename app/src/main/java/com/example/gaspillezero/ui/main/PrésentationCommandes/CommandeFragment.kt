@@ -13,7 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
-import com.example.gaspillezero.ui.main.DossierPanier.AppDatabase
+
+import com.example.gaspillezero.ui.main.DossierPanier.MyDatabase
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Commandes
 import com.example.gaspillezero.ui.main.PrésentationCommandes.CommandeAdapter
 import kotlinx.coroutines.launch
@@ -22,7 +23,7 @@ class CommandeFragment : Fragment(), AdapterView.OnItemSelectedListener{
 
     var présentateur = CommandePrésentateur(this)
     private lateinit var adapter: CommandeAdapter
-    private lateinit var database: AppDatabase
+    private lateinit var database: MyDatabase
 
     companion object{
         fun newInstance() = CommandeFragment()
@@ -62,7 +63,7 @@ class CommandeFragment : Fragment(), AdapterView.OnItemSelectedListener{
     override fun onNothingSelected(parent: AdapterView<*>?) {}
 
     fun afficherDonnées(données: List<Commandes>){
-        database = AppDatabase.getInstance(requireContext(),true)
+        database = MyDatabase.getInstance(requireContext(),true)
         adapter = CommandeAdapter(données,requireContext(),database)
         val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerViewCommandes)
         recyclerView?.layoutManager = LinearLayoutManager(context)
