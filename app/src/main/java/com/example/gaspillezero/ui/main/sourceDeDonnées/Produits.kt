@@ -1,7 +1,6 @@
 package com.example.gaspillezero.ui.main.sourceDeDonnées
 
-import java.util.Date
-
+import kotlinx.serialization.Serializable
 
 data class Produits(
     val code: String,
