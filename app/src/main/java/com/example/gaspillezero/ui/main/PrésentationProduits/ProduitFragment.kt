@@ -146,10 +146,8 @@ class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener,ProduitVu
             } else {
                 val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                 startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST)
-
             }
         }
-
         builder.setPositiveButton("Ajouter") { dialog, _ ->
             val nom = dialogView.findViewById<EditText>(R.id.editTextNomProduit).text.toString()
             val prix = dialogView.findViewById<EditText>(R.id.editTextPrixProduit).text.toString()

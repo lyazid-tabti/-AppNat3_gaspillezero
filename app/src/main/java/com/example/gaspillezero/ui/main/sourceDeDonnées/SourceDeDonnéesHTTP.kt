@@ -262,7 +262,6 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
                 .delete() // Requête DELETE
                 .addHeader("Authorization", "Bearer $token")
                 .build()
-
             val réponse = client.newCall(requête).execute()
 
             if (réponse.code != 200) {
