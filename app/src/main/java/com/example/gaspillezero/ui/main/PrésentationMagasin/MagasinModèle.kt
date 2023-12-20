@@ -1,14 +1,14 @@
 package com.example.gaspillezero.ui.main.PrésentationMagasin
 
-import com.example.gaspillezero.ui.main.sourceDeDonnées.DonnéesEnMémoire
-import com.example.gaspillezero.ui.main.sourceDeDonnées.Magasins
-import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDeDonnées
+import com.example.gaspillezero.ui.main.sourceDeDonnées.*
 
-class MagasinModèle(source: SourceDeDonnées = DonnéesEnMémoire()) {
-    private var _source : SourceDeDonnées = source
+class MagasinModèle(private var _source: SourceDonnéesMagasin = SourceDeDonnéesMagasinHTTP()) {
 
-    fun obtenirDonnéesMagasin(): List<Magasins> {
-        return _source.obtenirDonnéesMagasin()
+
+    suspend fun obtenirDonnéesÉpecerie(): List<Épicerie> {
+        return _source.obtenirListeÉpecerie()
     }
+
+
 
 }

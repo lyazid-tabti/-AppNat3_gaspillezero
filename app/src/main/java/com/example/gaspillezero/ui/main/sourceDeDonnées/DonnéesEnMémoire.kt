@@ -56,6 +56,42 @@ class DonnéesEnMémoire : SourceDeDonnées {
     }
 
     override fun obtenirDonnéesMagasin(): List<Magasins> {
+
+        val produit1 = Produits(
+            code = "34320",
+            nom = "Cocombre",
+            description = "Sachet de pâtes spaghetti classique",
+            prix = 0.99,
+            date_exp = "09/10/23",
+            quantite_stock = 14,
+            photo_url = "spaghettini",
+            //MagasinId = 1
+        )
+
+        val produit2 = Produits(
+            code = "34320",
+            nom = "Beurre",
+            description = "Sachet de pâtes spaghetti classique",
+            prix = 0.99,
+            date_exp = "09/10/23",
+            quantite_stock = 14,
+            photo_url = "spaghettini",
+            //MagasinId = 2
+        )
+
+        val produit3 = Produits(
+            code = "34320",
+            nom = "Oeuf",
+            description = "Sachet de pâtes spaghetti classique",
+            prix = 0.99,
+            date_exp = "09/10/23",
+            quantite_stock = 14,
+            photo_url = "spaghettini",
+            //MagasinId = 3
+        )
+
+
+
         val magasin1 = Magasins(
             id = 1,
             magasinNom = "Walmart",

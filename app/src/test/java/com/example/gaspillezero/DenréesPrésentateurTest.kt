@@ -3,6 +3,8 @@ package com.example.gaspillezero
 import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesPrésentateur
 import com.example.gaspillezero.ui.main.PrésentationDenrées.DenreesFragment
 import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesModèle
+import com.example.gaspillezero.ui.main.PrésentationMagasin.MagasinModèle
+import com.example.gaspillezero.ui.main.domaine.entité.Magasin
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
 import junit.framework.Assert.assertEquals
 import org.junit.Before
@@ -14,6 +16,7 @@ class DenréesPrésentateurTest {
     private lateinit var mockVue: DenreesFragment
     private lateinit var mockModèle: DenréesModèle
     private lateinit var présentateur: DenréesPrésentateur
+
 
     @Before
     fun setUp() {
@@ -51,4 +54,6 @@ class DenréesPrésentateurTest {
         // Vérification
         verify(mockVue).afficherDonnées(données)
     }
+
+
 }
