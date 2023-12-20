@@ -18,7 +18,10 @@ import java.io.OutputStreamWriter
 
 class SourceDeDonnéesHTTP(): SourceDeDonnées {
 
-    //url_chargement : String
+    //url de base de l'api
+    private val url = "http://10.0.2.2:8080"
+    //token généré de l'utilisateur 2 (Il a le role épicerie donc il est gérant).
+    private val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMzA5OTQyOSwiZXhwIjoxNzAzMTg1ODI5LCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.AQ7DZTct0Hhzuvg6bSjNMSkoVuStfIDKmI_pirkkYx3O6HMIHRWqUyX0lAWZUVCTwfinFUYgouqO9tqmtCN8B1RQrOCDNglDX8wMDqq8zqLvAFTl_RZyILpe0_LncpLRoNsxoRHNQqTJNmGZdte-VQ9elRFwdHG1F4Z4fU5ehuJQYe1zp-1F2E05mto3tBupwCs-Tvr3m6NleU_b8aSGjM72tHHxcrIUm-dnwjGz6wkhdUA2doDTyVHXmQOMt2EKlMKZGIzw2iRS_IS867N-Bg3D29EMAx0IKTn238f6Kd4h9oBWJqFzIcnzJ_2K24_hwoQbiZFVciZPB_UXvJFl9w"
 
     override suspend fun obtenirUrl( lien: String) : String {
         try{
@@ -37,7 +40,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
             )
 
             val requête = Request.Builder()
-                .url( "http://10.0.2.2:8080" )
+                .url( "$url" )
                 .post( body )
                 .build()
 
@@ -60,11 +63,8 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
         try {
             val client = OkHttpClient()
 
-            // Je n'ai pas encore de méthode pour obtenir le token donc voici un token avec les autorisations pour s'authentifier
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
-
             val requête = Request.Builder()
-                .url("http://10.0.2.2:8080/gabaritproduits")
+                .url("$url/gabaritproduits")
                 .addHeader("Authorization", "Bearer $token") // Ajout de l'en-tête d'authentification
                 .build()
 
@@ -88,11 +88,10 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
     override suspend fun supprimerGabarit(gabarit: Gabarits) {
         try {
             val client = OkHttpClient()
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
-            val url = "http://10.0.2.2:8080/gabaritproduit/${gabarit.code}"
+            val urlcomplet = "$url/gabaritproduit/${gabarit.code}"
 
             val requête = Request.Builder()
-                .url(url)
+                .url(urlcomplet)
                 .delete() // Requête DELETE
                 .addHeader("Authorization", "Bearer $token")
                 .build()
@@ -113,7 +112,6 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
     override suspend fun modifierGabarit(gabarit: Gabarits) {
         try {
             val client = OkHttpClient()
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
             val json = JSONObject().apply {
                 put("idGabaritProduit", gabarit.code.toInt())
                 put("nom", gabarit.nom)
@@ -159,7 +157,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
             val requestBody = json.toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
             val requête = Request.Builder()
-                .url("http://10.0.2.2:8080/gabaritproduit/${gabarit.code}")
+                .url("$url/gabaritproduit/${gabarit.code}")
                 .addHeader("Authorization", "Bearer $token")
                 .put(requestBody)
                 .build()
@@ -177,7 +175,6 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
     override suspend fun ajouterGabarit(gabarit: Gabarits) {
         try {
             val client = OkHttpClient()
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
             val json = JSONObject().apply {
                 put("idGabaritProduit", gabarit.code.toInt())
                 put("nom", gabarit.nom)
@@ -198,7 +195,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
             val requestBody = json.toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
             val requête = Request.Builder()
-                .url("http://10.0.2.2:8080/gabaritproduit") // URL pour l'ajout de gabarit
+                .url("$url/gabaritproduit") // URL pour l'ajout de gabarit
                 .addHeader("Authorization", "Bearer $token")
                 .post(requestBody)
                 .build()
@@ -222,11 +219,8 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
         try {
             val client = OkHttpClient()
 
-            // Je n'ai pas encore de méthode pour obtenir le token donc voici un token avec les autorisations pour s'authentifier
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
-
             val requête = Request.Builder()
-                .url("http://10.0.2.2:8080/produits")
+                .url("$url/produits")
                 .addHeader("Authorization", "Bearer $token") // Ajout de l'en-tête d'authentification
                 .build()
 
@@ -250,12 +244,11 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
     override suspend fun supprimerProduit(produits: Produits) {
         try {
             val client = OkHttpClient()
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
 
-            val url = "http://10.0.2.2:8080/produit/${produits.code}"
+            val urlcomplet = "$url/produit/${produits.code}"
 
             val requête = Request.Builder()
-                .url(url)
+                .url(urlcomplet)
                 .delete() // Requête DELETE
                 .addHeader("Authorization", "Bearer $token")
                 .build()
@@ -275,7 +268,6 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
     override suspend fun modifierProduit(produits: Produits) {
         try {
             val client = OkHttpClient()
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
 
             val json = JSONObject().apply {
                 put("idProduit", produits.code.toInt())
@@ -367,7 +359,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
             val requestBody = json.toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
             val requête = Request.Builder()
-                .url("http://10.0.2.2:8080/produit/${produits.code}")
+                .url("$url/produit/${produits.code}")
                 .addHeader("Authorization", "Bearer $token")
                 .put(requestBody)
                 .build()
@@ -385,7 +377,6 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
     override suspend fun ajouterProduit(produits: Produits) {
         try {
             val client = OkHttpClient()
-            val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMjk2MjYyMSwiZXhwIjoxNzAzMDQ5MDIxLCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.X7KHgbdc2-tNrayrh7FqaPQSjlG0UCHSE1tkIpkz82QOrzj6HZFl0fEDytoX2_gmloBI_SygUs0FyfyMPHhu6n9nDd_r8pGheClbI62z7xCgOQuw7X9ivat2MEY2UDfCMo4Q1XUr700jaAwv5lI-XSsM-r8unvoxms7TwJ6lS8fZXRriBISwTDGedqBy6KbUmn9cZHKNhIdRdqFfO5eDztIByQAfnxSx6molTolsysX3lKTL2pL7gNMhYEDFiLcRgGcwWTJarVoaspDOYBL5JjjwyAht6TLEjkiT3EELcWjkCuMI2lN0dhsu6wKTQ7vH9qJ1UlxF1IDAQtwolnk1wQ"
 
             val json = JSONObject().apply {
                 put("idProduit", produits.code.toInt())
@@ -425,7 +416,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
             val requestBody = json.toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
             val requête = Request.Builder()
-                .url("http://10.0.2.2:8080/produits") // URL pour l'ajout de produit
+                .url("$url/produits") // URL pour l'ajout de produit
                 .addHeader("Authorization", "Bearer $token")
                 .post(requestBody)
                 .build()

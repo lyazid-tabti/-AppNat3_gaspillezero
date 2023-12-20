@@ -1,13 +1,8 @@
 package com.example.gaspillezero.ui.main.PrésentationProduits
 
-import com.example.gaspillezero.ui.main.PrésentationGabarits.GabaritModèle
-import com.example.gaspillezero.ui.main.sourceDeDonnées.DonnéesEnMémoire
-import com.example.gaspillezero.ui.main.sourceDeDonnées.Gabarits
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
 import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDeDonnées
 import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDeDonnéesHTTP
-import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDonnéesProduits
-import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDonnéesProduitsHTTP
 
 class ProduitModèle(private var _source: SourceDeDonnées = SourceDeDonnéesHTTP()) : ProduitsModèle {
 
