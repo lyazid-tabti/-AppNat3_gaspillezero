@@ -4,6 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:backgroundTint="@color/white"
     android:orientation="vertical"
     tools:context=".ui.main.PrésentationDenrées.DenreesFragment">
 
@@ -54,11 +55,34 @@
         android:layout_height="1dp"
         android:background="#000000" />
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/white">
+
+        <EditText
+            android:id="@+id/messageErreur"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Erreur, aucune connexion internet veuillez réessayez."
+            android:textColor="@color/black"
+            tools:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/barProgression"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewDenrées"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"/>
+        android:background="@android:color/white" />
 
     <View
         android:layout_width="match_parent"

@@ -65,8 +65,8 @@
                     android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"/>
 
                 <Button
-                    android:id="@+id/btnArticle"
-                    android:layout_width="87dp"
+                    android:id="@+id/btnarticle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:backgroundTint="#C0C0C0"

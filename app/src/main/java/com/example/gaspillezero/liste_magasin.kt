@@ -26,7 +26,7 @@ class liste_magasin : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view= inflater.inflate(R.layout.fragment_liste_magasin, container, false)
+        val view= inflater.inflate(R.layout.fragment_epecerie, container, false)
         //val btnarticle : Button = view.findViewById(R.id.btnArticle)
         /*btnarticle.setOnClickListener{
             val fragment = fragment_detail()
@@ -34,10 +34,8 @@ class liste_magasin : Fragment() {
             transcation?.replace(R.id.container,fragment)?.commit()
         }*/
 
-        val ButtonArticle = view.findViewById<Button>(R.id.btnArticle)
-        ButtonArticle.setOnClickListener{
-            findNavController().navigate(R.id.action_fragment_epecerie_to_denreesFragment)
-        }
+
+
         return view
     }
 
