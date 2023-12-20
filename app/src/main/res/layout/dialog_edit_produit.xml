@@ -85,25 +85,4 @@
             android:textColor="@color/black"
             android:background="@android:drawable/edit_text"/>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textViewImageLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="Image"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@id/imageViewCamera"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="8dp"/>
-
-    <ImageView
-        android:id="@+id/imageViewCamera"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:src="@drawable/appareil_photo"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp" />
 </RelativeLayout>

@@ -90,19 +90,6 @@ class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener,ProduitVu
         val builder = AlertDialog.Builder(requireContext())
         builder.setView(dialogView)
 
-        val imageViewCamera = dialogView.findViewById<ImageView>(R.id.imageViewCamera)
-        imageViewCamera.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), PERMISSION_REQUEST_CODE
-                )
-            } else {
-                val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST)
-
-            }
-        }
-
         // Pré-remplir les champs avec les données actuelles du gabarit
         dialogView.findViewById<EditText>(R.id.editTextNomProduit).setText(produits.nom)
         dialogView.findViewById<EditText>(R.id.editTextPrixProduit).setText(produits.prix.toString())
@@ -137,17 +124,6 @@ class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener,ProduitVu
         val builder = AlertDialog.Builder(requireContext())
         builder.setView(dialogView)
 
-        val imageViewCamera = dialogView.findViewById<ImageView>(R.id.imageViewCamera)
-        imageViewCamera.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), PERMISSION_REQUEST_CODE
-                )
-            } else {
-                val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST)
-            }
-        }
         builder.setPositiveButton("Ajouter") { dialog, _ ->
             val nom = dialogView.findViewById<EditText>(R.id.editTextNomProduit).text.toString()
             val prix = dialogView.findViewById<EditText>(R.id.editTextPrixProduit).text.toString()
@@ -157,7 +133,6 @@ class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener,ProduitVu
             val épicerie = Épicerie("1",null,null,"1","1","1","1") // Implémentez Épicerie du gérant connecté
             val gabarit = Gabarits("1","Poulet","Viande",null,"Viande",épicerie)
             val code = "1" // n'affecte pas car autoincrement
-            val image = imageBase64 // Implémentez fonctionnalité ajout image
 
             val nouveauProduits = Produits(code, nom,description,prix.toDouble(),dateExp,quantiteStock.toInt(),gabarit.image,épicerie, gabarit)
             adapter.ajouterProduit(nouveauProduits)
@@ -167,37 +142,6 @@ class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener,ProduitVu
         builder.setNegativeButton("Annuler", null)
         val dialog = builder.create()
         dialog.show()
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when (requestCode) {
-            PERMISSION_REQUEST_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    startActivityForResult(galleryIntent,PICK_IMAGE_REQUEST)
-                }
-            }
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == ProduitFragment.PICK_IMAGE_REQUEST) {
-            val selectedImageUri = data?.data
-            selectedImageUri?.let {
-                val inputStream = requireContext().contentResolver.openInputStream(it)
-                val bitmap = BitmapFactory.decodeStream(inputStream)
-                val outputStream = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
-                val byteArray = outputStream.toByteArray()
-                imageBase64 = Base64.encodeToString(byteArray, Base64.DEFAULT)
-            }
-        }
-    }
-
-    companion object{
-        private const val PERMISSION_REQUEST_CODE = 1
-        private const val PICK_IMAGE_REQUEST = 2
     }
 
     override fun afficherDonnées(données: List<Produits>) {

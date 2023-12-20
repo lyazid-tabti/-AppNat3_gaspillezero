@@ -51,7 +51,7 @@ class ProduitAdapter(
         viewHolder.prixProduit.text = produit.prix.toString() + "$"
         viewHolder.dateExpProduit.text = "Date d'exp.: " + produit.date_exp
         viewHolder.quantiteStockProduit.text = "Quantité en stock: " + produit.quantite_stock.toString()
-        viewHolder.descriptionProduit.text = "Description: " + produit.description
+        viewHolder.descriptionProduit.text = "Description: " + produit.gabarit.description
 
         if (produit.photo_url != null && produit.photo_url.isNotEmpty()) {
             try {

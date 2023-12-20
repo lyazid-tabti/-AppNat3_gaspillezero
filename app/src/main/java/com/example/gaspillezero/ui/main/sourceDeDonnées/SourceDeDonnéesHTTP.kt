@@ -313,7 +313,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
                     put("logo", produits.épicerie.logo)
                 })
 
-                put("gabarit", JSONObject().apply{
+                put("gabaritProduit", JSONObject().apply{
                     put("idGabaritProduit", produits.gabarit.code.toInt())
                     put("nom", produits.gabarit.nom)
                     put("description", produits.gabarit.description)
