@@ -1,16 +1,25 @@
 package com.example.gaspillezero.ui.main.PrésentationMagasin
 
 import com.example.gaspillezero.fragment_epecerie
-import com.example.gaspillezero.ui.main.PrésentationDenrées.DenreesFragment
-import com.example.gaspillezero.ui.main.PrésentationDenrées.DenréesModèle
-import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
+import com.example.gaspillezero.ui.main.PrésentationProduits.ProduitModèle
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlin.coroutines.CoroutineContext
 
-class MagasinPrésentateur(private val vue: fragment_epecerie) {
-    private val modèle = MagasinModèle()
+class MagasinPrésentateur(private val vue: fragment_epecerie)  {
 
-   suspend fun obtenirDonnées() {
-        val données = modèle.obtenirDonnéesMagasin()
+    var modèle = MagasinModèle()
+
+
+
+
+    suspend fun obtenirDonnéesÉpeceries() {
+        val données = modèle.obtenirDonnéesÉpecerie()
         vue.afficherDonnées(données)
+
+
     }
 
     /*fun FiltrerProduitParMagasin(products:List<Produits>, id : Int): List<Produits> {
