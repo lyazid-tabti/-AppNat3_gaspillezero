@@ -77,6 +77,19 @@ class DécodeurJson {
             return Épicerie( code.toString(), adresse, utilisateur, nom!!, courriel!!, téléphone!!, logo )
         }
 
+        fun décoderJsonVersListeÉpeceries(json: String): List<Épicerie> {
+            val épecerieListe = mutableListOf<Épicerie>()
+            val reader = JsonReader(StringReader(json))
+
+            reader.beginArray()
+            while (reader.hasNext()) {
+                épecerieListe.add(décoderJsonVersÉpicerie(reader))
+            }
+            reader.endArray()
+
+            return épecerieListe
+        }
+
         private fun décoderJsonVersUtilisateur( reader: JsonReader ): Utilisateur{
             //lateinit
             var code : Int = 0
