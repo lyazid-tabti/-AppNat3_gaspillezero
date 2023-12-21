@@ -5,69 +5,60 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.Spinner
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gaspillezero.R
-
-import com.example.gaspillezero.ui.main.DossierPanier.MyDatabase
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Commandes
-import com.example.gaspillezero.ui.main.PrésentationCommandes.CommandeAdapter
-import kotlinx.coroutines.launch
+import com.example.gaspillezero.ui.main.PrésentationCommandes.*
 
-class CommandeFragment : Fragment(), AdapterView.OnItemSelectedListener{
 
-    var présentateur = CommandePrésentateur(this)
+class CommandeFragment : Fragment(), AdapterView.OnItemSelectedListener,CommandeVue{
+
     private lateinit var adapter: CommandeAdapter
-    private lateinit var database: MyDatabase
+    private lateinit var présentateur: CommandesPrésentateur
 
-    companion object{
-        fun newInstance() = CommandeFragment()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        présentateur = CommandePrésentateur(this, CommandeModèle())
     }
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_gestion_commandes, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_gestion_commandes, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val spinner = view.findViewById<Spinner>(R.id.spinner3)
-        spinner.onItemSelectedListener = this
-
-        lifecycleScope.launch {
-            présentateur.obtenirDonnées()
-        }
-
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            findNavController().navigate(R.id.action_commandeFragment_to_epicerie_accueil)
-        }
+        setupRecyclerView(view)
+        présentateur.obtenirDonnées()
     }
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val option_choisi = parent?.getItemAtPosition(position).toString()
+    private fun setupRecyclerView(view: View) {
+        adapter = CommandeAdapter(mutableListOf(),
+            onDeleteClick = { commande ->
+                présentateur.supprimerCommande(commande)
+            }
+        )
 
-        when(option_choisi){
-            "Accueil"   -> findNavController().navigate(R.id.action_commandeFragment_to_epicerie_accueil)
-            "Produits" -> findNavController().navigate(R.id.action_commandeFragment_to_gestionProduit)
-            "Gabarits" -> findNavController().navigate(R.id.action_commandeFragment_to_gestion_gabarit)
-        }    }
+        view.findViewById<RecyclerView>(R.id.recyclerViewCommandes).apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = this@CommandeFragment.adapter
+        }
+    }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-    fun afficherDonnées(données: List<Commandes>){
-        database = MyDatabase.getInstance(requireContext(),true)
-        adapter = CommandeAdapter(données,requireContext(),database)
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerViewCommandes)
-        recyclerView?.layoutManager = LinearLayoutManager(context)
-        recyclerView?.adapter = adapter
+    override fun afficherDonnées(données: List<Commandes>) {
+        adapter.setCommandes(données)
     }
 
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        // peut ajouter logique ici
+    }
+
+    override fun onResume() {
+        super.onResume()
+        présentateur.obtenirDonnées()
+    }
 }

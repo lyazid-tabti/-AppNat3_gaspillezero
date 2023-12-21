@@ -430,6 +430,57 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
             throw SourceDeDonnéesException("Erreur lors de l'ajout : ${e.message}")
         }
     }
+
+    @Throws(SourceDeDonnéesException::class)
+    override suspend fun obtenirListeCommandes(): List<Commandes> {
+        try {
+            val client = OkHttpClient()
+
+            val requête = Request.Builder()
+                .url("$url/itemsPanier")
+                .addHeader("Authorization", "Bearer $token") // Ajout de l'en-tête d'authentification
+                .build()
+
+            val réponse = client.newCall(requête).execute()
+
+            if (réponse.code != 200) {
+                throw SourceDeDonnéesException("Erreur : ${réponse.code}")
+            }
+            if (réponse.body == null) {
+                throw SourceDeDonnéesException("Pas de données reçues")
+            }
+
+            // Utilisation du décodeur JSON pour convertir la réponse en liste de Gabarits
+            return DécodeurJson.décoderJsonVersListeCommandes(réponse.body!!.string())
+        } catch(e: IOException) {
+            throw SourceDeDonnéesException(e.message ?: "Erreur inconnue")
+        }
+    }
+
+    @Throws(SourceDeDonnéesException::class)
+    override suspend fun supprimerCommande(commandes: Commandes) {
+        try {
+            val client = OkHttpClient()
+            val urlcomplet = "$url/itemsPanier/${commandes.code}"
+
+            val requête = Request.Builder()
+                .url(urlcomplet)
+                .delete() // Requête DELETE
+                .addHeader("Authorization", "Bearer $token")
+                .build()
+
+            val réponse = client.newCall(requête).execute()
+
+            if (réponse.code != 200) {
+                throw SourceDeDonnéesException("Erreur : ${réponse.code}")
+            }
+            if (réponse.body == null) {
+                throw SourceDeDonnéesException("Pas de données reçues")
+            }
+        } catch(e: IOException) {
+            throw SourceDeDonnéesException("Erreur réseau: ${e.message}")
+        }
+    }
 //    override suspend fun obtenirDonnéesProduits(): List<Produits> {
 //
 //        val produit1 = Produits(
@@ -502,29 +553,29 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
         return liste_de_magasin
     }
 
-    @Throws(com.example.gaspillezero.ui.main.Exception.SourceDeDonnéesException::class)
-    override suspend fun obtenirDonnéesCommandes(): List<Commandes> = withContext(Dispatchers.IO) {
-        try {
-            val client = OkHttpClient()
-            val requête = Request.Builder().url("https://3b53d418-1355-4085-926d-24d685d2da78.mock.pstmn.io/commandes").build()
-
-            val réponse = client.newCall(requête).execute();
-
-            if (!réponse.isSuccessful) {
-                throw com.example.gaspillezero.ui.main.Exception.SourceDeDonnéesException("Erreur : ${réponse.code}")
-            }
-
-            val body: ResponseBody? = réponse.body
-            if (body == null) {
-                throw com.example.gaspillezero.ui.main.Exception.SourceDeDonnéesException("Pas de données reçues")
-            }
-
-            val jsonDonnées = réponse.body!!.string()
-            décoderJsonDonnées(jsonDonnées)
-        } catch (e: java.io.IOException) {
-            throw com.example.gaspillezero.ui.main.Exception.SourceDeDonnéesException(e.message ?: "Erreur inconnue")
-        }
-    }
+//    @Throws(com.example.gaspillezero.ui.main.Exception.SourceDeDonnéesException::class)
+//    override suspend fun obtenirDonnéesCommandes(): List<Commandes> = withContext(Dispatchers.IO) {
+//        try {
+//            val client = OkHttpClient()
+//            val requête = Request.Builder().url("https://3b53d418-1355-4085-926d-24d685d2da78.mock.pstmn.io/commandes").build()
+//
+//            val réponse = client.newCall(requête).execute();
+//
+//            if (!réponse.isSuccessful) {
+//                throw com.example.gaspillezero.ui.main.Exception.SourceDeDonnéesException("Erreur : ${réponse.code}")
+//            }
+//
+//            val body: ResponseBody? = réponse.body
+//            if (body == null) {
+//                throw com.example.gaspillezero.ui.main.Exception.SourceDeDonnéesException("Pas de données reçues")
+//            }
+//
+//            val jsonDonnées = réponse.body!!.string()
+//            décoderJsonDonnées(jsonDonnées)
+//        } catch (e: java.io.IOException) {
+//            throw com.example.gaspillezero.ui.main.Exception.SourceDeDonnéesException(e.message ?: "Erreur inconnue")
+//        }
+//    }
 
     private fun décoderJsonDonnées(jsonDonnées: String): List<Commandes> {
         return Json.decodeFromString(jsonDonnées)

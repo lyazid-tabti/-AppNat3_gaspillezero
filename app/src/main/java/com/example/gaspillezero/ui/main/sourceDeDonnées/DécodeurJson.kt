@@ -97,6 +97,45 @@ class DécodeurJson {
             return produitsListe
         }
 
+        fun décoderJsonVersCommandes(reader: JsonReader): Commandes {
+            var code: Int = 0
+            var quantite: Int? = null
+            lateinit var produit: Produits
+
+            reader.beginObject()
+            while (reader.hasNext()) {
+                val clé = reader.nextName()
+                when (clé) {
+                    "idItemsPanier" -> { code = reader.nextInt() }
+                    "produit" -> {
+                        produit = décoderJsonVersProduits(reader)
+                    }
+//                    "produit_id" -> { produit = if (reader.peek() != JsonToken.NULL) reader.nextInt() else { reader.nextNull(); null } }
+                    "quantité" -> { quantite = if (reader.peek() != JsonToken.NULL) reader.nextInt() else { reader.nextNull(); null } }
+//                    else -> {
+//                        // Handle unexpected key or skip it
+//                        reader.skipValue()
+//                    }
+                }
+            }
+            reader.endObject()
+
+            // You need to handle nullability appropriately where Gabarits is initialized
+            return Commandes(code.toString(), produit.nom!!, quantite!!)
+        }
+
+        fun décoderJsonVersListeCommandes(json: String): List<Commandes> {
+            val commandesListe = mutableListOf<Commandes>()
+            val reader = JsonReader(StringReader(json))
+
+            reader.beginArray()
+            while (reader.hasNext()) {
+                commandesListe.add(décoderJsonVersCommandes(reader))
+            }
+            reader.endArray()
+            return commandesListe
+        }
+
         private fun décoderJsonVersÉpicerie( reader: JsonReader ): Épicerie{
             //lateinit
             var code : Int = 0

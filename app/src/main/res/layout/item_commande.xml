@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="8dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Text Views pour Nom, Code, et Catégorie -->
+
+        <!-- Text View pour Description -->
+        <TextView
+            android:id="@+id/codeCommande"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Code"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/nomProduitC"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Produits"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/quantiteProduitC"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Quantité"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <!-- LinearLayout Horizontal pour les boutons Modifier et Supprimer -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="8dp">
+
+        <!-- Bouton Supprimer avec layout_weight -->
+        <Button
+            android:id="@+id/btnDelete3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Finaliser"
+            android:gravity="center" />
+    </LinearLayout>
+</LinearLayout>

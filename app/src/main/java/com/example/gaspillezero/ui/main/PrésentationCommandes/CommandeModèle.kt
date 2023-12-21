@@ -1,14 +1,15 @@
 package com.example.gaspillezero.ui.main.PrésentationCommandes
 
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Commandes
-import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDonnéesCommandes
-import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDonnéesCommandesHTTP
+import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDeDonnées
+import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDeDonnéesHTTP
 
-class CommandeModèle(source: SourceDonnéesCommandes = SourceDonnéesCommandesHTTP("https://3b53d418-1355-4085-926d-24d685d2da78.mock.pstmn.io/commandes")) {
+class CommandeModèle(private var _source: SourceDeDonnées = SourceDeDonnéesHTTP()) : CommandesModèle {
 
-    private var _source : SourceDonnéesCommandes = source
+    override suspend fun obtenirListeCommandes(): List<Commandes> =
+        _source.obtenirListeCommandes()
 
-    suspend fun obtenirDonnéesCommandes(): List<Commandes>{
-        return _source.obtenirDonnéesCommandes()
+    override suspend fun supprimerCommande(commandes: Commandes) {
+        _source.supprimerCommande(commandes)
     }
 }
