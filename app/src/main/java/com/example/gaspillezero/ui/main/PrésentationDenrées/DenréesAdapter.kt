@@ -1,5 +1,6 @@
 package com.example.gaspillezero.ui.main.PrésentationDenrées
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.squareup.picasso.Picasso
 import android.os.Handler
 import android.os.Looper
+import android.util.Base64
 import kotlinx.coroutines.*
 
 class DenréesAdapter(private val dataSet: List<Produits>, private val context: Context, var database: MyDatabase) :
@@ -56,14 +58,23 @@ class DenréesAdapter(private val dataSet: List<Produits>, private val context: 
         viewHolder.prixProduit.text = produit.prix.toString() + "$"
         viewHolder.dateExpProduit.text = "Date d'exp.: " + produit.date_exp
         viewHolder.quantiteStockProduit.text = "Quantité en stock: " + produit.quantite_stock.toString()
-        val image = viewHolder.imageProduit.context.resources.getIdentifier(produit.photo_url, "drawable", viewHolder.imageProduit.context.packageName)
+
+        if (produit.gabarit.image != null && produit.gabarit.image.isNotEmpty()) {
+            try {
+                val imageBytes = Base64.decode(produit.gabarit.image, Base64.DEFAULT)
+                val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                viewHolder.imageProduit.setImageBitmap(bitmap)
+            } catch (e: IllegalArgumentException) {
+                // Gérer l'exception si la chaîne Base64 n'est pas valide
+                viewHolder.imageProduit.setImageResource(R.drawable.pomme)
+            }
+        } else {
+            viewHolder.imageProduit.setImageResource(R.drawable.pomme)
+        }
+
         val ajoutPanier = viewHolder.ajoutPanier
         val modifierQuantité = viewHolder.modifierQuantité
         val handler = Handler(Looper.getMainLooper())
-
-        Picasso.get()
-            .load(image)
-            .into(viewHolder.imageProduit)
 
         ajoutPanier.setOnClickListener {
 
@@ -78,13 +89,13 @@ class DenréesAdapter(private val dataSet: List<Produits>, private val context: 
                         database.panierDAO().chercherProduitParNom(produitNom)
 
                     if (produit_existant == null) {
-                        val produit = PanierItem(
+                        val item = PanierItem(
                             produitNom = produitNom,
                             produitPrix = produitPrix.toDouble(),
                             quantitéCommandé = quantitéCommandé.toInt(),
-                            imageID = image.toString()
+                            imageID = produit.gabarit.image.toString()
                         )
-                        database.panierDAO().ajouterProduit(produit)
+                        database.panierDAO().ajouterProduit(item)
                     }
                     handler.post {
                         ajoutPanier.isEnabled = false

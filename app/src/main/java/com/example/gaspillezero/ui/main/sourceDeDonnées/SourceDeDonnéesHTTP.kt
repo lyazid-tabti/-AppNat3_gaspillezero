@@ -19,7 +19,7 @@ import java.io.OutputStreamWriter
 class SourceDeDonnéesHTTP(): SourceDeDonnées {
 
     // url de base de l'api
-    private val url = "http://10.0.2.2:8080"
+    private val url = "http://192.168.1.9:8080"
 
     // Pour simmuler une connexion de l'utilisateur 2,
     // Nous avons générer un Bearer Token manuellement et
@@ -228,6 +228,32 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
 
             val requête = Request.Builder()
                 .url("$url/épicerie/$idÉpicerie1/produits")
+                .addHeader("Authorization", "Bearer $token") // Ajout de l'en-tête d'authentification
+                .build()
+
+            val réponse = client.newCall(requête).execute()
+
+            if (réponse.code != 200) {
+                throw SourceDeDonnéesException("Erreur : ${réponse.code}")
+            }
+            if (réponse.body == null) {
+                throw SourceDeDonnéesException("Pas de données reçues")
+            }
+
+            // Utilisation du décodeur JSON pour convertir la réponse en liste de Gabarits
+            return DécodeurJson.décoderJsonVersListeProduits(réponse.body!!.string())
+        } catch(e: IOException) {
+            throw SourceDeDonnéesException(e.message ?: "Erreur inconnue")
+        }
+    }
+
+    @Throws(SourceDeDonnéesException::class)
+    override suspend fun obtenirDonnéesTousLesProduits(): List<Produits> {
+        try {
+            val client = OkHttpClient()
+
+            val requête = Request.Builder()
+                .url("$url/produits")
                 .addHeader("Authorization", "Bearer $token") // Ajout de l'en-tête d'authentification
                 .build()
 

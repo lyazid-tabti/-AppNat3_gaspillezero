@@ -35,7 +35,7 @@ class SourceDeDonnéesMagasinHTTP( ): SourceDonnéesMagasin  {
             )
 
             val requête = Request.Builder()
-                .url( "http://10.0.2.2:8080" )
+                .url( "http://192.168.1.9:8080" )
                 .post( body )
                 .build()
 
@@ -62,11 +62,10 @@ class SourceDeDonnéesMagasinHTTP( ): SourceDonnéesMagasin  {
         try {
             val client = OkHttpClient()
 
-
             val token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IllUa05idDBNQjhfWm0ydGM4aGlPNyJ9.eyJpc3MiOiJodHRwczovL2Rldi10bXN5bGhjcW15bDYzbHJ5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTZlMjJkYTM0NDA4ZTczMWMzYjAxNTMiLCJhdWQiOiJodHRwOi8vZ2FzcGlsbGFnZXplcm8uZGVtbyIsImlhdCI6MTcwMzEwNDc3NSwiZXhwIjoxNzAzMTkxMTc1LCJhenAiOiJjaXRFaVZDTWZQeW54SjQzOWZ6cGt2a3l4OHlqTE9sZCIsImd0eSI6InBhc3N3b3JkIn0.kE0cfUqeDO8rb8p6iEJRkPwwSxRF_8guJtAbOhALQA7686ihGwS5J3_UHGirKfwWs2E9MzvbxqQ5iJihlWMiYlaEotu6vjlTmFk4GTiDA7TEp6IHL7IbG1MjeQvtiPoB-a26dEawxHnMLWHohpJiaEtqGBjL6lSwFwPpCfWTR9x8mDOIMIIAaHgGR0_CzmOI4xWVHaTAOYTmDEmPptqgD9bL6wExaH_A97KeqMb8dw9wfPkb9EJHKVLNOYEySQXjeAS8kIN8vE134fxMg-yypocmybTNWPFvX-tn88bqC9CnsbMb2one2scy7kk401ihDXNPbPhJWzjnP932IAtdzg"
 
             val requête = Request.Builder()
-                .url("http://10.0.2.2:8080/épiceries")
+                .url("http://192.168.1.9:8080/épiceries")
                 .addHeader("Authorization", "Bearer $token") // Ajout de l'en-tête d'authentification
                 .build()
 

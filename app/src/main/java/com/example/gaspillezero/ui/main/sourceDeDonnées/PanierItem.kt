@@ -15,5 +15,5 @@ class PanierItem (
     @ColumnInfo(name = "quantitéCommandé")
     var quantitéCommandé: Int,
     @ColumnInfo(name = "imageID")
-    val imageID: String
+    val imageID: String?
 )
