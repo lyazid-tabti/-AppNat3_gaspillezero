@@ -67,6 +67,22 @@
         android:layout_weight="1"
         android:background="@color/white" />
 
+    <EditText
+        android:id="@+id/messageErreur2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Erreur, aucune connexion internet veuillez réessayez."
+        android:textColor="@color/black"
+        tools:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/barProgression2"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
