@@ -1,5 +1,7 @@
 package com.example.gaspillezero.ui.main.DossierPanier
 
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,12 +46,21 @@ class PanierAdapter(private var dataSet: MutableList<PanierItem>,  var database:
         viewHolder.produitNom.text = "Nom: " + panierItem.produitNom
         viewHolder.produitQuantiteDesire.text = "Quantité: " + panierItem.quantitéCommandé
         viewHolder.produitPrix.text = "Prix totale: " + "%.2f".format(totalPrix) + "$"
-        val image = viewHolder.produitImage.context.resources.getIdentifier(panierItem.imageID, "drawable", viewHolder.produitImage.context.packageName)
-        val supprimerBtn = viewHolder.supprimerBtnPanier
 
-        Picasso.get()
-            .load(image)
-            .into(viewHolder.produitImage)
+        if (panierItem.imageID != null && panierItem.imageID.isNotEmpty()) {
+            try {
+                val imageBytes = Base64.decode(panierItem.imageID, Base64.DEFAULT)
+                val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                viewHolder.produitImage.setImageBitmap(bitmap)
+            } catch (e: IllegalArgumentException) {
+                // Gérer l'exception si la chaîne Base64 n'est pas valide
+                viewHolder.produitImage.setImageResource(R.drawable.pomme)
+            }
+        } else {
+            viewHolder.produitImage.setImageResource(R.drawable.pomme)
+        }
+
+        val supprimerBtn = viewHolder.supprimerBtnPanier
 
         supprimerBtn.setOnClickListener {
 

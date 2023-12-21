@@ -110,6 +110,7 @@ class GabaritFragment : Fragment(), AdapterView.OnItemSelectedListener, GabaritV
         dialog.show()
     }
 
+    // Nous assumons que l'utilisateur 2 est connecté et donc les produits ajoutés sont associés à l'épicerie avec l'id 1
     private fun afficherBoiteDialogueAjout() {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_edit_gabarit, null)
         val builder = AlertDialog.Builder(requireContext())
@@ -181,9 +182,7 @@ class GabaritFragment : Fragment(), AdapterView.OnItemSelectedListener, GabaritV
         adapter.setGabarits(données)
     }
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        // peut ajouter logique ici
-    }
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {}
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
 

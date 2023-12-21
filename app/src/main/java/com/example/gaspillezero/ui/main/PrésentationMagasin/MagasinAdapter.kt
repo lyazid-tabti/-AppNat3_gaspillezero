@@ -67,7 +67,18 @@ class MagasinAdapter(private var dataSet: List<Épicerie>) :
         holder.StatutLivraison.text = magasinEpecerie.téléphone
         val btnCommander = holder.btnCommander
 
-
+        if (magasinEpecerie.logo != null && magasinEpecerie.logo.isNotEmpty()) {
+            try {
+                val imageBytes = Base64.decode(magasinEpecerie.logo, Base64.DEFAULT)
+                val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                holder.imageMagasin.setImageBitmap(bitmap)
+            } catch (e: IllegalArgumentException) {
+                // Gérer l'exception si la chaîne Base64 n'est pas valide
+                holder.imageMagasin.setImageResource(R.drawable.logo_base)
+            }
+        } else {
+            holder.imageMagasin.setImageResource(R.drawable.logo_base)
+        }
 
         btnCommander.setOnClickListener {
             holder.itemView.findNavController().navigate(R.id.action_fragment_epecerie_to_denreesFragment)

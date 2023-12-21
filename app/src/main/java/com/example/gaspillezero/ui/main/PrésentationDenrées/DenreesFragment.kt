@@ -47,12 +47,11 @@ class DenreesFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val message = view.findViewById<TextView>(R.id.messageErreur)
         spinner.onItemSelectedListener = this
 
-        lifecycleScope.launch {
             val connection = estConnecté()
             try {
                 message.visibility = View.GONE
                 progression.visibility = View.VISIBLE
-                delay(1200)
+                //delay(1200)
                 présentateur.obtenirDonnées()
                 progression.visibility = View.GONE
             } catch(e:Exception){
@@ -61,7 +60,6 @@ class DenreesFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     message.visibility = View.VISIBLE
                 }
             }
-        }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             findNavController().navigate(R.id.action_denreesFragment_to_fragment_epecerie)

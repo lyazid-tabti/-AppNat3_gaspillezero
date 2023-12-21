@@ -16,6 +16,8 @@ interface SourceDeDonnées {
 
     fun obtenirDonnéesMagasin(): List<Magasins>
 
+    suspend fun obtenirDonnéesTousLesProduits(): List<Produits>
+
     suspend fun obtenirDonnéesProduits(): List<Produits>
 
     suspend fun supprimerProduit(produits: Produits)
