@@ -18,6 +18,8 @@ import com.example.gaspillezero.ui.main.sourceDeDonnées.Gabarits
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
 import com.google.android.material.textfield.TextInputEditText
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ProduitAdapter(
     private val dataSet: MutableList<Produits>,
@@ -53,9 +55,9 @@ class ProduitAdapter(
         viewHolder.quantiteStockProduit.text = "Quantité en stock: " + produit.quantite_stock.toString()
         viewHolder.descriptionProduit.text = "Description: " + produit.gabarit.description
 
-        if (produit.photo_url != null && produit.photo_url.isNotEmpty()) {
+        if (produit.gabarit.image != null && produit.gabarit.image.isNotEmpty()) {
             try {
-                val imageBytes = Base64.decode(produit.photo_url, Base64.DEFAULT)
+                val imageBytes = Base64.decode(produit.gabarit.image, Base64.DEFAULT)
                 val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
                 viewHolder.imageProduit.setImageBitmap(bitmap)
             } catch (e: IllegalArgumentException) {
@@ -100,8 +102,8 @@ class ProduitAdapter(
         }
     }
 
-    fun ajouterProduit(produits: Produits) {
-        dataSet.add(produits)
+    fun ajouterProduit(produit: Produits) {
+        dataSet.add(produit)
         notifyItemInserted(dataSet.size - 1)
     }
 }

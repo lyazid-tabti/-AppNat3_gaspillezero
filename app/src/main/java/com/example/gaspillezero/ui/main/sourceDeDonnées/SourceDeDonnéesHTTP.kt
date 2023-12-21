@@ -272,48 +272,19 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
             val json = JSONObject().apply {
                 put("idProduit", produits.code.toInt())
                 put("nom", produits.nom)
-                put("description", produits.description)
-                put("image", produits.photo_url)
-                put("prix", produits.prix)
-                put("quantité", produits.quantite_stock)
                 put("date_expiration", produits.date_exp)
-
+                put("quantité", produits.quantite_stock)
+                put("prix", produits.prix)
                 put("épicerie", JSONObject().apply {
                     put("idÉpicerie", produits.épicerie.code.toInt())
-                    put("adresse", JSONObject().apply {
-                        put("idAdresse", produits.épicerie.adresse?.code?.toInt())
-                        put("numéro_municipal", produits.épicerie.adresse?.numéro_municipal)
-                        put("rue", produits.épicerie.adresse?.rue)
-                        put("ville", produits.épicerie.adresse?.ville)
-                        put("province", produits.épicerie.adresse?.province)
-                        put("code_postal", produits.épicerie.adresse?.code_postal)
-                        put("pays", produits.épicerie.adresse?.pays)
-                    })
-                    put("utilisateur", JSONObject().apply {
-                        put("code", produits.épicerie.utilisateur?.code?.toInt())
-                        put("nom", produits.épicerie.utilisateur?.nom)
-                        put("prénom", produits.épicerie.utilisateur?.prénom)
-                        put("courriel", produits.épicerie.utilisateur?.courriel)
-                        put("adresse", JSONObject().apply {
-                            put("idAdresse", produits.épicerie.utilisateur?.adresse?.code?.toInt())
-                            put("numéro_municipal", produits.épicerie.utilisateur?.adresse?.numéro_municipal)
-                            put("rue", produits.épicerie.utilisateur?.adresse?.rue)
-                            put("ville", produits.épicerie.utilisateur?.adresse?.ville)
-                            put("province", produits.épicerie.utilisateur?.adresse?.province)
-                            put("code_postal", produits.épicerie.utilisateur?.adresse?.code_postal)
-                            put("pays", produits.épicerie.utilisateur?.adresse?.pays)
-                        })
-                        put("téléphone", produits.épicerie.utilisateur?.téléphone)
-                        put("rôle", produits.épicerie.utilisateur?.rôle)
-                        put("tokenAuth0", "")
-                    })
+                    put("adresse", null)
+                    put("utilisateur", null)
                     put("nom", produits.épicerie.nom)
                     put("courriel", produits.épicerie.courriel)
                     put("téléphone", produits.épicerie.téléphone)
                     put("logo", produits.épicerie.logo)
                 })
-
-                put("gabaritProduit", JSONObject().apply{
+                put("gabaritProduit",JSONObject().apply {
                     put("idGabaritProduit", produits.gabarit.code.toInt())
                     put("nom", produits.gabarit.nom)
                     put("description", produits.gabarit.description)
@@ -321,33 +292,8 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
                     put("categorie", produits.gabarit.catégorie)
                     put("épicerie", JSONObject().apply {
                         put("idÉpicerie", produits.gabarit.épicerie.code.toInt())
-                        put("adresse", JSONObject().apply {
-                            put("idAdresse", produits.gabarit.épicerie.adresse?.code?.toInt())
-                            put("numéro_municipal", produits.gabarit.épicerie.adresse?.numéro_municipal)
-                            put("rue", produits.gabarit.épicerie.adresse?.rue)
-                            put("ville", produits.gabarit.épicerie.adresse?.ville)
-                            put("province", produits.gabarit.épicerie.adresse?.province)
-                            put("code_postal", produits.gabarit.épicerie.adresse?.code_postal)
-                            put("pays", produits.gabarit.épicerie.adresse?.pays)
-                        })
-                        put("utilisateur", JSONObject().apply {
-                            put("code", produits.gabarit.épicerie.utilisateur?.code?.toInt())
-                            put("nom", produits.gabarit.épicerie.utilisateur?.nom)
-                            put("prénom", produits.gabarit.épicerie.utilisateur?.prénom)
-                            put("courriel", produits.gabarit.épicerie.utilisateur?.courriel)
-                            put("adresse", JSONObject().apply {
-                                put("idAdresse", produits.gabarit.épicerie.utilisateur?.adresse?.code?.toInt())
-                                put("numéro_municipal", produits.gabarit.épicerie.utilisateur?.adresse?.numéro_municipal)
-                                put("rue", produits.gabarit.épicerie.utilisateur?.adresse?.rue)
-                                put("ville", produits.gabarit.épicerie.utilisateur?.adresse?.ville)
-                                put("province", produits.gabarit.épicerie.utilisateur?.adresse?.province)
-                                put("code_postal", produits.gabarit.épicerie.utilisateur?.adresse?.code_postal)
-                                put("pays", produits.gabarit.épicerie.utilisateur?.adresse?.pays)
-                            })
-                            put("téléphone", produits.gabarit.épicerie.utilisateur?.téléphone)
-                            put("rôle", produits.gabarit.épicerie.utilisateur?.rôle)
-                            put("tokenAuth0", "")
-                        })
+                        put("adresse", null)
+                        put("utilisateur", null)
                         put("nom", produits.gabarit.épicerie.nom)
                         put("courriel", produits.gabarit.épicerie.courriel)
                         put("téléphone", produits.gabarit.épicerie.téléphone)
@@ -381,11 +327,9 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
             val json = JSONObject().apply {
                 put("idProduit", produits.code.toInt())
                 put("nom", produits.nom)
-                put("description", produits.description)
-                put("image", produits.photo_url)
-                put("prix", produits.prix)
-                put("quantité", produits.quantite_stock)
                 put("date_expiration", produits.date_exp)
+                put("quantité", produits.quantite_stock)
+                put("prix", produits.prix)
                 put("épicerie", JSONObject().apply {
                     put("idÉpicerie", produits.épicerie.code.toInt())
                     put("adresse", null)
@@ -395,7 +339,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
                     put("téléphone", produits.épicerie.téléphone)
                     put("logo", produits.épicerie.logo)
                 })
-                put("gabarit",JSONObject().apply {
+                put("gabaritProduit",JSONObject().apply {
                     put("idGabaritProduit", produits.gabarit.code.toInt())
                     put("nom", produits.gabarit.nom)
                     put("description", produits.gabarit.description)
@@ -416,7 +360,7 @@ class SourceDeDonnéesHTTP(): SourceDeDonnées {
             val requestBody = json.toString().toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
             val requête = Request.Builder()
-                .url("$url/produits") // URL pour l'ajout de produit
+                .url("$url/produit") // URL pour l'ajout de produit
                 .addHeader("Authorization", "Bearer $token")
                 .post(requestBody)
                 .build()

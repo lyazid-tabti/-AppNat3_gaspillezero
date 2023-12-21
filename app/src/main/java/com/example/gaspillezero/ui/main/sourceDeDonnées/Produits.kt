@@ -7,7 +7,7 @@ data class Produits(
     val nom: String,
     val description: String?,
     val prix: Double,
-    val date_exp: String,
+    var date_exp: String,
     val quantite_stock: Int,
     val photo_url: String?,
     val épicerie: Épicerie,

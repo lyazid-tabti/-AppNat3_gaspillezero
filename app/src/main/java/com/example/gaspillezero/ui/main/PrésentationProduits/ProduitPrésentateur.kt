@@ -22,6 +22,14 @@ class ProduitPrésentateur(private val vue: ProduitVue, private val modèle: Pro
             }
         }
     }
+    override fun recevoirDonnéesGabarits() {
+        CoroutineScope( iocontext ).launch {
+            val donnéesGabarits = modèle.recevoirDonnéesGabarits()
+            withContext(Dispatchers.Main) {
+                vue.recevoirDonnéesGabarits(donnéesGabarits)
+            }
+        }
+    }
     override fun supprimerProduit(produits: Produits) {
         CoroutineScope( iocontext ).launch {
             modèle.supprimerProduit(produits)

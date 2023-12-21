@@ -13,14 +13,7 @@ import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.BaseAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -41,12 +34,15 @@ import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Épicerie
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener,ProduitVue {
 
     private lateinit var adapter: ProduitAdapter
     private lateinit var présentateur: ProduitsPrésentateur
-    private var imageBase64: String = "1"
+    private lateinit var listeGabaritsSpinner: List<Gabarits>
 
 
     override fun onCreate(savedInstanceState: Bundle?){
@@ -63,8 +59,9 @@ class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener,ProduitVu
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView(view)
         présentateur.obtenirDonnées()
+        présentateur.recevoirDonnéesGabarits()
         view.findViewById<Button>(R.id.btnAddProduit).setOnClickListener{
-            afficherBoiteDialogueAjout()
+            afficherBoiteDialogueAjout(listeGabaritsSpinner)
         }
 
     }
@@ -75,7 +72,7 @@ class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener,ProduitVu
                 présentateur.supprimerProduit(produit)
             },
             onEditClick = { produit ->
-                afficherBoiteDialogueModification(produit)
+                afficherBoiteDialogueModification(produit,listeGabaritsSpinner)
             }
         )
 
@@ -85,32 +82,35 @@ class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener,ProduitVu
         }
     }
 
-    private fun afficherBoiteDialogueModification(produits: Produits) {
+    private fun afficherBoiteDialogueModification(produit: Produits, gabarits: List<Gabarits>) {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_edit_produit, null)
         val builder = AlertDialog.Builder(requireContext())
         builder.setView(dialogView)
 
-        // Pré-remplir les champs avec les données actuelles du gabarit
-        dialogView.findViewById<EditText>(R.id.editTextNomProduit).setText(produits.nom)
-        dialogView.findViewById<EditText>(R.id.editTextPrixProduit).setText(produits.prix.toString())
-        dialogView.findViewById<EditText>(R.id.editTextDateExpProduit).setText(produits.date_exp)
-        dialogView.findViewById<EditText>(R.id.editTextQuantiteStockProduit).setText(produits.quantite_stock)
-        dialogView.findViewById<EditText>(R.id.editTextDescriptionProduit).setText(produits.description)
+        // Pré-remplir les champs avec les données actuelles du produit
+        dialogView.findViewById<EditText>(R.id.editTextNomProduit).setText(produit.nom)
+        dialogView.findViewById<EditText>(R.id.editTextPrixProduit).setText(produit.prix.toString())
+        dialogView.findViewById<EditText>(R.id.editTextDateExpProduit).setText(produit.date_exp)
+        dialogView.findViewById<EditText>(R.id.editTextQuantiteStockProduit).setText(produit.quantite_stock.toString())
+
+        val spinnerGabarit = dialogView.findViewById<Spinner>(R.id.spinnerGabarit)
+        val adapterSpinner = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, gabarits)
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerGabarit.adapter = adapterSpinner
+
+        spinnerGabarit.setSelection(gabarits.indexOfFirst { it.code == produit.gabarit.code })
 
         builder.setPositiveButton("Modifier") { dialog, which ->
-            // récupére les nouvelles valeurs et met à jour le gabarit
-            val nouveauNom = dialogView.findViewById<EditText>(R.id.editTextNomProduit).text.toString()
-            val nouvellePrix = dialogView.findViewById<EditText>(R.id.editTextPrixProduit).text.toString()
-            val nouvelleDateExp = dialogView.findViewById<EditText>(R.id.editTextDateExpProduit).text.toString()
-            val nouvelleQuantiteStock = dialogView.findViewById<EditText>(R.id.editTextQuantiteStockProduit).text.toString()
-            val nouvelleDescription = dialogView.findViewById<EditText>(R.id.editTextDescriptionProduit).text.toString()
-            val nouvelleImage = if (imageBase64 != "1") imageBase64 else produits.photo_url
+            // récupére les nouvelles valeurs et met à jour le produit
+            val nomModifié = dialogView.findViewById<EditText>(R.id.editTextNomProduit).text.toString()
+            val prixModifié = dialogView.findViewById<EditText>(R.id.editTextPrixProduit).text.toString()
+            val dateExpirationModifié = dialogView.findViewById<EditText>(R.id.editTextDateExpProduit).text.toString()
+            val quantitéModifié = dialogView.findViewById<EditText>(R.id.editTextQuantiteStockProduit).text.toString()
+            val gabaritModifié = spinnerGabarit.selectedItem as Gabarits
 
-            //val nouvelleImage = if (imageBase64 != "1") imageBase64 else gabarit.image
+            val produitModifié = Produits(produit.code, nomModifié,produit.gabarit.description,prixModifié.toDouble(), dateExpirationModifié, quantitéModifié.toInt(),produit.gabarit.image,produit.épicerie,gabaritModifié)
 
-            val produitModifié = Produits(produits.code, nouveauNom,nouvelleDescription,nouvellePrix.toDouble(), nouvelleDateExp, nouvelleQuantiteStock.toInt(),nouvelleImage,produits.épicerie,produits.gabarit)
-
-            adapter.modifierProduits(produits, produitModifié)
+            adapter.modifierProduits(produit, produitModifié)
             présentateur.modifierProduit(produitModifié)
         }
         builder.setNegativeButton("Annuler", null)
@@ -119,22 +119,28 @@ class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener,ProduitVu
         dialog.show()
     }
 
-    private fun afficherBoiteDialogueAjout() {
+    private fun afficherBoiteDialogueAjout(gabarits: List<Gabarits>) {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_edit_produit, null)
         val builder = AlertDialog.Builder(requireContext())
         builder.setView(dialogView)
 
+        val spinnerGabarit = dialogView.findViewById<Spinner>(R.id.spinnerGabarit)
+        val adapterSpinner = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, gabarits)
+        adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerGabarit.adapter = adapterSpinner
+
+        spinnerGabarit.setSelection(gabarits.indexOfFirst { it.code == gabarits[0].code })
+
         builder.setPositiveButton("Ajouter") { dialog, _ ->
             val nom = dialogView.findViewById<EditText>(R.id.editTextNomProduit).text.toString()
             val prix = dialogView.findViewById<EditText>(R.id.editTextPrixProduit).text.toString()
-            val description = dialogView.findViewById<EditText>(R.id.editTextDescriptionProduit).text.toString()
-            val dateExp = dialogView.findViewById<EditText>(R.id.editTextDateExpProduit).text.toString()
+            val dateExpirationModifié = dialogView.findViewById<EditText>(R.id.editTextDateExpProduit).text.toString()
             val quantiteStock = dialogView.findViewById<EditText>(R.id.editTextQuantiteStockProduit).text.toString()
             val épicerie = Épicerie("1",null,null,"1","1","1","1") // Implémentez Épicerie du gérant connecté
-            val gabarit = Gabarits("1","Poulet","Viande",null,"Viande",épicerie)
+            val gabarit = spinnerGabarit.selectedItem as Gabarits
             val code = "1" // n'affecte pas car autoincrement
 
-            val nouveauProduits = Produits(code, nom,description,prix.toDouble(),dateExp,quantiteStock.toInt(),gabarit.image,épicerie, gabarit)
+            val nouveauProduits = Produits(code, nom,gabarit.description,prix.toDouble(),dateExpirationModifié,quantiteStock.toInt(),gabarit.image,épicerie, gabarit)
             adapter.ajouterProduit(nouveauProduits)
             présentateur.ajouterProduit(nouveauProduits)
         }
@@ -146,6 +152,10 @@ class ProduitFragment : Fragment(), AdapterView.OnItemSelectedListener,ProduitVu
 
     override fun afficherDonnées(données: List<Produits>) {
         adapter.setProduits(données)
+    }
+    override fun recevoirDonnéesGabarits(donnéesGabarits: List<Gabarits>) {
+        //pour afficher les gabarits dans le spinner de la boite de dialogue Ajout et Modification
+        listeGabaritsSpinner = donnéesGabarits
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

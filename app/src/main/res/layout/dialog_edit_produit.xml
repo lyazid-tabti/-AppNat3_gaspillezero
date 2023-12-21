@@ -10,6 +10,21 @@
         android:padding="16dp"
         android:background="@color/white">
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gabarit"
+            android:textColor="@color/black"
+            android:padding="4dp" />
+
+        <Spinner
+            android:id="@+id/spinnerGabarit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:background="@android:drawable/edit_text"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,19 +85,5 @@
             android:textColor="@color/black"
             android:background="@android:drawable/edit_text"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Description"
-            android:textColor="@color/black"
-            android:padding="4dp" />
-
-        <EditText
-            android:id="@+id/editTextDescriptionProduit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:textColor="@color/black"
-            android:background="@android:drawable/edit_text"/>
     </LinearLayout>
 </RelativeLayout>

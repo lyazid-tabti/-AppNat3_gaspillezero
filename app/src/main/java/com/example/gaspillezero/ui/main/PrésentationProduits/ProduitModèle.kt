@@ -1,5 +1,6 @@
 package com.example.gaspillezero.ui.main.PrésentationProduits
 
+import com.example.gaspillezero.ui.main.sourceDeDonnées.Gabarits
 import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
 import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDeDonnées
 import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDeDonnéesHTTP
@@ -7,6 +8,7 @@ import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDeDonnéesHTTP
 class ProduitModèle(private var _source: SourceDeDonnées = SourceDeDonnéesHTTP()) : ProduitsModèle {
 
     override suspend fun obtenirListeProduits(): List<Produits> = _source.obtenirDonnéesProduits()
+    override suspend fun recevoirDonnéesGabarits(): List<Gabarits> = _source.obtenirListeGabarits()
 
     override suspend fun supprimerProduit(produits: Produits) {
         _source.supprimerProduit(produits)
