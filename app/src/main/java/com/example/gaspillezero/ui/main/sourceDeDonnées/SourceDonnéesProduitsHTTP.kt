@@ -5,7 +5,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.Response
 import okhttp3.ResponseBody
 import kotlinx.*
 import kotlinx.serialization.decodeFromString
@@ -39,6 +38,6 @@ class SourceDonnéesProduitsHTTP(var url_api : String ): SourceDonnéesProduits 
     }
 
     private fun décoderJsonDonnées(jsonDonnées: String): List<Produits> {
-        return Json.decodeFromString(jsonDonnées)
+        return Json { ignoreUnknownKeys = true }.decodeFromString(jsonDonnées)
     }
 }

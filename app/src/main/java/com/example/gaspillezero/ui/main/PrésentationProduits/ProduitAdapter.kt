@@ -52,10 +52,10 @@ class ProduitAdapter(private val dataSet: List<Produits>, private val context: C
 
         viewHolder.nomProduit.text = produit.nom
         viewHolder.prixProduit.text = produit.prix.toString() + "$"
-        viewHolder.dateExpProduit.text = "Date d'exp.: " + produit.date_exp
-        viewHolder.quantiteStockProduit.text = "Quantité en stock: " + produit.quantite_stock.toString()
+        viewHolder.dateExpProduit.text = "Date d'exp.: " + produit.date_expiration
+        viewHolder.quantiteStockProduit.text = "Quantité en stock: " + produit.quantité.toString()
         viewHolder.descriptionProduit.text = "Description: " + produit.description
-        val image = viewHolder.imageProduit.context.resources.getIdentifier(produit.photo_url, "drawable", viewHolder.imageProduit.context.packageName)
+        val image = viewHolder.imageProduit.context.resources.getIdentifier(produit.image, "drawable", viewHolder.imageProduit.context.packageName)
 
         Picasso.get()
             .load(image)

@@ -54,9 +54,9 @@ class DenréesAdapter(private val dataSet: List<Produits>, private val context: 
 
         viewHolder.nomProduit.text = produit.nom
         viewHolder.prixProduit.text = produit.prix.toString() + "$"
-        viewHolder.dateExpProduit.text = "Date d'exp.: " + produit.date_exp
-        viewHolder.quantiteStockProduit.text = "Quantité en stock: " + produit.quantite_stock.toString()
-        val image = viewHolder.imageProduit.context.resources.getIdentifier(produit.photo_url, "drawable", viewHolder.imageProduit.context.packageName)
+        viewHolder.dateExpProduit.text = "Date d'exp.: " + produit.date_expiration
+        viewHolder.quantiteStockProduit.text = "Quantité en stock: " + produit.quantité.toString()
+        val image = viewHolder.imageProduit.context.resources.getIdentifier(produit.image, "drawable", viewHolder.imageProduit.context.packageName)
         val ajoutPanier = viewHolder.ajoutPanier
         val modifierQuantité = viewHolder.modifierQuantité
         val handler = Handler(Looper.getMainLooper())
@@ -71,7 +71,7 @@ class DenréesAdapter(private val dataSet: List<Produits>, private val context: 
                 val produitNom = viewHolder.nomProduit.text.toString()
                 var produitPrix = viewHolder.prixProduit.text.toString()
                 produitPrix = produitPrix.replace("$", "")
-            if (quantitéCommandé.isNotEmpty() && quantitéCommandé.toInt() > 0 && quantitéCommandé.toInt() < produit.quantite_stock) {
+            if (quantitéCommandé.isNotEmpty() && quantitéCommandé.toInt() > 0 && quantitéCommandé.toInt() < produit.quantité) {
 
                 CoroutineScope(Dispatchers.IO).launch {
                     val produit_existant =

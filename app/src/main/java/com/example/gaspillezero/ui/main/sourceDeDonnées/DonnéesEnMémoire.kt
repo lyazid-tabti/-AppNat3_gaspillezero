@@ -19,33 +19,33 @@ class DonnéesEnMémoire : SourceDeDonnées {
 
 
         val produit1 = Produits(
-            code = "34320",
-            nom = "Pâtes spaghettini",
+            idProduit = 1,
             description = "Sachet de pâtes spaghetti classique",
+            nom = "Pâtes spaghettini",
+            date_expiration = "09/10/23",
+            quantité = 14,
             prix = 0.99,
-            date_exp = "09/10/23",
-            quantite_stock = 14,
-            photo_url = "spaghettini"
+            image = "spaghettini"
         )
 
         val produit2 = Produits(
-            code = "67890",
-            nom = "Soupe aux tomates",
+            idProduit = 2,
             description = "Boîte de soupe aux tomates",
+            nom = "Soupe aux tomates",
+            date_expiration = "09/10/23",
+            quantité = 11,
             prix = 1.09,
-            date_exp = "09/10/23",
-            quantite_stock = 11,
-            photo_url = "soupetomate"
+            image = "soupetomate"
         )
 
         val produit3 = Produits(
-            code = "67894",
-            nom = "Frites surgelés",
+            idProduit = 3,
             description = "Sac de frites surgelés coupe régulière",
+            nom = "Frites surgelés",
+            date_expiration = "21/10/23",
+            quantité = 19,
             prix = 5.49,
-            date_exp = "21/10/23",
-            quantite_stock = 19,
-            photo_url = "frites"
+            image = "frites"
         )
 
         liste_de_produits.add(produit1)

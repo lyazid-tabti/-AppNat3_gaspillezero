@@ -52,7 +52,6 @@ class DenreesFragment : Fragment(), AdapterView.OnItemSelectedListener {
             try {
                 message.visibility = View.GONE
                 progression.visibility = View.VISIBLE
-                delay(1200)
                 présentateur.obtenirDonnées()
                 progression.visibility = View.GONE
             } catch(e:Exception){
