@@ -19,7 +19,7 @@ import java.io.OutputStreamWriter
 class SourceDeDonnéesHTTP(): SourceDeDonnées {
 
     // url de base de l'api
-    private val url = "http://192.168.1.9:8080"
+    private val url = "http://10.0.2.2:8080"
 
     // Pour simmuler une connexion de l'utilisateur 2,
     // Nous avons générer un Bearer Token manuellement et
