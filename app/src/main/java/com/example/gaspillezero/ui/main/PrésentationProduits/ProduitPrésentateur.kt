@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
-class ProduitPrésentateur(private val vue: ProduitVue, private val modèle: ProduitsModèle, iocontext : CoroutineContext = Dispatchers.IO) : ProduitsPrésentateur {
+class ProduitPrésentateur(private val vue: ProduitVue, var modèle: ProduitsModèle, iocontext : CoroutineContext = Dispatchers.IO) : ProduitsPrésentateur {
 
     private var iocontext : CoroutineContext = iocontext
     override fun obtenirDonnées() {
