@@ -13,8 +13,7 @@ Ils sont aussi responsables de l'interaction avec la galerie du système Android
 
 **Sous-équipe 2 : Lyazid et Gabriel**
 Ils sont responsables du développement de l'application pour les Clients.
-Sauvegarde locale des informations utilisateurs (panier).
-**D'autres informations seront ajoutées ici par la sous-équipe 2.**
+On a principalement ajouter la fonctionnalité qu'un utilisateur peut ajouter, modifier et supprimer un produit du panier. Nous avons également ajouter une liste déroulante pour le menu afin que l'utilisateur puisse naviguer efficacement dans l'application. Sans oublier que les données reçus dans le fragment 'denrées' et 'épicerie' proviennent de l'API que nous avons tous développés en service d'échange.Pour la sauvegarde, on a utilisé la base de données 'Room' ce qui permet de garder les données stockés localement et il reste sauvegarder peu importe où on se trouve dans l'application. On s'est occupé des fragments 'denrées' et 'épiceries' que l'on a par ailleurs ajouter des recycler view afin d'optimiser les affichages.
 
 **Vérifications importantes :**
 
