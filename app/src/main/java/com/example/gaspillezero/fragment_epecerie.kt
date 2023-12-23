@@ -1,5 +1,7 @@
 package com.example.gaspillezero
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.StrictMode
@@ -66,12 +68,29 @@ class fragment_epecerie : Fragment(), AdapterView.OnItemSelectedListener {
         }
         super.onViewCreated(view, savedInstanceState)
 
+        val progression = view.findViewById<ProgressBar>(R.id.barProgression)
+        val message = view.findViewById<TextView>(R.id.messageErreur)
+
         val spinner = view.findViewById<Spinner>(R.id.spinner)
         spinner.onItemSelectedListener = this
 
-        lifecycleScope.launch  {
-            présentateur.obtenirDonnéesÉpeceries()
+        val connection = estConnecté()
+        try {
+            message.visibility = View.GONE
+            progression.visibility = View.VISIBLE
+            //delay(1200)
+            lifecycleScope.launch  {
+                présentateur.obtenirDonnéesÉpeceries()
+            }
+            progression.visibility = View.GONE
+        } catch(e:Exception){
+            if (connection == false){
+                progression.visibility = View.GONE
+                message.visibility = View.VISIBLE
+            }
         }
+
+
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             findNavController().navigate(R.id.action_fragment_epecerie_to_epicerie_accueil)
@@ -90,6 +109,13 @@ class fragment_epecerie : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+    private fun estConnecté(): Boolean {
+        val connectivityManager =
+            requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
+    }
 
     fun afficherDonnées(données: List<Épicerie>) {
         database = MyDatabase.getInstance(requireContext(), true)
