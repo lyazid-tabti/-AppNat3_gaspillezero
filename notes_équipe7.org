@@ -1,0 +1,96 @@
+* Sprints
+** Coéquipiers :
+1. Audric
+2. Jean-Gabriel
+3. Lyazid
+4. Samuel
+
+** Sprint 1
+|                                           | Note |  1 |  2 |  3 |  4 | 5 |
+| Qualité du prototype d'interface :        | A    |    |    |    |    |   |
+|                                           |      |    |    |    |    |   |
+| Présentation :                            | A    |    |    |    |    |   |
+|                                           |      |    |    |    |    |   |
+| Évaluation du travail par les pairs (50%) | ×    |  A |  A |  A |  A |   |
+| Participation à la présentation     (50%) | ×    |  A |  A |  A |  A |   |
+|-------------------------------------------+------+----+----+----+----+---|
+| Total                                     | 10   | 10 | 10 | 10 | 10 |   |
+
+** Sprint 2
+|                                            | Note | 1 | 2 | 3 | 4 | 5 |
+| Qualité du développement :                 | B    |   |   |   |   |   |
+|                                            |      |   |   |   |   |   |
+| Présentation :                             | A    |   |   |   |   |   |
+|                                            |      |   |   |   |   |   |
+| Évaluation du travail par les pairs (50%): | ×    | A | A | A | A |   |
+| Part du travail commité sur Gitlab (50%):  | ×    | A | A | A | A |   |
+|--------------------------------------------+------+---+---+---+---+---|
+| Total                                      | 9    | 9 | 9 | 9 | 9 |   |
+
+** Sprint 3
+|                                            | Note |                 1 | 2 | 3 | 4 | 5 |
+| Qualité du développement :                 | B    |                   |   |   |   |   |
+|                                            |      |                   |   |   |   |   |
+| Présentation :                             | A    |                   |   |   |   |   |
+|                                            |      |                   |   |   |   |   |
+| Évaluation du travail par les pairs (50%): | ×    |                 A | A | A | A |   |
+| Part du travail commité sur Gitlab (50%):  | ×    | E (pas de commit) | A | A | A |   |
+|--------------------------------------------+------+-------------------+---+---+---+---|
+| Total                                      | 9    |               4.5 | 9 | 9 | 9 |   |
+
+** Sprint 4
+|                                            | Note |  1 |  2 |  3 |  4 | 5 |
+| Qualité du développement :                 | A    |    |    |    |    |   |
+|                                            |      |    |    |    |    |   |
+| Présentation :                             | A    |    |    |    |    |   |
+|                                            |      |    |    |    |    |   |
+| Évaluation du travail par les pairs (50%): | ×    |  A |  A |  A |  A |   |
+| Part du travail commité sur Gitlab (50%):  | ×    |  A |  A |  A |  A |   |
+|--------------------------------------------+------+----+----+----+----+---|
+| Total                                      | 10   | 10 | 10 | 10 | 10 |   |
+
+** Livraison finale
+|                                            |     | Note |    1 |    2 |    3 |    4 | 5 |
+| Éléments techniques                        |     |      |      |      |      |      |   |
+| - 2 écrans fonctionnels                    | /5  | A    |      |      |      |      |   |
+| - Échange de données                       | /5  | A    |      |      |      |      |   |
+| - Sauvegardes locales                      | /3  | A    |      |      |      |      |   |
+| - Interaction Android                      | /3  | A    |      |      |      |      |   |
+|                                            |     |      |      |      |      |      |   |
+| IU                                         |     |      |      |      |      |      |   |
+| - Ergonomie                                | /5  | B    |      |      |      |      |   |
+| - I18n                                     | /3  | X    |      |      |      |      |   |
+|                                            |     |      |      |      |      |      |   |
+| Architecture                               |     |      |      |      |      |      |   |
+| - 3-tiers                                  |     |      |      |      |      |      |   |
+| -- Séparation MVP                          | /5  | D    |      |      |      |      |   |
+| -- Source de données                       | /5  | B    |      |      |      |      |   |
+| -- Abstractions                            | /5  | A    |      |      |      |      |   |
+| - Utilisation de fils d'exécution          | /5  | A    |      |      |      |      |   |
+|                                            |     |      |      |      |      |      |   |
+| Assurance qualité                          |     |      |      |      |      |      |   |
+| - Tests Présentateurs/Modèles              | /2  | E    |      |      |      |      |   |
+| - Tests Interacteurs/Entités               | /2  | E    |      |      |      |      |   |
+| - Tests Accès aux données                  | /2  | E    |      |      |      |      |   |
+|                                            |     |      |      |      |      |      |   |
+| Présentation                               |     |      |      |      |      |      |   |
+| - Démontre la présence des fonctionnalités | /5  | A    |      |      |      |      |   |
+| - Démontre la robustesse                   | /5  | E    |      |      |      |      |   |
+| - Qualité de l'interface utilisateur       | /5  | A    |      |      |      |      |   |
+| - Clarté de la présentation                | /5  | B    |      |      |      |      |   |
+| - Pertinence des démonstrations            | /5  | A    |      |      |      |      |   |
+|                                            | /75 | 55   |      |      |      |      |   |
+| Participation                              |     |      |      |      |      |      |   |
+|--------------------------------------------+-----+------+------+------+------+------+---|
+| Participation à la présentation            | ×½  |      |    A |    A |    A |    A |   |
+| Participation au projet                    | ×½  |      |    A |    A |    A |    A |   |
+|                                            |     |      | 73.3 | 73.3 | 73.3 | 73.3 |   |
+
+* Légende :
+A=100%
+B=80%
+C=60%
+D=40%
+E=0%
+X=Absent ou non rendu
+
