@@ -1,24 +1,3 @@
-package com.example.gaspillezero.ui.main.PrésentationProduits
-
-import com.example.gaspillezero.ui.main.sourceDeDonnées.Gabarits
-import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
-import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDeDonnées
-import com.example.gaspillezero.ui.main.sourceDeDonnées.SourceDeDonnéesHTTP
-
-class ProduitModèle(private var _source: SourceDeDonnées = SourceDeDonnéesHTTP()) : ProduitsModèle {
-
-    override suspend fun obtenirListeProduits(): List<Produits> = _source.obtenirDonnéesProduits()
-    override suspend fun recevoirDonnéesGabarits(): List<Gabarits> = _source.obtenirListeGabarits()
-
-    override suspend fun supprimerProduit(produits: Produits) {
-        _source.supprimerProduit(produits)
-    }
-
-    override suspend fun modifierProduit(produits: Produits) {
-        _source.modifierProduit(produits)
-    }
-
-    override suspend fun ajouterProduit(produits: Produits) {
-        _source.ajouterProduit(produits)
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:ae7339b85faa644b9407cbdd6f7cca5b59345c3ca4ec92a6a0c03b98b791433c
+size 1016

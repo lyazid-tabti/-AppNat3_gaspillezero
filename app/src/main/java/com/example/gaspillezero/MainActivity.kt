@@ -1,18 +1,3 @@
-package com.example.gaspillezero
-
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-
-class MainActivity : AppCompatActivity() {
-    private lateinit var navController: NavController
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.fragmentContainerView4) as NavHostFragment
-            navController = navHostFragment.navController
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:04048184384f3174500029f7e97c259fd604732969de4bee47a76b3000af98eb
+size 661

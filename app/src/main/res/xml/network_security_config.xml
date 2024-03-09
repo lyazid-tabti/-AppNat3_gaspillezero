@@ -1,8 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<network-security-config>
-    <base-config cleartextTrafficPermitted="true">
-        <trust-anchors>
-            <certificates src="system" />
-        </trust-anchors>
-    </base-config>
-</network-security-config>
+version https://git-lfs.github.com/spec/v1
+oid sha256:5d572b6e203d241d9eb8e9200acafd04d8375110e62a0c2fdb283372bfd7f6ea
+size 261

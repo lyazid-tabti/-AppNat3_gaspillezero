@@ -1,9 +1,3 @@
-package com.example.gaspillezero.ui.main.PrésentationCommandes
-
-import com.example.gaspillezero.ui.main.sourceDeDonnées.Commandes
-import com.example.gaspillezero.ui.main.sourceDeDonnées.Gabarits
-
-interface CommandesModèle {
-    suspend fun obtenirListeCommandes(): List<Commandes>
-    suspend fun supprimerCommande(commandes: Commandes)
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:2f169294c3938842c843acfb2225a8bd9f25c68c677af8ec4426497427903994
+size 350

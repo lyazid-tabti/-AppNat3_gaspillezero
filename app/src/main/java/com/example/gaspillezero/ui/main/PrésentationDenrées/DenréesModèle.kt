@@ -1,8 +1,3 @@
-package com.example.gaspillezero.ui.main.PrésentationDenrées
-
-import com.example.gaspillezero.ui.main.sourceDeDonnées.*
-
-class DenréesModèle(private var _source: SourceDeDonnées = SourceDeDonnéesHTTP()) {
-
-    suspend fun obtenirListeProduits(): List<Produits> = _source.obtenirDonnéesProduits()
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:79379dc812ead76fddd9e70bef6120d87025f026962aa989bb9bbe4efebcf1dc
+size 312

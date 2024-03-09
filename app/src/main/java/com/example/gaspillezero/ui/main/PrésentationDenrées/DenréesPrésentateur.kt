@@ -1,22 +1,3 @@
-package com.example.gaspillezero.ui.main.PrésentationDenrées
-
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import kotlin.coroutines.CoroutineContext
-
-class DenréesPrésentateur(private val vue: DenreesFragment) {
-
-    private var iocontext : CoroutineContext = Dispatchers.IO
-    var modèle = DenréesModèle()
-
-    fun obtenirDonnées() {
-        CoroutineScope( iocontext ).launch {
-            val données = modèle.obtenirListeProduits()
-            withContext(Dispatchers.Main) {
-                vue.afficherDonnées(données)
-            }
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e74409abdd312d717b8608ada45300390df3facce6fb8f48309a1ea3300e5554
+size 697

@@ -1,34 +1,3 @@
-package com.example.gaspillezero.ui.main.PrésentationGabarits
-
-import com.example.gaspillezero.ui.main.sourceDeDonnées.Gabarits
-import kotlinx.coroutines.*
-import kotlin.coroutines.*
-
-class GabaritsPrésenteur(private val vue: GabaritVue, private val modèle: GabaritModèle, iocontext : CoroutineContext = Dispatchers.IO) : GabaritPrésentateur {
-
-    private var iocontext : CoroutineContext = iocontext
-
-    override fun obtenirDonnées() {
-        CoroutineScope( iocontext ).launch {
-            val données = modèle.obtenirListeGabarits()
-            withContext(Dispatchers.Main) {
-                vue.afficherDonnées(données)
-            }
-        }
-    }
-    override fun supprimerGabarit(gabarit: Gabarits) {
-        CoroutineScope( iocontext ).launch {
-            modèle.supprimerGabarit(gabarit)
-        }
-    }
-    override fun modifierGabarit(gabarit: Gabarits) {
-        CoroutineScope( iocontext ).launch {
-            modèle.modifierGabarit(gabarit)
-        }
-    }
-    override fun ajouterGabarit(gabarit: Gabarits) {
-        CoroutineScope( iocontext ).launch {
-            modèle.ajouterGabarit(gabarit)
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:4bfec2da30511bfc94a3fc40c6b3d375976bfad16c0fe3ed3d6d56d1131461e9
+size 1186

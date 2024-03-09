@@ -1,22 +1,3 @@
-package com.example.gaspillezero.ui.main.DossierPanier
-
-import androidx.room.*
-import com.example.gaspillezero.ui.main.sourceDeDonnées.PanierItem
-
-@Dao
-interface PanierDAO {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun ajouterProduit(panier: PanierItem)
-
-    @Query("SELECT * FROM PanierItem WHERE produitNom = :nomProduit LIMIT 1")
-    fun chercherProduitParNom(nomProduit: String): PanierItem?
-
-    @Query("SELECT * FROM PanierItem")
-    fun afficherItemsPanier(): MutableList<PanierItem>
-
-    @Query("UPDATE PanierItem SET quantitéCommandé = :quantitéCommandé WHERE produitNom = :nomProduit")
-    fun modifierPanierItem(quantitéCommandé: String, nomProduit: String)
-
-    @Delete
-    fun supprimerPanierItem(panier: PanierItem)
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:32fabc99d388c2043d425a17274c1f1d6b347b12c4e99ae08af634bdea6e506d
+size 776

@@ -1,8 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <gradient
-        android:startColor="#000DFF"
-        android:endColor="#00178C"
-        android:angle="45"/>
-    <corners android:radius="20dp"/>
-</shape>
+version https://git-lfs.github.com/spec/v1
+oid sha256:71a023fb7b6a3316c3c978a8b6b3d4b400504712ae97dc5d9e663cf4e8a1ae65
+size 273

@@ -1,17 +1,3 @@
-package com.example.gaspillezero
-
-import org.junit.Test
-import org.junit.Assert.*
-
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
-    //@Test
-    //fun addition_isCorrect() {
-    //    assertEquals(4, 2 + 2)
-    //}
-
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:798687763f8ecb38870fbf8f1e43f8152e63266b28e0e5d3877150b9bf62c96c
+size 372

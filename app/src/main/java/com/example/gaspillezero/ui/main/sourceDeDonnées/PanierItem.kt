@@ -1,19 +1,3 @@
-package com.example.gaspillezero.ui.main.sourceDeDonnées
-
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity(tableName = "PanierItem")
-class PanierItem (
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
-    @ColumnInfo(name = "produitNom")
-    val produitNom: String,
-    @ColumnInfo(name = "produitPrix")
-    val produitPrix: Double,
-    @ColumnInfo(name = "quantitéCommandé")
-    var quantitéCommandé: Int,
-    @ColumnInfo(name = "imageID")
-    val imageID: String?
-)
+version https://git-lfs.github.com/spec/v1
+oid sha256:5fc70efd17c0de888ad3c88f787ea189a9e0f34dd7f072819ccdeeee840c0975
+size 552

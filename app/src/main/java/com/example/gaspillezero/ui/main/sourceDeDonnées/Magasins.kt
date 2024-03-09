@@ -1,27 +1,3 @@
-package com.example.gaspillezero.ui.main.sourceDeDonnées
-
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
-import kotlinx.serialization.Serializable
-
-
-@Serializable
-data class Magasins(
-        @PrimaryKey(autoGenerate = true)
-        val id: Long = 0,
-        @ColumnInfo(name = "magasinNom")
-        val magasinNom: String,
-        @ColumnInfo(name = "produitNom")
-        val estDisponible: String ,
-
-        @ColumnInfo(name = "imageID")
-        val imageID: String,
-
-        //val produits: MutableList<Produits>
-
-
-
-
-    )
+version https://git-lfs.github.com/spec/v1
+oid sha256:bf252e6c50af877f221bc507a11a3c8a367c98a4dff94e22898be346df03302f
+size 631

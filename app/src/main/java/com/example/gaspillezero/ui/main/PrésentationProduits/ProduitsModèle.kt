@@ -1,12 +1,3 @@
-package com.example.gaspillezero.ui.main.PrésentationProduits
-
-import com.example.gaspillezero.ui.main.sourceDeDonnées.Gabarits
-import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
-
-interface ProduitsModèle {
-    suspend fun obtenirListeProduits(): List<Produits>
-    suspend fun recevoirDonnéesGabarits(): List<Gabarits>
-    suspend fun supprimerProduit(produits: Produits)
-    suspend fun modifierProduit(produits: Produits)
-    suspend fun ajouterProduit(produits: Produits)
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:7e066a219ad49831e98eecbe63eaf3df07094654dd6829948311be353388637a
+size 507

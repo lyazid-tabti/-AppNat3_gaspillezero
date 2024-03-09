@@ -1,11 +1,3 @@
-package com.example.gaspillezero.ui.main.PrésentationProduits
-
-import com.example.gaspillezero.ui.main.sourceDeDonnées.Produits
-
-interface ProduitsPrésentateur {
-    fun obtenirDonnées()
-    fun recevoirDonnéesGabarits()
-    fun supprimerProduit(produits: Produits)
-    fun modifierProduit(produits: Produits)
-    fun ajouterProduit(produits: Produits)
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:3115a71938e06ca016f4d503391f94533c7544252ab68ea98d09c8dff9819edc
+size 369
